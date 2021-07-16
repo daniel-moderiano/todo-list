@@ -1,23 +1,43 @@
+/* ---GLOBAL/BODY--- */
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+
+/* ---MAIN--- */
 .container {
     display: grid;
     grid-template-areas: 
         "header header header"
         "sidebar main main"
         "footer footer footer";
+    width: 600px;
+    margin: auto;
 }
 
+.main {
+  grid-area: main;
+}
+
+
+/* ---HEADER--- */
 .header {
     grid-area: header;
 }
 
-.footer {
-    grid-area: footer;
+.header__icon {
+  width: 20px;
 }
 
+
+/* ---SIDEBAR--- */
 .sidebar {
     grid-area: sidebar;
 }
 
-.main {
-    grid-area: main;
+
+/* ---FOOTER--- */
+.footer {
+  grid-area: footer;
 }
