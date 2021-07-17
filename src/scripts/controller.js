@@ -15,7 +15,8 @@ function formData() {
   let title = document.querySelector("#title").value;
   let description = document.querySelector("#description").value;
   let priority = document.querySelector("#priority").value;
-  return [title, description, priority];
+  let dueDate = document.querySelector("#date").value;
+  return [title, description, priority, dueDate];
 }
 
 export { btnTest }

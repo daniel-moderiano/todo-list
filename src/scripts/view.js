@@ -14,6 +14,11 @@ function createTodoForm() {
   inputDescription.type = "text";
   inputDescription.classList.add("todoForm__description", "todoForm__input");
 
+  const inputDate = document.createElement("input");
+  inputDate.id = "date";
+  inputDate.type = "date";
+  inputDate.classList.add("todoForm__date", "todoForm__input");
+
   const labelTitle = document.createElement("label");
   labelTitle.setAttribute("for", "title");
   labelTitle.textContent = "Title";
@@ -21,12 +26,18 @@ function createTodoForm() {
   const labelDescription = document.createElement("label");
   labelDescription.setAttribute("for", "description");
   labelDescription.textContent = "Description";
+
+  const labelDate = document.createElement("label");
+  labelDate.setAttribute("for", "date");
+  labelDate.textContent = "Due Date";
   
   // Append to form
   form.appendChild(labelTitle);
   form.appendChild(inputTitle);
   form.appendChild(labelDescription);
   form.appendChild(inputDescription);
+  form.appendChild(labelDate);
+  form.appendChild(inputDate);
   
   // Create and append full dropdown list
   const labelDropdown = document.createElement("label");
