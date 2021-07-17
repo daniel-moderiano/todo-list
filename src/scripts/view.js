@@ -1,16 +1,19 @@
 // Create form for adding todos dynamically in JS
 function createTodoForm() {
   const form = document.createElement("form");
+  form.classList.add("todoForm");
 
   // Create title and description inputs/labels
   const inputTitle = document.createElement("input");
   inputTitle.id = "title";
   inputTitle.type = "text";
+  inputTitle.classList.add("todoForm__title", "todoForm__input");
   
   const inputDescription = document.createElement("input");
   inputDescription.id = "description";
   inputDescription.type = "text";
-  
+  inputDescription.classList.add("todoForm__description", "todoForm__input");
+
   const labelTitle = document.createElement("label");
   labelTitle.setAttribute("for", "title");
   labelTitle.textContent = "Title";
@@ -51,11 +54,17 @@ function createTodoForm() {
   const btn = document.createElement("button");
   btn.type = "submit";
   btn.textContent = "Add";
+  btn.classList.add("todoForm__btn");
   
   form.appendChild(btn);
   
   // Append to DOM
   document.body.appendChild(form);
+
+  
 }
+
+
+
 
 export { createTodoForm };
