@@ -61,10 +61,6 @@ function createTodoForm() {
   // Append to DOM
   document.body.appendChild(form);
 
-  
 }
-
-
-
 
 export { createTodoForm };

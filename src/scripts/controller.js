@@ -6,14 +6,16 @@ function btnTest() {
   submitBtn.addEventListener("click", function(e) {
     e.preventDefault();
     // Function to extract form data
-    formData();
-  })
+    console.log(formData());
+  });
 }
 
 function formData() {
   // Take DOM element input (form) and extract data
-  const dropdown = document.querySelector("#priority");
-  console.log(dropdown.value);
+  let title = document.querySelector("#title").value;
+  let description = document.querySelector("#description").value;
+  let priority = document.querySelector("#priority").value;
+  return [title, description, priority];
 }
 
 export { btnTest }
