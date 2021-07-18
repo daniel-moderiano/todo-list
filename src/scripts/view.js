@@ -63,8 +63,8 @@ function createTodoForm() {
   
   // Create and append submit button
   const btn = document.createElement("button");
-  btn.type = "submit";
   btn.textContent = "Add";
+  btn.type = "button";
   btn.classList.add("todoForm__btn");
   
   form.appendChild(btn);

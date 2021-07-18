@@ -2,9 +2,8 @@ import { todos, createTodo } from "./model"
 
 // Listen for todo form submit
 function todoSubmit() {
-  const submitBtn = document.querySelector("button[type='submit']");
+  const submitBtn = document.querySelector(".todoForm__btn");
   submitBtn.addEventListener("click", function(e) {
-    e.preventDefault();
     getFormData();
     console.log(todos);
   });
