@@ -1,21 +1,19 @@
-import { todos, createTodo } from "./model"
+import { todos, createTodo } from "./model";
+import { createTodoForm } from "./view";
 
-// Listen for todo form submit
-function todoSubmit() {
-  const submitBtn = document.querySelector(".todoForm__btn");
-  submitBtn.addEventListener("click", function(e) {
-    getFormData();
-    console.log(todos);
-  });
+// Create/display the todoForm visible when user clicks "New Todo"
+function openTodoForm() {
+  const newTodo = document.querySelector(".header__btn");
+  newTodo.addEventListener("click", createTodoForm);
 }
 
- // Take DOM element input (form) and extract data
+// Dispose of the todoForm once info has been gathered
+function closeTodoForm() {
+  document.querySelector("form").remove();
+}
+
+ // Take DOM element (form) inputs and extract data
 function getFormData() {
-  // let title = document.querySelector("#title").value;
-  // let description = document.querySelector("#description").value;
-  // let priority = document.querySelector("#priority").value;
-  // let dueDate = document.querySelector("#date").value;
-  // return [title, description, priority, dueDate];
   let newTodo = createTodo(
     document.querySelector("#title").value,
     document.querySelector("#description").value,
@@ -23,7 +21,8 @@ function getFormData() {
     document.querySelector("#priority").value
   );
   todos.push(newTodo);
+  console.log(newTodo);
 }
 
 
-export { todoSubmit }
+export { openTodoForm, getFormData, closeTodoForm }

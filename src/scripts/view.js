@@ -1,3 +1,5 @@
+import { getFormData, addNewTodo, closeTodoForm } from "./controller";
+
 // Create form for adding todos dynamically in JS
 function createTodoForm() {
   const form = document.createElement("form");
@@ -72,6 +74,12 @@ function createTodoForm() {
   // Append to DOM
   document.body.appendChild(form);
 
+  // Add event listeners to btn
+  btn.addEventListener("click", getFormData);
+  btn.addEventListener("click", closeTodoForm);
+  btn.addEventListener("click", function() {
+    console.log("clicked");
+  });
 }
 
 export { createTodoForm };
