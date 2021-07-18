@@ -7,8 +7,4 @@ function createTodo(title, description, dueDate, priority) {
   return { title, description, dueDate, priority }
 };
 
-
-
-let first = createTodo("Laundry", "black clothes only", "01-02-2021", "medium");
-
-console.log(first);
+export { todos, createTodo }

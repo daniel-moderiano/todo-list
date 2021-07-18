@@ -1,5 +1,7 @@
 import { createTodoForm } from "./scripts/view";
-import { btnTest } from "./scripts/controller";
+import { todoSubmit } from "./scripts/controller";
+import { todos } from "./scripts/model";
 
 createTodoForm();
-btnTest();
+todoSubmit();
+console.log(todos);
