@@ -31,13 +31,24 @@ function addModalControls() {
   const newTodo = document.querySelector(".header__btn");
   newTodo.addEventListener("click", displayModal);
 
+  // Listen for outside click
+  window.addEventListener("click", outsideClick);
+
   // Display the add-modal when user clicks "New Todo"
   function displayModal() {
     modal.style.display = "block";
   }
 
+  // Close the modal
   function closeModal() {
     modal.style.display = "none";
+  }
+
+  // Close the modal on outside click
+  function outsideClick(e) {
+    if (e.target == modal) {
+      modal.style.display = "none";
+    }
   }
 }
 
