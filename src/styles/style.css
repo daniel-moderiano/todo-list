@@ -41,3 +41,16 @@ body {
 .footer {
   grid-area: footer;
 }
+
+/* ---ADD TODO MODAL */
+.add-modal {
+  /* display: none; */
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
