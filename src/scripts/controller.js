@@ -1,7 +1,7 @@
 import { todos, createTodo } from "./model";
 import { createTodoForm } from "./view";
 
-// Take DOM element (form) inputs and extract data
+// Take DOM element (form) inputs and extract data into new todo
 function getFormData() {
   let newTodo = createTodo(
     document.querySelector("#todo-form__title").value,
@@ -9,8 +9,14 @@ function getFormData() {
     document.querySelector("#todo-form__date").value,
     document.querySelector("#todo-form__priority").value
   );
-  todos.push(newTodo);
-  console.log(newTodo);
+  return newTodo;
+}
+
+// Add new todo to master array
+function addNewTodo() {
+  let todoToAdd = getFormData();
+  todos.push(todoToAdd);
+  console.log(todoToAdd);
 }
 
 function addModalControls() {
@@ -23,10 +29,12 @@ function addModalControls() {
 
   // Get "New Todo" btn
   const newTodo = document.querySelector(".header__btn");
+  newTodo.addEventListener("click", clearInputs);
   newTodo.addEventListener("click", displayModal);
 
   // Listen for outside click
   window.addEventListener("click", outsideClick);
+  
 
   // Display the add-modal when user clicks "New Todo"
   function displayModal() {
@@ -38,6 +46,14 @@ function addModalControls() {
     modal.style.display = "none";
   }
 
+  // Clear all inputs in the modal form
+  function clearInputs() {
+    document.querySelector("#todo-form__title").value = "";
+    document.querySelector("#todo-form__description").value = "";
+    document.querySelector("#todo-form__date").value = "";
+    document.querySelector("#todo-form__priority").value = "";
+  }
+
   // Close the modal on outside click
   function outsideClick(e) {
     if (e.target == modal) {
@@ -45,13 +61,23 @@ function addModalControls() {
     }
   }
 
-  // Get modal form
+  // Get "add task" btn
   const todoFormBtn = document.querySelector(".todo-form__btn");
 
   // Listen for form submit/"add todo" btn click
-  todoFormBtn.addEventListener("click", getFormData);
+  todoFormBtn.addEventListener("click", addNewTodo);
   todoFormBtn.addEventListener("click", closeModal);
 }
 
+// Enable add btn only if user enters a title for the todo
+function btnEnable() {
+  const todoFormBtn = document.querySelector(".todo-form__btn");
+  if (document.querySelector("#todo-form__title").value != "") {
+    todoFormBtn.disabled = false;
+  } else {
+    todoFormBtn.disabled = true;
+  }
+}
 
-export { addModalControls }
+
+export { addModalControls, btnEnable }
