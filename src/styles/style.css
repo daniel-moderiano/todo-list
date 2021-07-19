@@ -44,7 +44,7 @@ body {
 
 /* ---ADD TODO MODAL */
 .add-modal {
-  /* display: none; */
+  display: none;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -82,9 +82,11 @@ body {
 .add-modal__close {
   color: #ccc;
   font-size: 2rem;
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
 }
 
-.add-modal__close:hover, .add-modal__close:focus {
+.add-modal__close:hover {
   color: black;
   text-decoration: none;
   cursor: pointer;

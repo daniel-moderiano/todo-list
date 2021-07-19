@@ -1,11 +1,6 @@
 import { todos, createTodo } from "./model";
 import { createTodoForm } from "./view";
 
-// Create/display the todoForm visible when user clicks "New Todo"
-function openTodoForm() {
-  const newTodo = document.querySelector(".header__btn");
-  newTodo.addEventListener("click", createTodoForm);
-}
 
 // Dispose of the todoForm once info has been gathered
 function closeTodoForm() {
@@ -24,5 +19,29 @@ function getFormData() {
   console.log(newTodo);
 }
 
+function addModalControls() {
+  // Get modal
+  const modal = document.querySelector(".add-modal");
 
-export { openTodoForm, getFormData, closeTodoForm }
+  // Get close btn
+  const closeBtn = document.querySelector(".add-modal__close");
+  closeBtn.addEventListener("click", closeModal);
+
+  // Get "New Todo" btn
+  const newTodo = document.querySelector(".header__btn");
+  newTodo.addEventListener("click", displayModal);
+
+  // Display the add-modal when user clicks "New Todo"
+  function displayModal() {
+    modal.style.display = "block";
+  }
+
+  function closeModal() {
+    modal.style.display = "none";
+  }
+}
+
+
+
+
+export { addModalControls, getFormData }

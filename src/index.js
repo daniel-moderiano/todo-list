@@ -1,5 +1,10 @@
 import { createTodoForm } from "./scripts/view";
-import { openTodoForm, addNewTodo, closeTodoForm } from "./scripts/controller";
+import { addModalControls } from "./scripts/controller";
 import { todos } from "./scripts/model";
 
-openTodoForm();
+// "main" style funciton to run appropriate functions from the page load
+function main() {
+  addModalControls();
+}
+
+main();
