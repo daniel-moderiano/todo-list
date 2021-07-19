@@ -45,15 +45,20 @@
 
     <div class="add-modal">
       <div class="add-modal__content">
+        <header class="add-modal__header">
+          <h4 class="add-modal__title">New task</h4>
+          <span class="add-modal__close">&times;</span>
+        </header>
         <form class="todo-form">
           <label for="todo-form__title">Title</label>
           <input id="todo-form__title" type="text" class="todo-form__title">
           <label for="todo-form__description">Description</label>
-          <input id="todo-form__description" type="text" class="todo-form__description">
+          <input id="todo-form__description" class="todo-form__description">
           <label for="todo-form__date">Due date</label>
           <input id="todo-form__date" type="date" class="todo-form__description">
           <label for="todo-form__priority">Priority</label>
           <select name="priority" id="todo-form__priority">
+            <option disabled selected value> -- Select -- </option>
             <option value="high">High</option>
             <option value="medium">Medium</option>
             <option value="low">Low</option>
