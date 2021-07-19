@@ -42,6 +42,27 @@
     
         <footer class="footer">Daniel Moderiano</footer>
     </div>
+
+    <div class="modal">
+      <form class="todo-form">
+        <label for="todo-form__title">Title</label>
+        <input id="todo-form__title" type="text" class="todo-form__title">
+        <label for="todo-form__description">Description</label>
+        <input id="todo-form__description" type="text" class="todo-form__description">
+        <label for="todo-form__date">Due date</label>
+        <input id="todo-form__date" type="date" class="todo-form__description">
+        <label for="todo-form__priority">Priority</label>
+        <select name="priority" id="todo-form__priority">
+          <option value="high">High</option>
+          <option value="medium">Medium</option>
+          <option value="low">Low</option>
+        </select>
+        <button class="todo-form__btn" type="button">Add task</button>
+      </form>
+    </div>
+
+
+
     <script src="main.js"></script>
 </body>
 </html>

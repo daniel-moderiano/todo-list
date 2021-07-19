@@ -67,6 +67,7 @@ function createTodoForm() {
   const btn = document.createElement("button");
   btn.textContent = "Add";
   btn.type = "button";
+  btn.disabled = true;
   btn.classList.add("todoForm__btn");
   
   form.appendChild(btn);
