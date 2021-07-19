@@ -1,19 +1,13 @@
 import { todos, createTodo } from "./model";
 import { createTodoForm } from "./view";
 
-
-// Dispose of the todoForm once info has been gathered
-function closeTodoForm() {
-  document.querySelector("form").remove();
-}
-
- // Take DOM element (form) inputs and extract data
+// Take DOM element (form) inputs and extract data
 function getFormData() {
   let newTodo = createTodo(
-    document.querySelector("#title").value,
-    document.querySelector("#description").value,
-    document.querySelector("#date").value,
-    document.querySelector("#priority").value
+    document.querySelector("#todo-form__title").value,
+    document.querySelector("#todo-form__description").value,
+    document.querySelector("#todo-form__date").value,
+    document.querySelector("#todo-form__priority").value
   );
   todos.push(newTodo);
   console.log(newTodo);
@@ -50,9 +44,14 @@ function addModalControls() {
       modal.style.display = "none";
     }
   }
+
+  // Get modal form
+  const todoFormBtn = document.querySelector(".todo-form__btn");
+
+  // Listen for form submit/"add todo" btn click
+  todoFormBtn.addEventListener("click", getFormData);
+  todoFormBtn.addEventListener("click", closeModal);
 }
 
 
-
-
-export { addModalControls, getFormData }
+export { addModalControls }
