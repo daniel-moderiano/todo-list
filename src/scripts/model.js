@@ -15,4 +15,15 @@ let todo3 = createTodo("Call John", "Need to organise a catch up", "18-07-2021",
 
 todos.push(todo1, todo2, todo3);
 
-export { todos, createTodo }
+// Adds or updates list of todos to local storage
+function addToStorage(todosArr) {
+  localStorage.setItem("todos", JSON.stringify(todosArr));
+}
+
+// Retrieves list of todos from local storage
+function getFromStorage() {
+  return JSON.parse(localStorage.getItem("todos"));
+}
+
+
+export { todos, createTodo, addToStorage, getFromStorage }
