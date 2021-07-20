@@ -33,6 +33,7 @@ function renderTodo(todo) {
   const todoCheckbox = document.createElement("input");
   todoCheckbox.type = "checkbox";
   todoCheckbox.name = "task-complete";
+  todoCheckbox.classList.add("todo__checkbox");
   todoCheckbox.setAttribute("aria-label", "task complete");
 
   const todoDeleteBtn = document.createElement("button");
@@ -51,12 +52,14 @@ function renderTodo(todo) {
 
   // Insert newly rendered todo into the main todo list
   todosList.appendChild(todoListItem);
+  console.log(todos.length);
 }
 
 // Render all todos function to be called on page load, on todo add, and on todo delete (or swithcing of list view)
 function renderAllTodos() {
   getFromStorage().forEach(function(todo) {
     renderTodo(todo);
+    // addTodoControls(todo)
   });
 }
 
@@ -75,4 +78,9 @@ function refreshTodoList() {
   renderAllTodos();
 }
 
-export { renderTodo, renderAllTodos, clearAllTodos, refreshTodoList };
+// Remove a single todo from the master todo array
+function removeTodo(todoElement) {
+  todoElement.parentNode.removeChild(todoElement);
+}
+
+export { renderTodo, renderAllTodos, clearAllTodos, refreshTodoList, removeTodo };

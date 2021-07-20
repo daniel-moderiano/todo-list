@@ -1,5 +1,5 @@
 import { todos, createTodo, addToStorage, getFromStorage, pushTodo } from "./model";
-import { renderTodo, renderAllTodos, refreshTodoList } from "./view";
+import { renderTodo, renderAllTodos, refreshTodoList, removeTodo } from "./view";
 
 // Take DOM element (form) inputs and extract data into new todo
 function getFormData() {
@@ -18,6 +18,7 @@ function addNewTodo() {
   pushTodo(todoToAdd);
 }
 
+// Add controls to modal buttons (open/close, outside click, etc)
 function addModalControls() {
   // Get modal
   const modal = document.querySelector(".add-modal");
@@ -73,6 +74,7 @@ function addModalControls() {
   });
 }
 
+// Add submission controls and input verification to the todoForm submit form
 function todoFormBtnContol(params) {
   // Get form input
   const todoFormTitle = document.querySelector("#todo-form__title");
@@ -99,7 +101,15 @@ function btnEnable() {
   }
 }
 
+// // Function to enable controls on the checkbox and delete buttons on todo list items
+// function enableTodoControls(todoItem) {
+//   // Get delete btn and checkbox
+//   const deleteBtn = document.querySelector(".todo__delete");
+//   const todoCheckbox = document.querySelector(".todo__checkbox");
 
-
+//   // Listen for click on deleteBtn, and change (checkbox selected) on checkbox
+//   deleteBtn.addEventListener("click", )
+//   todoCheckbox.addEventListener("change" )
+// }
 
 export { addModalControls, todoFormBtnContol, renderAllTodos }
