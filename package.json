@@ -19,5 +19,8 @@
   "devDependencies": {
     "webpack": "^5.45.1",
     "webpack-cli": "^4.7.2"
+  },
+  "dependencies": {
+    "nanoid": "^3.1.23"
   }
 }

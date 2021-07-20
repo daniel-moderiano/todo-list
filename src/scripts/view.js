@@ -1,6 +1,5 @@
 import { todos, getFromStorage } from './model';
 
-
 // Take todo object from master array and render to the DOM as todo list item
 function renderTodo(todo) {
   // Get todosList element
@@ -52,7 +51,6 @@ function renderTodo(todo) {
 
   // Insert newly rendered todo into the main todo list
   todosList.appendChild(todoListItem);
-  console.log(todos.length);
 }
 
 // Render all todos function to be called on page load, on todo add, and on todo delete (or swithcing of list view)
