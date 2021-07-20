@@ -1,4 +1,4 @@
-import { todos, getFromStorage } from './model';
+import { todos, getFromStorage, deleteFromTodoArr, addToStorage } from './model';
 
 // Take todo object from master array and render to the DOM as todo list item
 function renderTodo(todo) {
@@ -8,6 +8,7 @@ function renderTodo(todo) {
   // Create list element and container for new todo
   const todoListItem = document.createElement("li");
   todoListItem.classList.add("todo");
+  todoListItem.dataset.id = todo.id;
 
   const todoContainer = document.createElement("div");
   todoContainer.classList.add("todo__container");
@@ -35,10 +36,24 @@ function renderTodo(todo) {
   todoCheckbox.classList.add("todo__checkbox");
   todoCheckbox.setAttribute("aria-label", "task complete");
 
+  // Add listener here
+  todoCheckbox.addEventListener("change", () => {
+    deleteFromTodoArr(todo.id)
+  });
+  todoCheckbox.addEventListener("change", addToStorage);
+  todoCheckbox.addEventListener("change", refreshTodoList);
+
   const todoDeleteBtn = document.createElement("button");
   todoDeleteBtn.type = "button";
   todoDeleteBtn.classList.add("todo__delete");
   todoDeleteBtn.innerHTML = "&times;";
+
+  // Add listenere here
+  todoDeleteBtn.addEventListener("click", () => {
+    deleteFromTodoArr(todo.id)
+  });
+  todoDeleteBtn.addEventListener("click", addToStorage);
+  todoDeleteBtn.addEventListener("click", refreshTodoList);
    
   // Append todo elements to container (and li)
   todoListItem.appendChild(todoContainer);
@@ -76,9 +91,4 @@ function refreshTodoList() {
   renderAllTodos();
 }
 
-// Remove a single todo from the master todo array
-function removeTodo(todoElement) {
-  todoElement.parentNode.removeChild(todoElement);
-}
-
-export { renderTodo, renderAllTodos, clearAllTodos, refreshTodoList, removeTodo };
+export { renderTodo, renderAllTodos, clearAllTodos, refreshTodoList };

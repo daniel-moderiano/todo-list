@@ -23,6 +23,12 @@ function pushTodo(todoToPush) {
   todos.push(todoToPush);
 }
 
+// Function to remove todo object from array, searhcing via unique todo id
+function deleteFromTodoArr(id) {
+  let index = todos.findIndex(todo => todo.id === id);
+  todos.splice(index, 1);
+}
+
 // Adds or updates list of todos to local storage
 function addToStorage() {
   localStorage.setItem("todos", JSON.stringify(todos));
@@ -34,4 +40,4 @@ function getFromStorage() {
 }
 
 
-export { todos, createTodo, addToStorage, getFromStorage, pushTodo }
+export { todos, createTodo, addToStorage, getFromStorage, pushTodo, deleteFromTodoArr }
