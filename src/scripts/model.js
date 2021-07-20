@@ -4,8 +4,8 @@ import { todoSubmit } from "./controller";
 let todos = [];
 
 // Factory function to create todo items
-function createTodo(title, description, dueDate, priority) {
-  return { title, description, dueDate, priority }
+function createTodo(title, description, dueDate, priority, completed=false) {
+  return { title, description, dueDate, priority, completed }
 };
 
 // Create some dummy todos to help with rendering code

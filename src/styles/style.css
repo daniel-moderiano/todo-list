@@ -22,12 +22,13 @@ body {
 
 /* ---TODOS--- */
 .todo__container {
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
 }
 
 .todo__container > * {
   padding: 0 0.5rem;
+  /* text-align: right; */
 }
 
 /* ---HEADER--- */

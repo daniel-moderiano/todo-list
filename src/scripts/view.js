@@ -24,7 +24,7 @@ function renderTodo(todo) {
 
   const todoDate = document.createElement("p");
   todoDate.classList.add("todo__date");
-  todoDate.textContent = todo.date;
+  todoDate.textContent = todo.dueDate;
 
   const todoPriority = document.createElement("span");
   todoPriority.classList.add("todo__priority");
@@ -34,6 +34,11 @@ function renderTodo(todo) {
   todoCheckbox.type = "checkbox";
   todoCheckbox.name = "task-complete";
   todoCheckbox.setAttribute("aria-label", "task complete");
+
+  const todoDeleteBtn = document.createElement("button");
+  todoDeleteBtn.type = "button";
+  todoDeleteBtn.classList.add("todo__delete");
+  todoDeleteBtn.innerHTML = "&times;";
    
   // Append todo elements to container (and li)
   todoListItem.appendChild(todoContainer);
@@ -42,6 +47,7 @@ function renderTodo(todo) {
   todoContainer.appendChild(todoDescription);
   todoContainer.appendChild(todoDate);
   todoContainer.appendChild(todoPriority);
+  todoContainer.appendChild(todoDeleteBtn);
 
   // Insert newly rendered todo into the main todo list
   todosList.appendChild(todoListItem);
