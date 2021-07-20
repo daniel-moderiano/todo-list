@@ -1,5 +1,5 @@
 import { todos, createTodo, addToStorage, getFromStorage, pushTodo } from "./model";
-import { renderTodo, renderAllTodos } from "./view";
+import { renderTodo, renderAllTodos, refreshTodoList } from "./view";
 
 // Take DOM element (form) inputs and extract data into new todo
 function getFormData() {
@@ -69,7 +69,7 @@ function addModalControls() {
   todoFormBtn.addEventListener("click", closeModal);
   todoFormBtn.addEventListener("click", addToStorage);
   todoFormBtn.addEventListener("click", () => {
-    renderAllTodos(getFromStorage());
+    refreshTodoList();
   });
 }
 

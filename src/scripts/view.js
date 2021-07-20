@@ -1,3 +1,5 @@
+import { todos, getFromStorage } from './model';
+
 
 // Take todo object from master array and render to the DOM as todo list item
 function renderTodo(todo) {
@@ -31,6 +33,7 @@ function renderTodo(todo) {
   const todoCheckbox = document.createElement("input");
   todoCheckbox.type = "checkbox";
   todoCheckbox.name = "task-complete";
+  todoCheckbox.setAttribute("aria-label", "task complete");
    
   // Append todo elements to container (and li)
   todoListItem.appendChild(todoContainer);
@@ -45,14 +48,25 @@ function renderTodo(todo) {
 }
 
 // Render all todos function to be called on page load, on todo add, and on todo delete (or swithcing of list view)
-function renderAllTodos(todoArr) {
-  todoArr.forEach(function(todo) {
+function renderAllTodos() {
+  getFromStorage().forEach(function(todo) {
     renderTodo(todo);
-  })
+  });
 }
 
+// Visibly remove all current todos li items from the DOM
 function clearAllTodos() {
-
+  const todosList = document.querySelector(".todos__list");
+  while (todosList.lastElementChild) {
+    todosList.removeChild(todosList.lastElementChild);
+  }
 }
 
-export { renderTodo, renderAllTodos };
+// Update the visible todo list by sequentially clearing and re-rendering all todos
+// Note: a more effective method would be to only modify individual todos being affected, however this adds complexity and should have little impact on a small-scale application
+function refreshTodoList() {
+  clearAllTodos();
+  renderAllTodos();
+}
+
+export { renderTodo, renderAllTodos, clearAllTodos, refreshTodoList };
