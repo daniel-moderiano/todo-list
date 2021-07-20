@@ -8,74 +8,68 @@
     <link rel="stylesheet" href="../src/styles/style.css">
     <title>Todo List</title>
 </head>
-<body>
-    <div class="container">
-        <header class="header">
-          <img class="header__icon" src="../src/icons/tick.svg" alt="checkbox ticked">
-          <h1>Todo List</h1>
-          <button type="button" class="header__btn">New Todo</button>
-        </header>
-    
-        <main class="main">
-            <div class="todos">
-                <header class="todos__header">
-                    <h2>List</h2>
-                </header>
-                <ul class="todos__list">
-                    <li class="todo">
-                      <!-- TODO item here -->
-                      <div class="todo__container">
-                        <input type="checkbox" name="complete" id="todo__checkbox" aria-label="task completed">
-                        <h5 class="todo__title">Laundry</h5>
-                        <p class="todo__description">Description</p>
-                        <p class="todo__date">Due date</p>
-                        <span class="todo__priority">Priority</span>
-                      </div>
-                    </li>
-                </ul>
-            </div>
-        </main>
-    
-        <aside class="sidebar">
-            <section class="inbox">
-                <h3>Inbox</h3>
-            </section>
-            <section class="lists">
-                <h3>All Lists</h3>
-            </section>
-        </aside>
-    
-        <footer class="footer">Daniel Moderiano</footer>
-    </div>
-
-    <div class="add-modal">
-      <div class="add-modal__content">
-        <header class="add-modal__header">
-          <h4 class="add-modal__title">New task</h4>
-          <button class="add-modal__close" aria-label="close">&times;</span>
-        </header>
-        <form class="todo-form">
-          <label for="todo-form__title">Title</label>
-          <input id="todo-form__title" type="text" class="todo-form__title">
-          <label for="todo-form__description">Description</label>
-          <input id="todo-form__description" class="todo-form__description">
-          <label for="todo-form__date">Due date</label>
-          <input id="todo-form__date" type="date" class="todo-form__description">
-          <label for="todo-form__priority">Priority</label>
-          <select name="priority" id="todo-form__priority">
-            <option disabled selected value> -- Select -- </option>
-            <option value="high">High</option>
-            <option value="medium">Medium</option>
-            <option value="low">Low</option>
-          </select>
-          <button class="todo-form__btn" type="button">Add task</button>
-        </form>
+  <body>
+      <div class="container">
+          <!-- Header for logo and new todo btn -->
+          <header class="header">
+            <img class="header__icon" src="../src/icons/tick.svg" alt="checkbox ticked">
+            <h1>Todo List</h1>
+            <button type="button" class="header__btn">New Todo</button>
+          </header>
+      
+          <!-- Main list of todos here -->
+          <main class="main">
+              <div class="todos">
+                  <header class="todos__header">
+                      <h2>List</h2>
+                  </header>
+                  <ul class="todos__list">
+                    <!-- Todo items here -->
+                  </ul>
+              </div>
+          </main>
+      
+          <!-- Link to other lists of todos here -->
+          <aside class="sidebar">
+              <section class="inbox">
+                  <h3>Inbox</h3>
+              </section>
+              <section class="lists">
+                  <h3>All Lists</h3>
+              </section>
+          </aside>
+      
+          <footer class="footer">Daniel Moderiano</footer>
       </div>
-    </div>
 
+      <!-- Modal for adding new todos -->
+      <div class="add-modal">
+        <div class="add-modal__content">
+          <header class="add-modal__header">
+            <h4 class="add-modal__title">New task</h4>
+            <button class="add-modal__close" aria-label="close">&times;</span>
+          </header>
+          <form class="todo-form">
+            <label for="todo-form__title">Title</label>
+            <input id="todo-form__title" type="text" class="todo-form__title">
+            <label for="todo-form__description">Description</label>
+            <input id="todo-form__description" class="todo-form__description">
+            <label for="todo-form__date">Due date</label>
+            <input id="todo-form__date" type="date" class="todo-form__description">
+            <label for="todo-form__priority">Priority</label>
+            <select name="priority" id="todo-form__priority">
+              <option disabled selected value> -- Select -- </option>
+              <option value="high">High</option>
+              <option value="medium">Medium</option>
+              <option value="low">Low</option>
+            </select>
+            <button class="todo-form__btn" type="button">Add task</button>
+          </form>
+        </div>
+      </div>
 
-
-    <script src="main.js"></script>
-</body>
+      <!-- Script runs from the webpack bundled main.js -->
+      <script src="main.js"></script>
+  </body>
 </html>
 
