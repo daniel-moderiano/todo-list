@@ -101,5 +101,6 @@ function btnEnable() {
   }
 }
 
+// TODO: some kind of checkbox animation before deleting todo
 
 export { addModalControls, todoFormBtnContol, renderAllTodos }
