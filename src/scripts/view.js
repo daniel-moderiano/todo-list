@@ -1,7 +1,7 @@
-import { getFormData, addNewTodo, closeTodoForm, todoFormBtnContol } from "./controller";
+import { todos } from "./model"
 
 // Take todo object from master array and render to the DOM as todo list item
-function renderTodo() {
+function renderTodo(todo) {
   // Get todosList element
   const todosList = document.querySelector(".todos__list");
 
@@ -15,15 +15,19 @@ function renderTodo() {
   // Create elements to render all properties of the todo object
   const todoTitle = document.createElement("h5");
   todoTitle.classList.add("todo__title");
+  todoTitle.textContent = todo.title;
 
   const todoDescription = document.createElement("p");
   todoDescription.classList.add("todo__descirption");
+  todoDescription.textContent = todo.description;
 
   const todoDate = document.createElement("p");
   todoDate.classList.add("todo__date");
+  todoDate.textContent = todo.date;
 
   const todoPriority = document.createElement("span");
   todoPriority.classList.add("todo__priority");
+  todoPriority.textContent = todo.priority;
 
   const todoCheckbox = document.createElement("input");
   todoCheckbox.type = "checkbox";

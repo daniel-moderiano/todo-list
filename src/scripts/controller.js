@@ -68,7 +68,9 @@ function addModalControls() {
   // Listen for form submit/"add todo" btn click
   todoFormBtn.addEventListener("click", addNewTodo);
   todoFormBtn.addEventListener("click", closeModal);
-  todoFormBtn.addEventListener("click", renderTodo);
+  todoFormBtn.addEventListener("click", () => {
+    renderAllTodos(todos);
+  });
 }
 
 function todoFormBtnContol(params) {
@@ -97,6 +99,12 @@ function btnEnable() {
   }
 }
 
+// Render all todos function to be called on page load, on todo add, and on todo delete (or swithcing of list view)
+function renderAllTodos(todoArr) {
+  todoArr.forEach(function(todo) {
+    renderTodo(todo);
+  })
+}
 
 
-export { addModalControls, todoFormBtnContol }
+export { addModalControls, todoFormBtnContol, renderAllTodos }
