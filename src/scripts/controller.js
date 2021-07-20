@@ -1,4 +1,5 @@
 import { todos, createTodo } from "./model";
+import { renderTodo } from "./view";
 
 // Take DOM element (form) inputs and extract data into new todo
 function getFormData() {
@@ -67,6 +68,7 @@ function addModalControls() {
   // Listen for form submit/"add todo" btn click
   todoFormBtn.addEventListener("click", addNewTodo);
   todoFormBtn.addEventListener("click", closeModal);
+  todoFormBtn.addEventListener("click", renderTodo);
 }
 
 function todoFormBtnContol(params) {
@@ -81,10 +83,6 @@ function todoFormBtnContol(params) {
 
   // Listen for user typing or entering data into input
   todoFormTitle.addEventListener("input", btnEnable);
-  // todoFormTitle.addEventListener("paste", () => {
-  //   console.log("pasted");
-  //   console.log(document.querySelector("#todo-form__title").value);
-  // });
 
   btnEnable();
 }
@@ -98,6 +96,7 @@ function btnEnable() {
     todoFormBtn.disabled = false;
   }
 }
+
 
 
 export { addModalControls, todoFormBtnContol }

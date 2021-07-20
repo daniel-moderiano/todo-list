@@ -1,88 +1,45 @@
-import { getFormData, addNewTodo, closeTodoForm } from "./controller";
+import { getFormData, addNewTodo, closeTodoForm, todoFormBtnContol } from "./controller";
 
-// Create form for adding todos dynamically in JS
-function createTodoForm() {
-  const form = document.createElement("form");
-  form.classList.add("todoForm");
+// Take todo object from master array and render to the DOM as todo list item
+function renderTodo() {
+  // Get todosList element
+  const todosList = document.querySelector(".todos__list");
 
-  // Create title and description inputs/labels
-  const inputTitle = document.createElement("input");
-  inputTitle.id = "title";
-  inputTitle.type = "text";
-  inputTitle.classList.add("todoForm__title", "todoForm__input");
-  
-  const inputDescription = document.createElement("input");
-  inputDescription.id = "description";
-  inputDescription.type = "text";
-  inputDescription.classList.add("todoForm__description", "todoForm__input");
+  // Create list element and container for new todo
+  const todoListItem = document.createElement("li");
+  todoListItem.classList.add("todo");
 
-  const inputDate = document.createElement("input");
-  inputDate.id = "date";
-  inputDate.type = "date";
-  inputDate.classList.add("todoForm__date", "todoForm__input");
+  const todoContainer = document.createElement("div");
+  todoContainer.classList.add("todo__container");
+  
+  // Create elements to render all properties of the todo object
+  const todoTitle = document.createElement("h5");
+  todoTitle.classList.add("todo__title");
 
-  const labelTitle = document.createElement("label");
-  labelTitle.setAttribute("for", "title");
-  labelTitle.textContent = "Title";
-  
-  const labelDescription = document.createElement("label");
-  labelDescription.setAttribute("for", "description");
-  labelDescription.textContent = "Description";
+  const todoDescription = document.createElement("p");
+  todoDescription.classList.add("todo__descirption");
 
-  const labelDate = document.createElement("label");
-  labelDate.setAttribute("for", "date");
-  labelDate.textContent = "Due Date";
-  
-  // Append to form
-  form.appendChild(labelTitle);
-  form.appendChild(inputTitle);
-  form.appendChild(labelDescription);
-  form.appendChild(inputDescription);
-  form.appendChild(labelDate);
-  form.appendChild(inputDate);
-  
-  // Create and append full dropdown list
-  const labelDropdown = document.createElement("label");
-  labelDropdown.setAttribute("for", "priority");
-  labelDropdown.textContent = "Priority";
-  
-  const dropdown = document.createElement("select");
-  dropdown.id = "priority"
-  dropdown.name = "priority"
-  
-  form.appendChild(labelDropdown);
-  form.appendChild(dropdown);
-  
-  const options = ["high", "medium", "low"];
-  
-  // Set values for each option as it is added to the DOM
-  for (let i = 0; i < options.length; i++) {
-    const option = document.createElement("option");
-    option.value = `${options[i]}`;
-    option.textContent = options[i][0].toUpperCase() + options[i].substring(1);
-    dropdown.appendChild(option);
-  }
-  
-  // Create and append submit button
-  const btn = document.createElement("button");
-  btn.textContent = "Add";
-  btn.type = "button";
-  btn.disabled = true;
-  btn.classList.add("todoForm__btn");
-  
-  form.appendChild(btn);
-  
-  // Append to DOM
-  document.body.appendChild(form);
+  const todoDate = document.createElement("p");
+  todoDate.classList.add("todo__date");
 
-  // Add event listeners to btn
-  btn.addEventListener("click", getFormData);
-  btn.addEventListener("click", closeTodoForm);
-  btn.addEventListener("click", function() {
-    console.log("clicked");
-  });
+  const todoPriority = document.createElement("span");
+  todoPriority.classList.add("todo__priority");
+
+  const todoCheckbox = document.createElement("input");
+  todoCheckbox.type = "checkbox";
+  todoCheckbox.name = "task-complete";
+   
+  // Append todo elements to container (and li)
+  todoListItem.appendChild(todoContainer);
+  todoContainer.appendChild(todoCheckbox);
+  todoContainer.appendChild(todoTitle);
+  todoContainer.appendChild(todoDescription);
+  todoContainer.appendChild(todoDate);
+  todoContainer.appendChild(todoPriority);
+
+  // Insert newly rendered todo into the main todo list
+  todosList.appendChild(todoListItem);
+  console.log("Render todo run");
 }
 
-
-
-export { createTodoForm };
+export { renderTodo };
