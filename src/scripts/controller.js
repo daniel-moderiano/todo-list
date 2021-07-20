@@ -1,5 +1,4 @@
 import { todos, createTodo } from "./model";
-import { createTodoForm } from "./view";
 
 // Take DOM element (form) inputs and extract data into new todo
 function getFormData() {

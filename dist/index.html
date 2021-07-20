@@ -17,16 +17,21 @@
         </header>
     
         <main class="main">
-            <div class="items">
-                <header class="items__header">
+            <div class="todos">
+                <header class="todos__header">
                     <h2>List</h2>
                 </header>
-                <ul class="items__list">
-                    <li class="items__item">Todo 1</li>
-                    <li class="items__item">Todo 2</li>
-                    <li class="items__item">Todo 3</li>
-                    <li class="items__item">Todo 4</li>
-                    <li class="items__item">Todo 5</li>
+                <ul class="todos__list">
+                    <li class="todo">
+                      <!-- TODO item here -->
+                      <div class="todo__container">
+                        <input type="checkbox" name="complete" id="todo__checkbox">
+                        <h5 class="todo__title">Laundry</h5>
+                        <p class="todo__description">Description</p>
+                        <p class="todo__date">Due date</p>
+                        <span class="todo__priority">Priority</span>
+                      </div>
+                    </li>
                 </ul>
             </div>
         </main>

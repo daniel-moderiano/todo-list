@@ -20,6 +20,12 @@ body {
   grid-area: main;
 }
 
+/* ---TODOS--- */
+.todo__container {
+  display: flex;
+  align-items: center;
+}
+
 
 /* ---HEADER--- */
 .header {
