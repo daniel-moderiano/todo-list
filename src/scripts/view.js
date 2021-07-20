@@ -1,4 +1,3 @@
-import { todos } from "./model"
 
 // Take todo object from master array and render to the DOM as todo list item
 function renderTodo(todo) {
@@ -43,7 +42,17 @@ function renderTodo(todo) {
 
   // Insert newly rendered todo into the main todo list
   todosList.appendChild(todoListItem);
-  console.log("Render todo run");
 }
 
-export { renderTodo };
+// Render all todos function to be called on page load, on todo add, and on todo delete (or swithcing of list view)
+function renderAllTodos(todoArr) {
+  todoArr.forEach(function(todo) {
+    renderTodo(todo);
+  })
+}
+
+function clearAllTodos() {
+
+}
+
+export { renderTodo, renderAllTodos };

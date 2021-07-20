@@ -1,5 +1,5 @@
-import { todos, createTodo } from "./model";
-import { renderTodo } from "./view";
+import { todos, createTodo, addToStorage, getFromStorage, pushTodo } from "./model";
+import { renderTodo, renderAllTodos } from "./view";
 
 // Take DOM element (form) inputs and extract data into new todo
 function getFormData() {
@@ -15,8 +15,7 @@ function getFormData() {
 // Add new todo to master array
 function addNewTodo() {
   let todoToAdd = getFormData();
-  todos.push(todoToAdd);
-  console.log(todoToAdd);
+  pushTodo(todoToAdd);
 }
 
 function addModalControls() {
@@ -68,8 +67,9 @@ function addModalControls() {
   // Listen for form submit/"add todo" btn click
   todoFormBtn.addEventListener("click", addNewTodo);
   todoFormBtn.addEventListener("click", closeModal);
+  todoFormBtn.addEventListener("click", addToStorage);
   todoFormBtn.addEventListener("click", () => {
-    renderAllTodos(todos);
+    renderAllTodos(getFromStorage());
   });
 }
 
@@ -99,12 +99,7 @@ function btnEnable() {
   }
 }
 
-// Render all todos function to be called on page load, on todo add, and on todo delete (or swithcing of list view)
-function renderAllTodos(todoArr) {
-  todoArr.forEach(function(todo) {
-    renderTodo(todo);
-  })
-}
+
 
 
 export { addModalControls, todoFormBtnContol, renderAllTodos }
