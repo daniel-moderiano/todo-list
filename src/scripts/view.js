@@ -94,9 +94,18 @@ function refreshTodoList(list) {
   renderList(list);
 }
 
-// Set the --selected modifier class on the currently selected list
-function setSelectedClass(listElement) {
-  listElement.classList.toggle("list-name--selected");
+// Set the --selected modifier class exclusively on the currently selected list element
+function setSelectedClass(listItem) {
+  let listNames = document.querySelectorAll(".list-name");
+  listNames.forEach(function(list) {
+    if (list.dataset.name === listItem.dataset.name) {
+      if (!list.classList.contains("list-name--selected")) {
+        list.classList.toggle("list-name--selected");
+      }
+    } else {
+      list.classList.remove("list-name--selected");
+    }
+  });
 }
 
 export { renderTodo, clearAllTodos, refreshTodoList, renderList, setSelectedClass };

@@ -113,7 +113,6 @@ function addListControls() {
     list.addEventListener("click", () => {
       changeList(list.dataset.name);
       setSelectedClass(list);
-      console.log(selectedList);
     });
   });
 
