@@ -1,4 +1,4 @@
-import { todos, createTodo, addToStorage, getFromStorage, pushTodo } from "./model";
+import { todos, createTodo, addToStorage, getFromStorage, pushTodo, pushToList, lists } from "./model";
 import { renderTodo, renderAllTodos, refreshTodoList, removeTodo } from "./view";
 
 // Take DOM element (form) inputs and extract data into new todo
@@ -7,15 +7,17 @@ function getFormData() {
     document.querySelector("#todo-form__title").value,
     document.querySelector("#todo-form__description").value,
     document.querySelector("#todo-form__date").value,
-    document.querySelector("#todo-form__priority").value
+    document.querySelector("#todo-form__priority").value,
+    document.querySelector("#todo-form__list").value
   );
   return newTodo;
 }
 
-// Add new todo to master array
+// Add new todo to specified list
 function addNewTodo() {
   let todoToAdd = getFormData();
-  pushTodo(todoToAdd);
+  pushToList(todoToAdd, todoToAdd.list);
+  console.log(lists);
 }
 
 // Add controls to modal buttons (open/close, outside click, etc)

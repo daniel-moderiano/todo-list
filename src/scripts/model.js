@@ -5,9 +5,15 @@ import { nanoid } from 'nanoid';
 // Store all newly created todos in todos master array (can be added and deleted)
 let todos = [];
 
+// Store all lists in a modifiable object for reference
+let lists = {
+  "inbox": [],
+  "projects": []
+}
+
 // Factory function to create todo items
 function createTodo(title, description, dueDate, priority, list, id=nanoid()) {
-  return { title, description, dueDate, priority, id, list }
+  return { title, description, dueDate, priority, list, id }
 };
 
 // Create some dummy todos to help with rendering code
@@ -18,6 +24,12 @@ let todo3 = createTodo("Call John", "Need to organise a catch up", "18-07-2021",
 todos.push(todo1);
 todos.push(todo3);
 todos.push(todo2);
+pushToList(todo1, "inbox");
+
+// Function to push todo into a specified list
+function pushToList(todo, list) {
+  lists[list].push(todo);
+}
 
 function pushTodo(todoToPush) {
   todos.push(todoToPush);
@@ -40,4 +52,4 @@ function getFromStorage() {
 }
 
 
-export { todos, createTodo, addToStorage, getFromStorage, pushTodo, deleteFromTodoArr }
+export { todos, createTodo, addToStorage, getFromStorage, pushTodo, deleteFromTodoArr, lists, pushToList }
