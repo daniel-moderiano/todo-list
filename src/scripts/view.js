@@ -108,19 +108,9 @@ function setSelectedClass(listItem) {
   });
 }
 
-// Create an input field dynamically
-function createInputElement() {
-  const input = document.createElement("input");
-  input.type = "text";
-  input.classList.add("add-list__input");
-  input.setAttribute("aria-label", "new list name");
-  input.placeholder = "List name";
-  return input;
+// Display modal 
+function displayModal(modal) {
+  modal.style.display = "block";
 }
 
-// Append input element to DOM
-function appendInput(inputElement) {
-  document.querySelector(".add-list").appendChild(inputElement)
-}
-
-export { renderTodo, clearAllTodos, refreshTodoList, renderList, setSelectedClass, appendInput, createInputElement };
+export { refreshTodoList, setSelectedClass, displayModal }

@@ -1,5 +1,5 @@
 import { todos, createTodo, addToStorage, getFromStorage, pushTodo, pushToList, lists, changeList, selectedList } from "./model";
-import { renderTodo, refreshTodoList, setSelectedClass, createInputElement, appendInput } from "./view";
+import { renderTodo, refreshTodoList, setSelectedClass, displayModal } from "./view";
 
 // Take DOM element (form) inputs and extract data into new todo
 function getFormData() {
@@ -119,7 +119,7 @@ function addListControls() {
 // Add event listeners to sidebar add list btn
 function addSidebarControls() {
   document.querySelector(".add-list__btn").addEventListener("click", () => {
-    appendInput(createInputElement());
+    displayModal(document.querySelector(".list-modal"));
   });
 }
 
