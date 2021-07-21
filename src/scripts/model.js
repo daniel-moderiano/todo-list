@@ -6,14 +6,14 @@ import { nanoid } from 'nanoid';
 let todos = [];
 
 // Factory function to create todo items
-function createTodo(title, description, dueDate, priority, id=nanoid()) {
-  return { title, description, dueDate, priority, id }
+function createTodo(title, description, dueDate, priority, list, id=nanoid()) {
+  return { title, description, dueDate, priority, id, list }
 };
 
 // Create some dummy todos to help with rendering code
-let todo1 = createTodo("Laundry", "White clothes only", "12-12-2021", "low");
-let todo2 = createTodo("Shopping", "Need eggs and olive oil", "12-06-2021", "high");
-let todo3 = createTodo("Call John", "Need to organise a catch up", "18-07-2021", "medium");
+let todo1 = createTodo("Laundry", "White clothes only", "12-12-2021", "low", "Inbox");
+let todo2 = createTodo("Shopping", "Need eggs and olive oil", "12-06-2021", "high", "Inbox");
+let todo3 = createTodo("Call John", "Need to organise a catch up", "18-07-2021", "medium", "Inbox");
 
 todos.push(todo1);
 todos.push(todo3);
