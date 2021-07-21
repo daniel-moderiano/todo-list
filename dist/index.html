@@ -34,7 +34,7 @@
                   <!-- Other default lists here -->
                 </ul>
               </div>
-              <button type="button">All Lists</button>
+              <button class="add-list__btn" type="button">&plus;</button>
               <div class="added-lists">
                   <ul class="added-lists__list">
                     <li class="list-name" data-name="projects">Projects</li>
@@ -75,6 +75,20 @@
             </select>
             <button class="todo-form__btn" type="button">Add task</button>
           </form>
+        </div>
+      </div>
+
+      <div class="list-modal">
+        <div class="list-modal__content">
+          <header class="list-modal__header">
+            <h4 class="list-modal__title">New task</h4>
+            <button class="list-modal__close" aria-label="close">&times;</span>
+          </header>
+          <form class="list-form">
+            <label for="list-form__input">Name</label>
+            <input id="list-form__input" type="text">
+          </form>
+          <button class="list-modal__btn" type="button">Add list</button>
         </div>
       </div>
 

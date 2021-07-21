@@ -1,5 +1,5 @@
 import { todos, createTodo, addToStorage, getFromStorage, pushTodo, pushToList, lists, changeList, selectedList } from "./model";
-import { renderTodo, refreshTodoList, setSelectedClass } from "./view";
+import { renderTodo, refreshTodoList, setSelectedClass, createInputElement, appendInput } from "./view";
 
 // Take DOM element (form) inputs and extract data into new todo
 function getFormData() {
@@ -17,7 +17,6 @@ function getFormData() {
 function addNewTodo() {
   let todoToAdd = getFormData();
   pushToList(todoToAdd, todoToAdd.list);
-  console.log(lists);
 }
 
 // Add controls to modal buttons (open/close, outside click, etc)
@@ -117,6 +116,13 @@ function addListControls() {
   });
 }
 
+// Add event listeners to sidebar add list btn
+function addSidebarControls() {
+  document.querySelector(".add-list__btn").addEventListener("click", () => {
+    appendInput(createInputElement());
+  });
+}
+
 // TODO: some kind of checkbox animation before deleting todo
 
-export { addModalControls, todoFormBtnContol, addListControls }
+export { addModalControls, todoFormBtnContol, addListControls, addSidebarControls }
