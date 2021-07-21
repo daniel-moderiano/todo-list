@@ -1,5 +1,5 @@
-import { todos, createTodo, addToStorage, getFromStorage, pushTodo, pushToList, lists } from "./model";
-import { renderTodo, refreshTodoList, removeTodo } from "./view";
+import { todos, createTodo, addToStorage, getFromStorage, pushTodo, pushToList, lists, changeList, selectedList } from "./model";
+import { renderTodo, refreshTodoList, setSelectedClass } from "./view";
 
 // Take DOM element (form) inputs and extract data into new todo
 function getFormData() {
@@ -105,6 +105,22 @@ function btnEnable() {
   }
 }
 
+// Add event listeners for list names in sidebar
+
+function addListControls() {
+  let listNames = document.querySelectorAll(".list-name");
+  listNames.forEach(function(list) {
+    list.addEventListener("click", () => {
+      changeList(list.dataset.name);
+      setSelectedClass(list);
+      console.log(selectedList);
+    });
+  });
+
+}
+
+
+
 // TODO: some kind of checkbox animation before deleting todo
 
-export { addModalControls, todoFormBtnContol }
+export { addModalControls, todoFormBtnContol, addListControls }

@@ -46,8 +46,8 @@ body {
     grid-area: sidebar;
 }
 
-.lists__name--selected {
-  background-color: #59d177c2;
+.list-name--selected {
+  font-weight: bold;
 }
 
 
