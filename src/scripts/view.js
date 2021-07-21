@@ -72,7 +72,13 @@ function renderTodo(todo) {
 function renderAllTodos() {
   getFromStorage().forEach(function(todo) {
     renderTodo(todo);
-    // addTodoControls(todo)
+  });
+}
+
+function renderList(list) {
+  let lists = getFromStorage();
+  lists[list].forEach(function(todo) {
+    renderTodo(todo);
   });
 }
 
@@ -88,7 +94,7 @@ function clearAllTodos() {
 // Note: a more effective method would be to only modify individual todos being affected, however this adds complexity and should have little impact on a small-scale application
 function refreshTodoList() {
   clearAllTodos();
-  renderAllTodos();
+  renderList("inbox");
 }
 
-export { renderTodo, renderAllTodos, clearAllTodos, refreshTodoList };
+export { renderTodo, renderAllTodos, clearAllTodos, refreshTodoList, renderList };

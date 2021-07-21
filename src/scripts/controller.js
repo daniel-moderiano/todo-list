@@ -40,7 +40,6 @@ function addModalControls() {
   // Listen for outside click
   window.addEventListener("click", outsideClick);
   
-
   // Display the add-modal when user clicks "New Todo"
   function displayModal() {
     modal.style.display = "block";

@@ -43,12 +43,12 @@ function deleteFromTodoArr(id) {
 
 // Adds or updates list of todos to local storage
 function addToStorage() {
-  localStorage.setItem("todos", JSON.stringify(todos));
+  localStorage.setItem("lists", JSON.stringify(lists));
 }
 
 // Retrieves list of todos from local storage
 function getFromStorage() {
-  return JSON.parse(localStorage.getItem("todos"));
+  return JSON.parse(localStorage.getItem("lists"));
 }
 
 
