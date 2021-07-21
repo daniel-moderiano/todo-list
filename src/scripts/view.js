@@ -1,4 +1,4 @@
-import { todos, getFromStorage, deleteFromList, addToStorage } from './model';
+import { todos, getFromStorage, deleteFromList, addToStorage, selectedList } from './model';
 
 // Take todo object from master array and render to the DOM as todo list item
 function renderTodo(todo) {

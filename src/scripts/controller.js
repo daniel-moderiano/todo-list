@@ -106,19 +106,16 @@ function btnEnable() {
 }
 
 // Add event listeners for list names in sidebar
-
 function addListControls() {
   let listNames = document.querySelectorAll(".list-name");
   listNames.forEach(function(list) {
     list.addEventListener("click", () => {
       changeList(list.dataset.name);
       setSelectedClass(list);
+      refreshTodoList(selectedList);
     });
   });
-
 }
-
-
 
 // TODO: some kind of checkbox animation before deleting todo
 
