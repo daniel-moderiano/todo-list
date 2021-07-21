@@ -28,16 +28,19 @@
           </main>
       
           <aside class="sidebar">
-              <section class="inbox">
-                  <h3 class="inbox__title inbox__title--selected">Inbox</h3>
-              </section>
-              <section class="lists">
-                  <h3>All Lists</h3>
-                  <ul class="lists__list">
-                    <li class="lists__name">Projects</li>
+              <div class="default-lists">
+                <ul class="default-lists__list">
+                  <li data-name="inbox" class="default-lists__inbox list-name">Inbox</li>
+                  <!-- Other default lists here -->
+                </ul>
+              </div>
+              <button type="button">All Lists</button>
+              <div class="added-lists">
+                  <ul class="added-lists__list">
+                    <li class="lists__name" data-name="projects">Projects</li>
                     <!-- New lists here -->
                   </ul>
-              </section>
+              </div>
           </aside>
       
           <footer class="footer">Daniel Moderiano</footer>
