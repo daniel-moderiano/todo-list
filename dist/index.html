@@ -29,10 +29,14 @@
       
           <aside class="sidebar">
               <section class="inbox">
-                  <h3>Inbox</h3>
+                  <h3 class="inbox__title inbox__title--selected">Inbox</h3>
               </section>
               <section class="lists">
                   <h3>All Lists</h3>
+                  <ul class="lists__list">
+                    <li class="lists__name">Projects</li>
+                    <!-- New lists here -->
+                  </ul>
               </section>
           </aside>
       
@@ -64,7 +68,7 @@
             <select name="list" id="todo-form__list">
               <option selected value="inbox">Inbox</option>
               <option value="projects">Projects</option>
-              <!-- New list additions here -->
+              <!-- New list options here -->
             </select>
             <button class="todo-form__btn" type="button">Add task</button>
           </form>

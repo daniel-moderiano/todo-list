@@ -46,6 +46,10 @@ body {
     grid-area: sidebar;
 }
 
+.inbox__title--selected {
+  background-color: #59d177c2;
+}
+
 
 /* ---FOOTER--- */
 .footer {
