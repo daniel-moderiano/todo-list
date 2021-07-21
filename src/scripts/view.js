@@ -38,11 +38,11 @@ function renderTodo(todo) {
 
   // Add listener here
   todoCheckbox.addEventListener("change", () => {
-    deleteFromList(todo.list, todo.id);
+    deleteFromList(selectedList, todo.id);
   });
   todoCheckbox.addEventListener("change", addToStorage);
   todoCheckbox.addEventListener("change", () => {
-    refreshTodoList(todo.list);
+    refreshTodoList();
   });
 
   const todoDeleteBtn = document.createElement("button");
@@ -52,11 +52,11 @@ function renderTodo(todo) {
 
   // Add listenere here
   todoDeleteBtn.addEventListener("click", () => {
-    deleteFromList(todo.list, todo.id);
+    deleteFromList(selectedList, todo.id);
   });
   todoDeleteBtn.addEventListener("click", addToStorage);
   todoDeleteBtn.addEventListener("click", () => {
-    refreshTodoList(todo.list);
+    refreshTodoList();
   });
    
   // Append todo elements to container (and li)
@@ -72,9 +72,9 @@ function renderTodo(todo) {
   todosList.appendChild(todoListItem);
 }
 
-function renderList(list) {
+function renderList() {
   let lists = getFromStorage();
-  lists[list].forEach(function(todo) {
+  lists[selectedList].forEach(function(todo) {
     renderTodo(todo);
   });
 }
@@ -89,9 +89,9 @@ function clearAllTodos() {
 
 // Update the visible todo list by sequentially clearing and re-rendering all todos
 // Note: a more effective method would be to only modify individual todos being affected, however this adds complexity and should have little impact on a small-scale application
-function refreshTodoList(list) {
+function refreshTodoList() {
   clearAllTodos();
-  renderList(list);
+  renderList();
 }
 
 // Set the --selected modifier class exclusively on the currently selected list element
