@@ -2,13 +2,18 @@
 import { todoSubmit } from "./controller";
 import { nanoid } from 'nanoid';
 
-// Store all newly created todos in todos master array (can be added and deleted)
-// let todos = [];
-
 // Store all lists in a modifiable object for reference
 let lists = {
   "inbox": [],
   "projects": []
+}
+
+// Set selected list to inbox by default
+let selectedList = "inbox";
+
+// Function to change selected list
+function changeList(list) {
+  selectedList = list; 
 }
 
 // Factory function to create todo items
@@ -50,4 +55,4 @@ function getFromStorage() {
 }
 
 
-export { createTodo, addToStorage, getFromStorage, pushTodo, deleteFromList, lists, pushToList }
+export { createTodo, addToStorage, getFromStorage, pushTodo, deleteFromList, lists, pushToList, selectedList, changeList }
