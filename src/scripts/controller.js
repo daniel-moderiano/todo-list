@@ -1,5 +1,5 @@
 import { todos, createTodo, addToStorage, getFromStorage, pushTodo, pushToList, lists } from "./model";
-import { renderTodo, renderAllTodos, refreshTodoList, removeTodo } from "./view";
+import { renderTodo, refreshTodoList, removeTodo } from "./view";
 
 // Take DOM element (form) inputs and extract data into new todo
 function getFormData() {
@@ -66,12 +66,15 @@ function addModalControls() {
     }
   }
 
+  // Get current list to be refreshed on submit
+  const currentList = document.querySelector("#todo-form__list").value
+
   // Listen for form submit/"add todo" btn click
   todoFormBtn.addEventListener("click", addNewTodo);
   todoFormBtn.addEventListener("click", closeModal);
   todoFormBtn.addEventListener("click", addToStorage);
   todoFormBtn.addEventListener("click", () => {
-    refreshTodoList();
+    refreshTodoList(currentList);
   });
 }
 
@@ -104,4 +107,4 @@ function btnEnable() {
 
 // TODO: some kind of checkbox animation before deleting todo
 
-export { addModalControls, todoFormBtnContol, renderAllTodos }
+export { addModalControls, todoFormBtnContol }

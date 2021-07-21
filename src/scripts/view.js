@@ -1,4 +1,4 @@
-import { todos, getFromStorage, deleteFromTodoArr, addToStorage } from './model';
+import { todos, getFromStorage, deleteFromList, addToStorage } from './model';
 
 // Take todo object from master array and render to the DOM as todo list item
 function renderTodo(todo) {
@@ -38,10 +38,12 @@ function renderTodo(todo) {
 
   // Add listener here
   todoCheckbox.addEventListener("change", () => {
-    deleteFromTodoArr(todo.id)
+    deleteFromList(todo.list, todo.id);
   });
   todoCheckbox.addEventListener("change", addToStorage);
-  todoCheckbox.addEventListener("change", refreshTodoList);
+  todoCheckbox.addEventListener("change", () => {
+    refreshTodoList(todo.list);
+  });
 
   const todoDeleteBtn = document.createElement("button");
   todoDeleteBtn.type = "button";
@@ -50,10 +52,12 @@ function renderTodo(todo) {
 
   // Add listenere here
   todoDeleteBtn.addEventListener("click", () => {
-    deleteFromTodoArr(todo.id)
+    deleteFromList(todo.list, todo.id);
   });
   todoDeleteBtn.addEventListener("click", addToStorage);
-  todoDeleteBtn.addEventListener("click", refreshTodoList);
+  todoDeleteBtn.addEventListener("click", () => {
+    refreshTodoList(todo.list);
+  });
    
   // Append todo elements to container (and li)
   todoListItem.appendChild(todoContainer);
@@ -66,13 +70,6 @@ function renderTodo(todo) {
 
   // Insert newly rendered todo into the main todo list
   todosList.appendChild(todoListItem);
-}
-
-// Render all todos function to be called on page load, on todo add, and on todo delete (or swithcing of list view)
-function renderAllTodos() {
-  getFromStorage().forEach(function(todo) {
-    renderTodo(todo);
-  });
 }
 
 function renderList(list) {
@@ -92,9 +89,9 @@ function clearAllTodos() {
 
 // Update the visible todo list by sequentially clearing and re-rendering all todos
 // Note: a more effective method would be to only modify individual todos being affected, however this adds complexity and should have little impact on a small-scale application
-function refreshTodoList() {
+function refreshTodoList(list) {
   clearAllTodos();
-  renderList("inbox");
+  renderList(list);
 }
 
-export { renderTodo, renderAllTodos, clearAllTodos, refreshTodoList, renderList };
+export { renderTodo, clearAllTodos, refreshTodoList, renderList };

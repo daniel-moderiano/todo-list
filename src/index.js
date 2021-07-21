@@ -5,7 +5,7 @@ import { todos, getFromStorage, addToStorage, lists } from "./scripts/model";
 // "main" style funciton to run appropriate functions on initial page load
 function main() {
   addToStorage();
-  refreshTodoList();
+  refreshTodoList("inbox");
   addModalControls();
   todoFormBtnContol();
 }
