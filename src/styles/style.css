@@ -46,7 +46,7 @@ body {
     grid-area: sidebar;
 }
 
-.inbox__title--selected {
+.lists__name--selected {
   background-color: #59d177c2;
 }
 

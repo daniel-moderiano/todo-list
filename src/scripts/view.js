@@ -94,4 +94,9 @@ function refreshTodoList(list) {
   renderList(list);
 }
 
+// Set the --selected modifier class on the currently selected list
+function setSelectedClass(list) {
+  document.querySelector(`[data-name='${list}']`).classList.toggle("lists__name--selected");
+}
+
 export { renderTodo, clearAllTodos, refreshTodoList, renderList };
