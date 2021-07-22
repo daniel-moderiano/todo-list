@@ -10,6 +10,10 @@ let lists = {
 
 let selectedList = "inbox";
 
+function getSelectedList() {
+  return selectedList;
+}
+
 // Function to change selected list
 function changeList(list) {
   selectedList = list; 
@@ -64,4 +68,4 @@ function getFromStorage() {
 }
 
 
-export { createTodo, addToStorage, getFromStorage, pushTodo, deleteFromList, lists, pushToList, selectedList, changeList, addNewList, removeList }
+export { createTodo, addToStorage, getFromStorage, pushTodo, deleteFromList, lists, pushToList, selectedList, changeList, addNewList, removeList, getSelectedList }

@@ -1,4 +1,5 @@
-import { todos, getFromStorage, deleteFromList, addToStorage, selectedList, removeList } from './model';
+import { addSingleListControl } from './controller';
+import { todos, getFromStorage, deleteFromList, addToStorage, selectedList, removeList, changeList, getSelectedList } from './model';
 
 // Take todo object from master array and render to the DOM as todo list item
 function renderTodo(todo) {
@@ -38,7 +39,7 @@ function renderTodo(todo) {
 
   // Add listener here
   todoCheckbox.addEventListener("change", () => {
-    deleteFromList(selectedList, todo.id);
+    deleteFromList(getSelectedList(), todo.id);
   });
   todoCheckbox.addEventListener("change", addToStorage);
   todoCheckbox.addEventListener("change", () => {
@@ -52,7 +53,7 @@ function renderTodo(todo) {
 
   // Add listenere here
   todoDeleteBtn.addEventListener("click", () => {
-    deleteFromList(selectedList, todo.id);
+    deleteFromList(getSelectedList(), todo.id);
   });
   todoDeleteBtn.addEventListener("click", addToStorage);
   todoDeleteBtn.addEventListener("click", () => {
@@ -74,7 +75,7 @@ function renderTodo(todo) {
 
 function renderList() {
   let lists = getFromStorage();
-  lists[selectedList].forEach(function(todo) {
+  lists[getSelectedList()].forEach(function(todo) {
     renderTodo(todo);
   });
 }
@@ -115,14 +116,21 @@ function newListElement(list) {
   const btn = document.createElement("button");
 
   name.textContent = list;
+  name.classList.add("list-name");
   btn.innerHTML = "&times;"
   btn.dataset.name = list.toLowerCase();
+  li.dataset.name = list.toLowerCase();
+  name.dataset.name = list.toLowerCase();
   btn.addEventListener("click", (e) => {
     removeListElement(e.target);
     removeList(e.target.dataset.name);
     addToStorage();
+    changeList("inbox");
+    setSelectedClass(document.querySelector(".default-lists__inbox"));
+    refreshTodoList();
   });
 
+  addSingleListControl(li);
   li.appendChild(name);
   li.appendChild(btn);
   document.querySelector(".added-lists__list").appendChild(li);

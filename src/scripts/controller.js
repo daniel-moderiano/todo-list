@@ -1,4 +1,4 @@
-import { todos, createTodo, addToStorage, getFromStorage, pushTodo, pushToList, lists, changeList, selectedList, addNewList, removeList } from "./model";
+import { todos, createTodo, addToStorage, getFromStorage, pushTodo, pushToList, lists, changeList, selectedList, addNewList, removeList, getSelectedList } from "./model";
 import { renderTodo, refreshTodoList, setSelectedClass, newListElement, removeListElement } from "./view";
 
 // Take DOM element (form) inputs and extract data into new todo
@@ -111,15 +111,21 @@ function btnEnable(input, btn) {
   }
 }
 
-// Add event listeners for list names in sidebar
-function addListControls() {
-  let listNames = document.querySelectorAll(".list-name");
-  listNames.forEach(function(list) {
-    list.addEventListener("click", () => {
+function addSingleListControl(list) {
+  list.addEventListener("click", (e) => {
+    if (e.target.nodeName != "BUTTON") {
       changeList(list.dataset.name);
       setSelectedClass(list);
-      refreshTodoList(selectedList);
-    });
+      refreshTodoList(getSelectedList());
+    }
+  });
+}
+
+// Add event listeners for list names in sidebar
+function addAllListControls() {
+  let listNames = document.querySelectorAll(".list-name");
+  listNames.forEach(function(list) {
+    addSingleListControl(list);
   });
 }
 
@@ -145,7 +151,6 @@ function listModalBtnControls() {
   const listInput = document.querySelector("#list-form__input");
   listBtn.disabled = true;
   listInput.addEventListener("input", () => {
-    console.log("input change");
     btnEnable(listInput, listBtn);
   })
   listBtn.addEventListener("click", () => {
@@ -182,6 +187,13 @@ function checkDuplicates(newList) {
   return false;
 }
 
+// Switch to inbox view once any new list is deleted. This will avoid being left on 'dead space' if you delete the final new list
+function switchToInbox() {
+  changeList("inbox");
+
+}
+
+
 // TODO: some kind of checkbox animation before deleting todo
 
-export { addModalControls, todoFormBtnContol, addListControls, addSidebarControls, listModalBtnControls }
+export { addModalControls, todoFormBtnContol, addAllListControls as addListControls, addSidebarControls, listModalBtnControls, addSingleListControl }
