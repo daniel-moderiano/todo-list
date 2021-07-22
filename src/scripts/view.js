@@ -1,4 +1,4 @@
-import { todos, getFromStorage, deleteFromList, addToStorage, selectedList } from './model';
+import { todos, getFromStorage, deleteFromList, addToStorage, selectedList, removeList } from './model';
 
 // Take todo object from master array and render to the DOM as todo list item
 function renderTodo(todo) {
@@ -116,8 +116,11 @@ function newListElement(list) {
 
   name.textContent = list;
   btn.innerHTML = "&times;"
+  btn.dataset.name = list.toLowerCase();
   btn.addEventListener("click", (e) => {
     removeListElement(e.target);
+    removeList(e.target.dataset.name);
+    addToStorage();
   });
 
   li.appendChild(name);
@@ -125,7 +128,7 @@ function newListElement(list) {
   document.querySelector(".added-lists__list").appendChild(li);
 }
 
-// Remove a list elementfrom the sidebar
+// Remove a list element from the sidebar
 function removeListElement(btn) {
   btn.parentNode.remove();
 }

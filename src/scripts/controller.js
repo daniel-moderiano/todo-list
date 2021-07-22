@@ -1,4 +1,4 @@
-import { todos, createTodo, addToStorage, getFromStorage, pushTodo, pushToList, lists, changeList, selectedList, addNewList } from "./model";
+import { todos, createTodo, addToStorage, getFromStorage, pushTodo, pushToList, lists, changeList, selectedList, addNewList, removeList } from "./model";
 import { renderTodo, refreshTodoList, setSelectedClass, newListElement, removeListElement } from "./view";
 
 // Take DOM element (form) inputs and extract data into new todo

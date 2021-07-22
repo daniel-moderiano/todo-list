@@ -1,6 +1,6 @@
 import { refreshTodoList, removeListElement, renderAllTodos, renderList } from "./scripts/view";
 import { addListControls, addModalControls, addSidebarControls, todoFormBtnContol, listModalBtnControls } from "./scripts/controller";
-import { todos, getFromStorage, addToStorage, lists, selectedList } from "./scripts/model";
+import { todos, getFromStorage, addToStorage, lists, selectedList, removeList } from "./scripts/model";
 
 // "main" style funciton to run appropriate functions on initial page load
 function main() {
@@ -11,6 +11,8 @@ function main() {
   // Dummy code to be removed later
   document.querySelector("#pro-btn").addEventListener("click", (e) => {
     removeListElement(e.target);
+    removeList("projects");
+    addToStorage();
   });
 
   addSidebarControls();
