@@ -56,7 +56,7 @@ body {
   grid-area: footer;
 }
 
-/* ---ADD TODO MODAL--- */
+/* ---MODALS--- */
 .add-modal, .list-modal {
   display: none;
   position: fixed;
@@ -103,5 +103,3 @@ body {
   text-decoration: none;
   cursor: pointer;
 }
-
-/* ---LIST MODAL--- */

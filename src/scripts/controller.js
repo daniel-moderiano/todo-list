@@ -1,4 +1,4 @@
-import { todos, createTodo, addToStorage, getFromStorage, pushTodo, pushToList, lists, changeList, selectedList } from "./model";
+import { todos, createTodo, addToStorage, getFromStorage, pushTodo, pushToList, lists, changeList, selectedList, addNewList } from "./model";
 import { renderTodo, refreshTodoList, setSelectedClass } from "./view";
 
 // Take DOM element (form) inputs and extract data into new todo
@@ -97,18 +97,17 @@ function todoFormBtnContol(params) {
   todoFormBtn.disabled = true;
 
   // Listen for user typing or entering data into input
-  todoFormTitle.addEventListener("input", btnEnable);
-
-  btnEnable();
+  todoFormTitle.addEventListener("input", () => {
+    btnEnable(todoFormTitle, todoFormBtn);
+  });
 }
 
 // Enable add btn only if user enters a title for the todo
-function btnEnable() {
-  const todoFormBtn = document.querySelector(".todo-form__btn");
-  if (document.querySelector("#todo-form__title").value.trim() === "") {
-    todoFormBtn.disabled = true;
+function btnEnable(input, btn) {
+  if (input.value.trim() === "") {
+    btn.disabled = true;
   } else {
-    todoFormBtn.disabled = false;
+    btn.disabled = false;
   }
 }
 
@@ -139,8 +138,24 @@ function addSidebarControls() {
   window.addEventListener("click", (e) => {
     outsideClick(e, listModal);
   });
-
 }
+
+function listModalBtnControls() {
+  const listBtn = document.querySelector(".list-modal__btn");
+  const listInput = document.querySelector(".list-form__input");
+  listInput.addEventListener("input", () => {
+    btnEnable(listInput, listBtn);
+  })
+  btn.addEventListener("click", () => {
+    addNewList(getListInput());
+  });
+}
+
+// Get the user input from the list form 
+function getListInput() {
+  return document.querySelector(".list-form__input").value;
+}
+
 
 // TODO: some kind of checkbox animation before deleting todo
 

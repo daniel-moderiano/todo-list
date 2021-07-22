@@ -15,6 +15,11 @@ function changeList(list) {
   selectedList = list; 
 }
 
+// Add a new list to the lists object
+function addNewList(list) {
+  lists[list] = [];
+}
+
 // Factory function to create todo items
 function createTodo(title, description, dueDate, priority, list, id=nanoid()) {
   return { title, description, dueDate, priority, list, id }
@@ -54,4 +59,4 @@ function getFromStorage() {
 }
 
 
-export { createTodo, addToStorage, getFromStorage, pushTodo, deleteFromList, lists, pushToList, selectedList, changeList }
+export { createTodo, addToStorage, getFromStorage, pushTodo, deleteFromList, lists, pushToList, selectedList, changeList, addNewList }
