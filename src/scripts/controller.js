@@ -1,5 +1,5 @@
 import { todos, createTodo, addToStorage, getFromStorage, pushTodo, pushToList, lists, changeList, selectedList } from "./model";
-import { renderTodo, refreshTodoList, setSelectedClass, displayModal } from "./view";
+import { renderTodo, refreshTodoList, setSelectedClass } from "./view";
 
 // Take DOM element (form) inputs and extract data into new todo
 function getFormData() {
@@ -19,38 +19,51 @@ function addNewTodo() {
   pushToList(todoToAdd, todoToAdd.list);
 }
 
+// Display the modal 
+function displayModal(modal) {
+  modal.style.display = "block";
+}
+
+// Close the modal
+function closeModal(modal) {
+  modal.style.display = "none";
+}
+
+// Close the modal on outside click
+function outsideClick(e, modal) {
+  if (e.target === modal) {
+    modal.style.display = "none";
+  }
+}
+
 // Add controls to modal buttons (open/close, outside click, etc)
 function addModalControls() {
   // Get modal
-  const modal = document.querySelector(".add-modal");
+  const addModal = document.querySelector(".add-modal");
 
   // Get close btn
   const closeBtn = document.querySelector(".add-modal__close");
-  closeBtn.addEventListener("click", closeModal);
+  closeBtn.addEventListener("click", () => {
+    closeModal(addModal);
+  });
 
   // Get "New Todo" btn
   const newTodo = document.querySelector(".header__btn");
-  newTodo.addEventListener("click", clearInputs);
-  newTodo.addEventListener("click", displayModal);
+  newTodo.addEventListener("click", clearFormInputs);
+  newTodo.addEventListener("click", () => {
+    displayModal(addModal);
+  });
 
   // Get "add task" btn
   const todoFormBtn = document.querySelector(".todo-form__btn");
 
   // Listen for outside click
-  window.addEventListener("click", outsideClick);
+  window.addEventListener("click", (e) => {
+    outsideClick(e, addModal);
+  });
   
-  // Display the add-modal when user clicks "New Todo"
-  function displayModal() {
-    modal.style.display = "block";
-  }
-
-  // Close the modal
-  function closeModal() {
-    modal.style.display = "none";
-  }
-
   // Clear all inputs in the modal form
-  function clearInputs() {
+  function clearFormInputs() {
     document.querySelector("#todo-form__title").value = "";
     document.querySelector("#todo-form__description").value = "";
     document.querySelector("#todo-form__date").value = "";
@@ -58,19 +71,14 @@ function addModalControls() {
     todoFormBtn.disabled = true;
   }
 
-  // Close the modal on outside click
-  function outsideClick(e) {
-    if (e.target == modal) {
-      modal.style.display = "none";
-    }
-  }
-
   // Get current list to be refreshed on submit
   const currentList = document.querySelector("#todo-form__list").value
 
   // Listen for form submit/"add todo" btn click
   todoFormBtn.addEventListener("click", addNewTodo);
-  todoFormBtn.addEventListener("click", closeModal);
+  todoFormBtn.addEventListener("click", () => {
+    closeModal(addModal);
+  });
   todoFormBtn.addEventListener("click", addToStorage);
   todoFormBtn.addEventListener("click", () => {
     refreshTodoList(currentList);
@@ -116,11 +124,22 @@ function addListControls() {
   });
 }
 
-// Add event listeners to sidebar add list btn
+// Add event listener to sidebar add list btn
 function addSidebarControls() {
+  let listModal = document.querySelector(".list-modal");
+  
   document.querySelector(".add-list__btn").addEventListener("click", () => {
-    displayModal(document.querySelector(".list-modal"));
+    displayModal(listModal);
   });
+
+  document.querySelector(".list-modal__close").addEventListener("click", () => {
+    closeModal(listModal);
+  });
+
+  window.addEventListener("click", (e) => {
+    outsideClick(e, listModal);
+  });
+
 }
 
 // TODO: some kind of checkbox animation before deleting todo

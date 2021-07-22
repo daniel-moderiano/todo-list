@@ -108,9 +108,5 @@ function setSelectedClass(listItem) {
   });
 }
 
-// Display modal 
-function displayModal(modal) {
-  modal.style.display = "block";
-}
 
-export { refreshTodoList, setSelectedClass, displayModal }
+export { refreshTodoList, setSelectedClass }

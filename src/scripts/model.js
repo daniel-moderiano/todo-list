@@ -8,7 +8,6 @@ let lists = {
   "projects": []
 }
 
-// Set selected list to inbox by default
 let selectedList = "inbox";
 
 // Function to change selected list
