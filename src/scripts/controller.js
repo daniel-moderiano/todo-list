@@ -142,21 +142,31 @@ function addSidebarControls() {
 
 function listModalBtnControls() {
   const listBtn = document.querySelector(".list-modal__btn");
-  const listInput = document.querySelector(".list-form__input");
+  const listInput = document.querySelector("#list-form__input");
+  listBtn.disabled = true;
   listInput.addEventListener("input", () => {
+    console.log("input change");
     btnEnable(listInput, listBtn);
   })
-  btn.addEventListener("click", () => {
+  listBtn.addEventListener("click", () => {
     addNewList(getListInput());
+    closeModal(document.querySelector(".list-modal"));
+    addToStorage();
+    clearListFormInput();
   });
 }
 
-// Get the user input from the list form 
+// Get the lowercase user input from the list form 
 function getListInput() {
-  return document.querySelector(".list-form__input").value;
+  return document.querySelector("#list-form__input").value.toLowerCase();
+}
+
+function clearListFormInput() {
+  document.querySelector("#list-form__input").value = "";
+  document.querySelector(".list-modal__btn").disabled = true;
 }
 
 
 // TODO: some kind of checkbox animation before deleting todo
 
-export { addModalControls, todoFormBtnContol, addListControls, addSidebarControls }
+export { addModalControls, todoFormBtnContol, addListControls, addSidebarControls, listModalBtnControls }
