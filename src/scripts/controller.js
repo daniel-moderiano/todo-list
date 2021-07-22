@@ -149,10 +149,14 @@ function listModalBtnControls() {
     btnEnable(listInput, listBtn);
   })
   listBtn.addEventListener("click", () => {
-    addNewList(getListInput());
-    closeModal(document.querySelector(".list-modal"));
-    addToStorage();
-    clearListFormInput();
+    if (checkDuplicates(getListInput()) === true) {
+      alert("List already exists! Please enter a unique list name.");
+    } else {
+      addNewList(getListInput());
+      addToStorage();
+      closeModal(document.querySelector(".list-modal"));
+      clearListFormInput();
+    }
   });
 }
 
@@ -161,11 +165,21 @@ function getListInput() {
   return document.querySelector("#list-form__input").value.toLowerCase();
 }
 
+// Clears input on list modal form
 function clearListFormInput() {
   document.querySelector("#list-form__input").value = "";
   document.querySelector(".list-modal__btn").disabled = true;
 }
 
+// Checks for duplicate list names when inputting new list. Returns true for duplicate
+function checkDuplicates(newList) {
+  for (const list in lists) {
+    if (newList === list) {
+      return true;
+    }
+  }
+  return false;
+}
 
 // TODO: some kind of checkbox animation before deleting todo
 
