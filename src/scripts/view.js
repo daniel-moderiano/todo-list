@@ -108,5 +108,23 @@ function setSelectedClass(listItem) {
   });
 }
 
+// Add a new list element in the sidebar
+function newListElement(list) {
+  const li = document.createElement("li");
+  const name = document.createElement("h4");
+  const btn = document.createElement("button");
 
-export { refreshTodoList, setSelectedClass }
+  name.textContent = list;
+  btn.innerHTML = "&times;"
+
+  li.appendChild(name);
+  li.appendChild(btn);
+  document.querySelector(".added-lists__list").appendChild(li);
+}
+
+// Remove a list elementfrom the sidebar
+
+
+
+
+export { refreshTodoList, setSelectedClass, newListElement }

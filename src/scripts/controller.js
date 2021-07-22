@@ -1,5 +1,5 @@
 import { todos, createTodo, addToStorage, getFromStorage, pushTodo, pushToList, lists, changeList, selectedList, addNewList } from "./model";
-import { renderTodo, refreshTodoList, setSelectedClass } from "./view";
+import { renderTodo, refreshTodoList, setSelectedClass, newListElement } from "./view";
 
 // Take DOM element (form) inputs and extract data into new todo
 function getFormData() {
@@ -149,11 +149,12 @@ function listModalBtnControls() {
     btnEnable(listInput, listBtn);
   })
   listBtn.addEventListener("click", () => {
-    if (checkDuplicates(getListInput()) === true) {
+    if (checkDuplicates(getListInput().toLowerCase()) === true) {
       alert("List already exists! Please enter a unique list name.");
     } else {
-      addNewList(getListInput());
+      addNewList(getListInput().toLowerCase());
       addToStorage();
+      newListElement(getListInput());
       closeModal(document.querySelector(".list-modal"));
       clearListFormInput();
     }
@@ -162,7 +163,7 @@ function listModalBtnControls() {
 
 // Get the lowercase user input from the list form 
 function getListInput() {
-  return document.querySelector("#list-form__input").value.toLowerCase();
+  return document.querySelector("#list-form__input").value;
 }
 
 // Clears input on list modal form
