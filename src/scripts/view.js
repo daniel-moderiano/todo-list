@@ -116,6 +116,9 @@ function newListElement(list) {
 
   name.textContent = list;
   btn.innerHTML = "&times;"
+  btn.addEventListener("click", (e) => {
+    removeListElement(e.target);
+  });
 
   li.appendChild(name);
   li.appendChild(btn);
@@ -123,8 +126,10 @@ function newListElement(list) {
 }
 
 // Remove a list elementfrom the sidebar
+function removeListElement(btn) {
+  btn.parentNode.remove();
+}
 
 
 
-
-export { refreshTodoList, setSelectedClass, newListElement }
+export { refreshTodoList, setSelectedClass, newListElement, removeListElement }
