@@ -30,7 +30,7 @@
           <aside class="sidebar">
               <div class="default-lists">
                 <ul class="default-lists__list">
-                  <li data-name="inbox" class="default-lists__inbox list-name list-name--selected">Inbox</li>
+                  <li data-name="inbox" class="list-item list-name list-name--selected">Inbox</li>
                   <!-- Other default lists here -->
                 </ul>
               </div>
@@ -40,10 +40,6 @@
               </div>
               <div class="added-lists">
                   <ul class="added-lists__list">
-                    <li class="list-item list-item__projects">
-                      <h4 class="list-name" data-name="projects">Projects</h4>
-                      <button id="pro-btn" type="button">&times;</button>
-                    </li>
                     <!-- New lists here -->
                   </ul>
               </div>
@@ -74,11 +70,7 @@
               <option value="low">Low</option>
             </select>
             <label for="todo-form__list">List</label>
-            <select name="list" id="todo-form__list">
-              <option selected value="inbox">Inbox</option>
-              <option value="projects">Projects</option>
-              <!-- New list options here -->
-            </select>
+            <select name="list" id="todo-form__list"></select>
             <button class="todo-form__btn" type="button">Add task</button>
           </form>
         </div>
