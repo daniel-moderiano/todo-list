@@ -8,16 +8,6 @@ function main() {
   refreshTodoList(selectedList);
   addModalControls();
   addAllListControls();
-  // Dummy code to be removed later
-  document.querySelector("#pro-btn").addEventListener("click", (e) => {
-    removeListElement(e.target);
-    removeList("projects");
-    addToStorage();
-    changeList("inbox");
-    setSelectedClass(document.querySelector(".default-lists__inbox"));
-    refreshTodoList();
-  });
-
   addSidebarControls();
   todoFormBtnContol();
   listModalBtnControls();

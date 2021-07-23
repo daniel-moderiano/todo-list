@@ -58,6 +58,9 @@ function addModalControls() {
   newTodo.addEventListener("click", () => {
     displayModal(addModal);
   });
+  newTodo.addEventListener("click", () => {
+    document.querySelector("#todo-form__title").focus();
+  });
 
   // Get "add task" btn
   const todoFormBtn = document.querySelector(".todo-form__btn");
@@ -140,6 +143,7 @@ function addSidebarControls() {
   
   document.querySelector(".add-list__btn").addEventListener("click", () => {
     displayModal(listModal);
+    document.querySelector("#list-form__input").focus();
   });
 
   document.querySelector(".list-modal__close").addEventListener("click", () => {
@@ -200,8 +204,6 @@ function addListsToDropdown() {
     option.textContent = capitalize(list);
     dropdown.appendChild(option);
   }
-  
-  
 }
 
 function deleteListsFromDropdown() {
@@ -212,7 +214,6 @@ function deleteListsFromDropdown() {
 }
 
 
-// TODO: Add list name to select element in todo form when new list is added via sidebar
 
 // TODO: some kind of checkbox animation before deleting todo
 

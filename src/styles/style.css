@@ -12,13 +12,14 @@ body {
         "header header header"
         "sidebar main main"
         "footer footer footer";
-    width: 600px;
+    width: 100%;
     margin: auto;
 }
 
 .main {
   grid-area: main;
 }
+
 
 /* ---TODOS--- */
 .todo__container {
@@ -31,9 +32,11 @@ body {
   /* text-align: right; */
 }
 
+
 /* ---HEADER--- */
 .header {
     grid-area: header;
+    background-color: #0078D7;
 }
 
 .header__icon {
@@ -44,10 +47,22 @@ body {
 /* ---SIDEBAR--- */
 .sidebar {
     grid-area: sidebar;
+    width: 200px;
 }
 
 .list-name--selected {
   font-weight: bold;
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.list-item:hover {
+  background-color: #f4f4f4;
+  height: 1.5rem;
+  cursor: pointer;
 }
 
 
@@ -55,6 +70,7 @@ body {
 .footer {
   grid-area: footer;
 }
+
 
 /* ---MODALS--- */
 .add-modal, .list-modal {

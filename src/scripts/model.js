@@ -5,7 +5,6 @@ import { nanoid } from 'nanoid';
 // Store all lists in a modifiable object for reference
 let lists = {
   "inbox": [],
-  "projects": []
 }
 
 let selectedList = "inbox";

@@ -115,6 +115,8 @@ function newListElement(list) {
   const name = document.createElement("h4");
   const btn = document.createElement("button");
 
+  li.classList.add("list-item")
+
   name.textContent = list;
   name.classList.add("list-name");
   btn.innerHTML = "&times;"
