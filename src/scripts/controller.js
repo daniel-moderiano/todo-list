@@ -1,5 +1,6 @@
 import { todos, createTodo, addToStorage, getFromStorage, pushTodo, pushToList, lists, changeList, selectedList, addNewList, removeList, getSelectedList } from "./model";
 import { renderTodo, refreshTodoList, setSelectedClass, newListElement, removeListElement } from "./view";
+import capitalize from 'lodash/capitalize';
 
 // Take DOM element (form) inputs and extract data into new todo
 function getFormData() {
@@ -50,6 +51,10 @@ function addModalControls() {
   // Get "New Todo" btn
   const newTodo = document.querySelector(".header__btn");
   newTodo.addEventListener("click", clearFormInputs);
+  newTodo.addEventListener("click", () => {
+    deleteListsFromDropdown();
+    addListsToDropdown();
+  })
   newTodo.addEventListener("click", () => {
     displayModal(addModal);
   });
@@ -187,13 +192,28 @@ function checkDuplicates(newList) {
   return false;
 }
 
-// Switch to inbox view once any new list is deleted. This will avoid being left on 'dead space' if you delete the final new list
-function switchToInbox() {
-  changeList("inbox");
+function addListsToDropdown() {
+  const dropdown = document.querySelector("#todo-form__list");
+  for (const list in lists) {
+    const option = document.createElement("option");
+    option.value = list;
+    option.textContent = capitalize(list);
+    dropdown.appendChild(option);
+  }
+  
+  
+}
 
+function deleteListsFromDropdown() {
+  const dropdown = document.querySelector("#todo-form__list");
+  while (dropdown.lastElementChild) {
+    dropdown.removeChild(dropdown.lastElementChild);
+  }
 }
 
 
+// TODO: Add list name to select element in todo form when new list is added via sidebar
+
 // TODO: some kind of checkbox animation before deleting todo
 
-export { addModalControls, todoFormBtnContol, addAllListControls as addListControls, addSidebarControls, listModalBtnControls, addSingleListControl }
+export { addModalControls, todoFormBtnContol, addAllListControls, addSidebarControls, listModalBtnControls, addSingleListControl }
