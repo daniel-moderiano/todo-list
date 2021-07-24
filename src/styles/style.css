@@ -56,6 +56,7 @@ body {
 .sidebar {
     grid-area: sidebar;
     background-color: #f4f4f4;
+    padding-top: 1.2rem;
 }
 
 .list-name--selected {
@@ -65,16 +66,17 @@ body {
 .list-item {
   display: flex;
   align-items: center;
-  height: 2rem;
-  padding: 0 1rem;
+  position: relative;
+  height: 2.2rem;
+  padding: 0 0.2rem 0 1.5rem;
 }
 
 #inbox {
-  margin: 0;
+  margin: 0 0 1rem 0;
 }
 
 #inbox img {
-  margin-right: 0.5rem;
+  margin-right: 0.6rem;
 }
 
 .list-item:hover {
@@ -92,15 +94,23 @@ body {
 
 /* This class can change the appearance of the button when you hover the list item (e.g. show the button) */
 .list-item:hover .list-btn {
-  background-color: blue;
+  color: rgb(148, 148, 148);
+  font-size: 1.5rem;
+  font-weight: lighter;
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+  position: absolute;
+  right: 1.2rem;
+  margin: 0;
+  padding: 0.1rem;
   display: block;
 }
 
 .add-list {
   display: flex;
   align-items: center;
-  height: 2rem;
-  padding: 0 1rem;
+  height: 2.2rem;
+  padding: 0 0.2rem 0 1.5rem;
   /* justify-content: space-between; */
 }
 
@@ -115,12 +125,14 @@ body {
 }
 
 .add-list__title {
-  margin-left: 0.5rem;
+  margin-left: 0.6rem;
 }
 
 .list-name {
-  margin-left: 0.5rem;
+  margin-left: 0.6rem;
 }
+
+
 
 /* ---FOOTER--- */
 .footer {
