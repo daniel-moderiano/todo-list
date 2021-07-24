@@ -119,11 +119,13 @@ function newListElement(list) {
   const icon = document.createElement("img");
 
   icon.src = "../src/icons/list.svg";
+  icon.classList.add("icon");
   li.classList.add("list-item")
 
   name.textContent = list;
   name.classList.add("list-name");
   btn.innerHTML = "&times;"
+  btn.classList.add("list-btn")
   btn.dataset.name = list.toLowerCase();
   li.dataset.name = list.toLowerCase();
   name.dataset.name = list.toLowerCase();
