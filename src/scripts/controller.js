@@ -141,7 +141,7 @@ function addAllListControls() {
 function addSidebarControls() {
   let listModal = document.querySelector(".list-modal");
   
-  document.querySelector(".add-list__btn").addEventListener("click", () => {
+  document.querySelector(".add-list").addEventListener("click", () => {
     displayModal(listModal);
     document.querySelector("#list-form__input").focus();
   });

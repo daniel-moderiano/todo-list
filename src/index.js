@@ -5,7 +5,7 @@ import { todos, getFromStorage, addToStorage, lists, selectedList, removeList, c
 // "main" style funciton to run appropriate functions on initial page load
 function main() {
   addToStorage();
-  refreshTodoList(selectedList);
+  refreshTodoList();
   addModalControls();
   addAllListControls();
   addSidebarControls();

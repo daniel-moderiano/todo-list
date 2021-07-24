@@ -19,7 +19,7 @@
           <main class="main">
               <div class="todos">
                   <header class="todos__header">
-                      <h2>List</h2>
+                      <h2 class="todos__current-list">List</h2>
                   </header>
                   <ul class="todos__list">
                     <!-- Todo items here -->
@@ -30,13 +30,16 @@
           <aside class="sidebar">
               <div class="default-lists">
                 <ul class="default-lists__list">
-                  <li data-name="inbox" class="list-item list-name list-name--selected">Inbox</li>
+                  <li data-name="inbox" id="inbox" class="list-item list-name list-name--selected">Inbox</li>
                   <!-- Other default lists here -->
                 </ul>
               </div>
               <div class="add-list">
-                <h3 class="add-list__title">Lists</h3>
-                <button class="add-list__btn" type="button">&plus;</button>
+                <span>
+                  <img class="add-list__icon" src="../src/icons/plus.svg" alt="">
+                </span>
+                <h3 class="add-list__title">Add List</h3>
+                
               </div>
               <div class="added-lists">
                   <ul class="added-lists__list">

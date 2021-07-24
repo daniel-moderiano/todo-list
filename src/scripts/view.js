@@ -1,3 +1,4 @@
+import { capitalize } from 'lodash';
 import { addSingleListControl } from './controller';
 import { todos, getFromStorage, deleteFromList, addToStorage, selectedList, removeList, changeList, getSelectedList } from './model';
 
@@ -92,6 +93,7 @@ function clearAllTodos() {
 // Note: a more effective method would be to only modify individual todos being affected, however this adds complexity and should have little impact on a small-scale application
 function refreshTodoList() {
   clearAllTodos();
+  changeCurrentListTitle();
   renderList();
 }
 
@@ -128,7 +130,7 @@ function newListElement(list) {
     removeList(e.target.dataset.name);
     addToStorage();
     changeList("inbox");
-    setSelectedClass(document.querySelector(".default-lists__inbox"));
+    setSelectedClass(document.querySelector("#inbox"));
     refreshTodoList();
   });
 
@@ -143,6 +145,10 @@ function removeListElement(btn) {
   btn.parentNode.remove();
 }
 
+// Update the currently viewed list title in main section
+function changeCurrentListTitle() {
+  document.querySelector(".todos__current-list").textContent = capitalize(getSelectedList());
+}
 
 
 export { refreshTodoList, setSelectedClass, newListElement, removeListElement }
