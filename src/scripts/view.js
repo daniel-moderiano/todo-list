@@ -116,7 +116,9 @@ function newListElement(list) {
   const li = document.createElement("li");
   const name = document.createElement("h4");
   const btn = document.createElement("button");
+  const icon = document.createElement("img");
 
+  icon.src = "../src/icons/list.svg";
   li.classList.add("list-item")
 
   name.textContent = list;
@@ -135,6 +137,7 @@ function newListElement(list) {
   });
 
   addSingleListControl(li);
+  li.appendChild(icon);
   li.appendChild(name);
   li.appendChild(btn);
   document.querySelector(".added-lists__list").appendChild(li);
