@@ -32,6 +32,7 @@ body {
 .todos {
   margin: 0 2rem;
   width: 100%;
+  max-width: 800px;
 }
 
 .todos__current-list {
@@ -82,7 +83,7 @@ body {
   grid-row: 3;
   font-size: 0.75rem;
   place-self: center start;
-  color: #42A25B;
+  color: #058527;
   /* padding-bottom: 0.3rem; */
 }
 
@@ -283,4 +284,9 @@ body {
 
 #hidden {
   display: none;
+}
+
+/* TODO: hide siedbar once screen width < 750px */
+@media screen and (max-width: 750px) {
+  /* Adjustments here */
 }
