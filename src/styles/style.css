@@ -24,10 +24,33 @@ body {
 
 .main {
   grid-area: main;
+  display: flex;
+  justify-content: center;
+  padding-top: 1.6rem;
 }
 
+.todos {
+  margin: 0 2rem;
+  width: 100%;
+}
+
+.todos__current-list {
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding-bottom: 0.75rem;
+  border-bottom: #f4f4f4 1px solid;
+}
+
+/* .todos__header {
+  padding-bottom: 1.2rem;
+} */
 
 /* ---TODOS--- */
+
+.todos__list {
+  margin-top: 0.75rem;
+}
+
 .todo__container {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
