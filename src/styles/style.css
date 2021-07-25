@@ -5,7 +5,7 @@
 
 body {
   font-family: "Open Sans", Helvetica, sans-serif;
-  font-size: 15px;
+  font-size: 14.5px;
 }
 
 
@@ -47,20 +47,46 @@ body {
 
 /* ---TODOS--- */
 
-.todos__list {
-  margin-top: 0.75rem;
-}
-
 .todo__container {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.todo {
+  padding: 0.75rem 0;
+  border-bottom: #f4f4f4 1px solid;
 }
 
 .todo__container > * {
   padding: 0 0.5rem;
-  /* text-align: right; */
 }
 
+.todo__checkbox {
+  grid-row: 1 / span 3;
+}
+
+.todo__title {
+
+}
+
+.todo__description {
+  /* grid-column: 2; */
+}
+
+.todo__date {
+  grid-column: 2;
+  grid-row: 3;
+}
+
+.todo__priority {
+  display: none;
+}
+
+.todo__delete {
+  grid-column: 3;
+  grid-row: 1 / span 3;
+}
 
 /* ---HEADER--- */
 .header {
@@ -85,7 +111,7 @@ body {
 }
 
 .header__btn {
-  margin-left: 13rem;
+  margin-left: 12.9rem;
   background-color: rgba(255, 255, 255, 0);
   border: none;
   display: flex;
@@ -93,13 +119,17 @@ body {
   justify-content: space-between;
   color: white;
   font-family: "Open Sans", Helvetica, sans-serif;
-  font-size: 1rem;
-  width: 7.1rem;
+  font-size: 1.1rem;
+  width: 7.3rem;
   height: 2.2rem;
 }
 
 .header__btn-text {
   padding-bottom: 0.08rem;;
+}
+
+.header__btn-icon {
+  width: 22px;
 }
 
 .header__btn:hover {

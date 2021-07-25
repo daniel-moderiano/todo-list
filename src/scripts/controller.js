@@ -213,8 +213,7 @@ function deleteListsFromDropdown() {
   }
 }
 
-
-
 // TODO: some kind of checkbox animation before deleting todo
+// TODO: switch to newly added list once list is submitted via add list modal
 
 export { addModalControls, todoFormBtnContol, addAllListControls, addSidebarControls, listModalBtnControls, addSingleListControl }
