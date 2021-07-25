@@ -85,7 +85,26 @@ body {
 }
 
 .header__btn {
-  margin-left: 10rem;
+  margin-left: 13rem;
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  font-family: "Open Sans", Helvetica, sans-serif;
+  font-size: 1rem;
+  width: 7.1rem;
+  height: 2.2rem;
+}
+
+.header__btn-text {
+  padding-bottom: 0.08rem;;
+}
+
+.header__btn:hover {
+  cursor: pointer;
+  background-color: #f4f4f430;
 }
 
 /* ---SIDEBAR--- */
