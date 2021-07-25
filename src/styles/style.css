@@ -1,6 +1,7 @@
 /* ---GLOBAL/BODY--- */
 
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Lexend');
 
 body {
   font-family: "Open Sans", Helvetica, sans-serif;
@@ -45,12 +46,24 @@ body {
     height: 3rem;
     display: flex;
     align-items: center;
+    padding-left: 1.35rem;
 }
 
 .header__icon {
-  width: 20px;
+  width: 22px;
+  margin-right: 0.5rem;
 }
 
+.header__title {
+  /* font-family: "Lexend"; */
+  font-weight: bolder;
+  color: white;
+  font-size: 1.2rem;
+}
+
+.header__btn {
+  margin-left: 10rem;
+}
 
 /* ---SIDEBAR--- */
 .sidebar {
