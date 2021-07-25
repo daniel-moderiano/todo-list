@@ -49,34 +49,41 @@ body {
 
 .todo__container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: 2rem 1fr 1rem;
+  grid-template-rows: repeat(3, auto);
 }
 
 .todo {
-  padding: 0.75rem 0;
+  padding: 0.5rem 0;
   border-bottom: #f4f4f4 1px solid;
-}
-
-.todo__container > * {
-  padding: 0 0.5rem;
 }
 
 .todo__checkbox {
   grid-row: 1 / span 3;
+  place-self: center start;
 }
 
-.todo__title {
 
+
+.todo__title {
+  place-self: center start;
+  padding-bottom: 0.3rem;
 }
 
 .todo__description {
-  /* grid-column: 2; */
+  font-size: 0.75rem;
+  color: #808080;
+  padding-bottom: 0.3rem;
+  place-self: center start;
 }
 
 .todo__date {
   grid-column: 2;
   grid-row: 3;
+  font-size: 0.75rem;
+  place-self: center start;
+  color: #42A25B;
+  /* padding-bottom: 0.3rem; */
 }
 
 .todo__priority {
@@ -86,6 +93,7 @@ body {
 .todo__delete {
   grid-column: 3;
   grid-row: 1 / span 3;
+  place-self: center;
 }
 
 /* ---HEADER--- */

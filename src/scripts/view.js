@@ -1,6 +1,7 @@
 import { capitalize } from 'lodash';
 import { addSingleListControl } from './controller';
 import { todos, getFromStorage, deleteFromList, addToStorage, selectedList, removeList, changeList, getSelectedList } from './model';
+import { format } from 'date-fns';
 
 // Take todo object from master array and render to the DOM as todo list item
 function renderTodo(todo) {
@@ -21,12 +22,18 @@ function renderTodo(todo) {
   todoTitle.textContent = todo.title;
 
   const todoDescription = document.createElement("p");
-  todoDescription.classList.add("todo__descirption");
+  todoDescription.classList.add("todo__description");
   todoDescription.textContent = todo.description;
 
   const todoDate = document.createElement("p");
+  // Adjust styling to preserve symmetrical look when no date is selected
   todoDate.classList.add("todo__date");
-  todoDate.textContent = todo.dueDate;
+  if (todo.dueDate === "") {
+    todoDate.textContent = `Due --`;
+    todoDate.style.color = "#808080";
+  } else {
+    todoDate.textContent = `Due ${ dateFormatter(todo.dueDate)}`;
+  }
 
   const todoPriority = document.createElement("span");
   todoPriority.classList.add("todo__priority");
@@ -153,6 +160,14 @@ function removeListElement(btn) {
 // Update the currently viewed list title in main section
 function changeCurrentListTitle() {
   document.querySelector(".todos__current-list").textContent = capitalize(getSelectedList());
+}
+
+// Take output from HTML date picker, and format to a better representation for UI
+function dateFormatter(dateStr) {
+  let year = parseInt(dateStr.slice(0, 4));
+  let month = parseInt(dateStr.slice(5, 7)) - 1;
+  let day = parseInt(dateStr.slice(8, 10));
+  return format(new Date(year, month, day), 'd MMM yyyy');
 }
 
 

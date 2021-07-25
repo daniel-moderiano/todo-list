@@ -34,7 +34,7 @@ function createTodo(title, description, dueDate, priority, list, id=nanoid()) {
 };
 
 // Create some dummy todos to help with rendering code
-let todo1 = createTodo("Laundry", "White clothes only", "12-12-2021", "low", "inbox");
+let todo1 = createTodo("Laundry", "White clothes only", "2021-07-28", "low", "inbox");
 let todo2 = createTodo("Shopping", "Need eggs and olive oil", "12-06-2021", "high", "inbox");
 let todo3 = createTodo("Call John", "Need to organise a catch up", "18-07-2021", "medium", "inbox");
 
