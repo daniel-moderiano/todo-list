@@ -22,7 +22,7 @@ function addNewTodo() {
 
 // Display the modal 
 function displayModal(modal) {
-  modal.style.display = "block";
+  modal.style.display = "flex";
 }
 
 // Close the modal
@@ -148,6 +148,7 @@ function addSidebarControls() {
   let listModal = document.querySelector(".list-modal");
   
   document.querySelector(".add-list").addEventListener("click", () => {
+    clearListFormInput();
     displayModal(listModal);
     document.querySelector("#list-form__input").focus();
     document.querySelector(".list-modal__btn").classList.add("disabled");
@@ -177,7 +178,6 @@ function listModalBtnControls() {
       addToStorage();
       newListElement(getListInput());
       closeModal(document.querySelector(".list-modal"));
-      clearListFormInput();
     }
   });
 }
