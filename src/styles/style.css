@@ -301,14 +301,23 @@ body {
   cursor: pointer;
 }
 
-.list-form__input, .todo-form > input, select {
+.list-form__input, .todo-form > input, select, textarea {
+  font-family: "Open Sans";
   border: 1px solid #cccbcb;
   border-radius: 3px;
   margin: 0.5rem 0 1rem 0;
   height: 1.4rem;
 }
 
-.list-form__input:focus, .todo-form__title:focus, .todo-form__description:focus, .todo-form__date:focus {
+.todo-form__priority, .todo-form__list, #todo-form__date {
+  height: 1.7rem;
+}
+
+.todo-form__description {
+  height: 4rem;
+}
+
+.list-form__input:focus, .todo-form > input:focus, select:focus, textarea:focus {
   border: 1px solid #808080;
   border-radius: 3px;
   outline: none;
