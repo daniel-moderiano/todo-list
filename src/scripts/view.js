@@ -1,4 +1,3 @@
-import { capitalize } from 'lodash';
 import { addSingleListControl } from './controller';
 import { todos, getFromStorage, deleteFromList, addToStorage, selectedList, removeList, changeList, getSelectedList } from './model';
 import { format } from 'date-fns';

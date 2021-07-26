@@ -1,6 +1,5 @@
 import { todos, createTodo, addToStorage, getFromStorage, pushTodo, pushToList, lists, changeList, selectedList, addNewList, removeList, getSelectedList } from "./model";
 import { renderTodo, refreshTodoList, setSelectedClass, newListElement, removeListElement } from "./view";
-import capitalize from 'lodash/capitalize';
 import { format } from 'date-fns';
 
 // Take DOM element (form) inputs and extract data into new todo
