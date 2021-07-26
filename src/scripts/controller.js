@@ -114,8 +114,14 @@ function todoFormBtnContol(params) {
 function btnEnable(input, btn) {
   if (input.value.trim() === "") {
     btn.disabled = true;
+    if (!btn.classList.contains("disabled")) {
+      btn.classList.add("disabled");
+    }
   } else {
     btn.disabled = false;
+    if (btn.classList.contains("disabled")) {
+      btn.classList.remove("disabled");
+    }
   }
 }
 
@@ -144,6 +150,7 @@ function addSidebarControls() {
   document.querySelector(".add-list").addEventListener("click", () => {
     displayModal(listModal);
     document.querySelector("#list-form__input").focus();
+    document.querySelector(".list-modal__btn").classList.add("disabled");
   });
 
   document.querySelector(".list-modal__close").addEventListener("click", () => {
