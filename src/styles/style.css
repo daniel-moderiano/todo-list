@@ -52,7 +52,7 @@ body {
 
 .todo__container {
   display: grid;
-  grid-template-columns: 2rem 1fr 1rem;
+  grid-template-columns: 2rem 1fr 3rem;
   grid-template-rows: repeat(3, auto);
 }
 
@@ -68,14 +68,14 @@ body {
 
 .todo__title {
   place-self: center start;
-  padding-bottom: 0.3rem;
+  padding-bottom: 0.4rem;
 }
 
 .todo__description {
   grid-row: 2;
   font-size: 0.75rem;
   color: #808080;
-  padding-bottom: 0.3rem;
+  padding-bottom: 0.4rem;
   place-self: center start;
 }
 
@@ -105,7 +105,7 @@ body {
   font-size: 1.5rem;
   border: none;
   background-color: rgba(255, 255, 255, 0);
-  margin-right: 3rem;
+  margin-right: 0.5rem;
   display: block;
 }
   

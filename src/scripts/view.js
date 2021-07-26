@@ -22,14 +22,20 @@ function renderTodo(todo) {
 
   const todoDescription = document.createElement("p");
   todoDescription.classList.add("todo__description");
-  todoDescription.textContent = todo.description;
+  // Adjust styling to preserve symmetrical look when no description is selected
+  if (todo.description === "") {
+    todoDescription.style.display = "none";
+  } else {
+    todoDescription.textContent = todo.description;
+  }
+  
 
   const todoDate = document.createElement("p");
   // Adjust styling to preserve symmetrical look when no date is selected
   todoDate.classList.add("todo__date");
   if (todo.dueDate === "") {
-    todoDate.textContent = `Due --`;
-    todoDate.style.color = "#808080";
+    todoDate.style.display = "none";
+    todoListItem.style.paddingBottom = "0.25rem";
   } else {
     todoDate.textContent = `Due ${ dateFormatter(todo.dueDate)}`;
   }
