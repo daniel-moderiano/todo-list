@@ -77,6 +77,7 @@ function addModalControls() {
     document.querySelector("#todo-form__date").value = "";
     document.querySelector("#todo-form__priority").value = "";
     todoFormBtn.disabled = true;
+    todoFormBtn.classList.add("disabled");
   }
 
   // Get current list to be refreshed on submit
