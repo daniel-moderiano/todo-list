@@ -133,14 +133,14 @@ function newListElement(list) {
   name.classList.add("list-name");
   btn.innerHTML = "&times;"
   btn.classList.add("list-btn")
-  btn.dataset.name = list.toLowerCase();
-  li.dataset.name = list.toLowerCase();
-  name.dataset.name = list.toLowerCase();
+  btn.dataset.name = list;
+  li.dataset.name = list;
+  name.dataset.name = list;
   btn.addEventListener("click", (e) => {
     removeListElement(e.target);
     removeList(e.target.dataset.name);
     addToStorage();
-    changeList("inbox");
+    changeList("Inbox");
     setSelectedClass(document.querySelector("#inbox"));
     refreshTodoList();
   });
@@ -159,7 +159,7 @@ function removeListElement(btn) {
 
 // Update the currently viewed list title in main section
 function changeCurrentListTitle() {
-  document.querySelector(".todos__current-list").textContent = capitalize(getSelectedList());
+  document.querySelector(".todos__current-list").textContent = getSelectedList();
 }
 
 // Take output from HTML date picker, and format to a better representation for UI

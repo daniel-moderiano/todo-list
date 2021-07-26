@@ -50,7 +50,7 @@ function addModalControls() {
   });
 
   // Get "New Todo" btn
-  const newTodo = document.querySelector(".header__btn");
+  const newTodo = document.querySelector(".todos__new");
   newTodo.addEventListener("click", clearFormInputs);
   newTodo.addEventListener("click", () => {
     deleteListsFromDropdown();
@@ -164,10 +164,10 @@ function listModalBtnControls() {
     btnEnable(listInput, listBtn);
   })
   listBtn.addEventListener("click", () => {
-    if (checkDuplicates(getListInput().toLowerCase()) === true) {
+    if (checkDuplicates(getListInput()) === true) {
       alert("List already exists! Please enter a unique list name.");
     } else {
-      addNewList(getListInput().toLowerCase());
+      addNewList(getListInput());
       addToStorage();
       newListElement(getListInput());
       closeModal(document.querySelector(".list-modal"));
@@ -176,7 +176,7 @@ function listModalBtnControls() {
   });
 }
 
-// Get the lowercase user input from the list form 
+// Get the user input from the list form 
 function getListInput() {
   return document.querySelector("#list-form__input").value;
 }
@@ -202,7 +202,7 @@ function addListsToDropdown() {
   for (const list in lists) {
     const option = document.createElement("option");
     option.value = list;
-    option.textContent = capitalize(list);
+    option.textContent = list;
     dropdown.appendChild(option);
   }
 }
