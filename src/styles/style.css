@@ -61,6 +61,21 @@ body {
   border-bottom: #f4f4f4 1px solid;
 }
 
+.checkbox-container {
+  grid-column: 1;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  padding-right: 0.4rem;
+}
+
+.tick {
+  position: absolute;
+  color: white;
+  pointer-events: none;
+}
+
 /* Hiding class, making content visible only to screen readers but not visually */
 .todo__label:not(focus):not(active) {
   clip: rect(0 0 0 0); 
@@ -92,8 +107,8 @@ body {
 }
 
 .todo__checkbox:hover {
-  background-color: #f4f4f4;
-  transition: background-color 0.2s;
+  background-color: #0078D7;
+  transition: background-color 0.3s;
 }
 
 .todo__title {

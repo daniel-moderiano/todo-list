@@ -56,6 +56,9 @@ function renderTodo(todo) {
   todoPriority.classList.add("todo__priority");
   todoPriority.textContent = todo.priority;
 
+  const checkboxContainer = document.createElement("div");
+  checkboxContainer.className = "checkbox-container";
+
   const todoCheckboxLabel = document.createElement("label");
   todoCheckboxLabel.setAttribute("for", "todo__checkbox");
   todoCheckboxLabel.classList.add("todo__label");
@@ -67,20 +70,23 @@ function renderTodo(todo) {
   todoCheckbox.classList.add("todo__checkbox");
   todoCheckbox.setAttribute("aria-label", "task complete");
 
-  // Add listener here
-  // todoCheckbox.addEventListener("change", () => {
-  //   deleteFromList(getSelectedList(), todo.id);
-  // });
-  // todoCheckbox.addEventListener("change", addToStorage);
-  // todoCheckbox.addEventListener("change", () => {
-  //   refreshTodoList();
-  // });
+  todoCheckbox.addEventListener("change", () => {
+    deleteFromList(getSelectedList(), todo.id);
+    addToStorage();
+    refreshTodoList();
+  });
+
   
+
+  const todoCheckboxTick = svgTick();
+  todoCheckboxTick.classList.add("tick");
+
   // Append todo elements to container (and li)
   todoListItem.appendChild(todoContainer);
-
-  todoContainer.appendChild(todoCheckbox);
-  todoContainer.appendChild(todoCheckboxLabel);
+  checkboxContainer.appendChild(todoCheckboxLabel);
+  checkboxContainer.appendChild(todoCheckboxTick);
+  checkboxContainer.appendChild(todoCheckbox);
+  todoContainer.appendChild(checkboxContainer);
   todoContainer.appendChild(todoTitle);
   todoContainer.appendChild(todoDescription);
   todoContainer.appendChild(todoDate);
@@ -180,10 +186,26 @@ function dateFormatter(dateStr) {
   return format(new Date(year, month, day), 'd MMM yyyy');
 }
 
+// Create a tick-shaped SVG element (note, must use createElementNS as path and SVG are XML, not HTML formats)
+function svgTick() {
+  let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  let path = document.createElementNS('http://www.w3.org/2000/svg', "path");
+
+  svg.setAttribute("width", "24");
+  svg.setAttribute("height", "24");
+
+  path.setAttribute("fill", "currentColor");
+  path.setAttribute("d", "M11.23 13.7l-2.15-2a.55.55 0 0 0-.74-.01l.03-.03a.46.46 0 0 0 0 .68L11.24 15l5.4-5.01a.45.45 0 0 0 0-.68l.02.03a.55.55 0 0 0-.73 0l-4.7 4.35z");
+
+  svg.appendChild(path);
+  return svg;
+}
+
 export { 
   refreshTodoList, 
   setSelectedClass, 
   newListElement, 
   removeListElement,
-  deleteFromList
+  deleteFromList,
+  svgTick
 }

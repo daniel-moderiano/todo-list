@@ -1,4 +1,4 @@
-import { refreshTodoList } from "./scripts/view";
+import { refreshTodoList, svgTick } from "./scripts/view";
 import { addAllListControls, addModalControls, addSidebarControls, todoFormBtnContol, listModalBtnControls, todoControls } from "./scripts/controller";
 import { addToStorage } from "./scripts/model";
 
@@ -15,5 +15,4 @@ function main() {
 }
 
 main();
-
 
