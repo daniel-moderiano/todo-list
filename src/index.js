@@ -1,4 +1,4 @@
-import { refreshTodoList } from "./scripts/view";
+import { refreshTodoList, todoControls } from "./scripts/view";
 import { addAllListControls, addModalControls, addSidebarControls, todoFormBtnContol, listModalBtnControls } from "./scripts/controller";
 import { addToStorage } from "./scripts/model";
 
@@ -11,6 +11,7 @@ function main() {
   addSidebarControls();
   todoFormBtnContol();
   listModalBtnControls();
+  todoControls();
 }
 
 main();

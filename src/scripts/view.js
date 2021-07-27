@@ -28,6 +28,7 @@ function renderTodo(todo) {
   const todoDescription = document.createElement("p");
   todoDescription.classList.add("todo__description");
   todoDescription.classList.add("truncate");
+  todoDescription.id = "todo__description";
   // Adjust styling to preserve symmetrical look when no description is selected
   if (todo.description === "") {
     todoDescription.style.display = "none";
@@ -72,13 +73,13 @@ function renderTodo(todo) {
   });
 
   // Add listeners here
-  todoDeleteBtn.addEventListener("click", () => {
-    deleteFromList(getSelectedList(), todo.id);
-  });
-  todoDeleteBtn.addEventListener("click", addToStorage);
-  todoDeleteBtn.addEventListener("click", () => {
-    refreshTodoList();
-  });
+  // todoDeleteBtn.addEventListener("click", () => {
+  //   deleteFromList(getSelectedList(), todo.id);
+  // });
+  // todoDeleteBtn.addEventListener("click", addToStorage);
+  // todoDeleteBtn.addEventListener("click", () => {
+  //   refreshTodoList();
+  // });
    
   // Append todo elements to container (and li)
   todoListItem.appendChild(todoContainer);
@@ -174,7 +175,7 @@ function changeCurrentListTitle() {
   document.querySelector(".todos__current-list").textContent = getSelectedList();
 }
 
-// Take output from HTML date picker, and format to a better representation for UI
+// Take output from HTML date picker and format the following: 12/12/2000 => 12 Dec 2000
 function dateFormatter(dateStr) {
   let year = parseInt(dateStr.slice(0, 4));
   let month = parseInt(dateStr.slice(5, 7)) - 1;
@@ -182,5 +183,25 @@ function dateFormatter(dateStr) {
   return format(new Date(year, month, day), 'd MMM yyyy');
 }
 
+// Add event listener to parent list element (ul.todos__list) that captures event propgation from any li items
+function todoControls() {
+  document.querySelector(".todos__list").addEventListener("click", (e) => {
+    // Functions to each aspect of the todo, identify using if (e.target === ?)
+    if (e.target.className === "todo__delete") {
+      let todoId = e.target.parentNode.parentNode
+      deleteFromList(getSelectedList(), todoId);
+      addToStorage();
+      refreshTodoList();
+    }
+  });
+}
 
-export { refreshTodoList, setSelectedClass, newListElement, removeListElement }
+
+
+export { 
+  refreshTodoList, 
+  setSelectedClass, 
+  newListElement, 
+  removeListElement,
+  todoControls 
+}
