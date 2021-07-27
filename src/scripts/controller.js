@@ -1,5 +1,5 @@
 import { createTodo, addToStorage, pushToList, changeList, addNewList, getSelectedList, getLists, checkDuplicates } from "./model";
-import { refreshTodoList, setSelectedClass, newListElement } from "./view";
+import { refreshTodoList, setSelectedClass, newListElement, deleteFromList } from "./view";
 
 // Take DOM element (form) inputs and extract data into new todo
 function getFormData() {
@@ -212,6 +212,19 @@ function deleteListsFromDropdown() {
   }
 }
 
+// Add event listener to parent list element (ul.todos__list) that captures event propgation from any li items
+function todoControls() {
+  document.querySelector(".todos__list").addEventListener("click", (e) => {
+    // Functions to each aspect of the todo, identify using if (e.target === ?)
+    if (e.target.className === "todo__delete") {
+      let todoId = e.target.parentNode.parentNode
+      deleteFromList(getSelectedList(), todoId);
+      addToStorage();
+      refreshTodoList();
+    }
+  });
+}
+
 // TODO: some kind of checkbox animation before deleting todo
 // TODO: switch to newly added list once list is submitted via add list modal
 
@@ -221,5 +234,6 @@ export {
   addAllListControls, 
   addSidebarControls, 
   listModalBtnControls, 
-  addSingleListControl 
+  addSingleListControl,
+  todoControls 
 }

@@ -1,4 +1,4 @@
-import { addSingleListControl } from './controller';
+import { addSingleListControl, todoControls } from './controller';
 import { getFromStorage, deleteFromList, addToStorage, removeList, changeList, getSelectedList } from './model';
 import { format } from 'date-fns';
 
@@ -57,7 +57,12 @@ function renderTodo(todo) {
   todoPriority.classList.add("todo__priority");
   todoPriority.textContent = todo.priority;
 
+  const todoCheckboxLabel = document.createElement("label");
+  todoCheckboxLabel.setAttribute("for", "todo__checkbox");
+  todoCheckboxLabel.classList.add("todo__label");
+
   const todoCheckbox = document.createElement("input");
+  todoCheckbox.id = "todo__checkbox";
   todoCheckbox.type = "checkbox";
   todoCheckbox.name = "task-complete";
   todoCheckbox.classList.add("todo__checkbox");
@@ -71,18 +76,10 @@ function renderTodo(todo) {
   todoCheckbox.addEventListener("change", () => {
     refreshTodoList();
   });
-
-  // Add listeners here
-  // todoDeleteBtn.addEventListener("click", () => {
-  //   deleteFromList(getSelectedList(), todo.id);
-  // });
-  // todoDeleteBtn.addEventListener("click", addToStorage);
-  // todoDeleteBtn.addEventListener("click", () => {
-  //   refreshTodoList();
-  // });
-   
+  
   // Append todo elements to container (and li)
   todoListItem.appendChild(todoContainer);
+  todoContainer.appendChild(todoCheckboxLabel);
   todoContainer.appendChild(todoCheckbox);
   todoContainer.appendChild(todoTitle);
   todoContainer.appendChild(todoDescription);
@@ -183,25 +180,10 @@ function dateFormatter(dateStr) {
   return format(new Date(year, month, day), 'd MMM yyyy');
 }
 
-// Add event listener to parent list element (ul.todos__list) that captures event propgation from any li items
-function todoControls() {
-  document.querySelector(".todos__list").addEventListener("click", (e) => {
-    // Functions to each aspect of the todo, identify using if (e.target === ?)
-    if (e.target.className === "todo__delete") {
-      let todoId = e.target.parentNode.parentNode
-      deleteFromList(getSelectedList(), todoId);
-      addToStorage();
-      refreshTodoList();
-    }
-  });
-}
-
-
-
 export { 
   refreshTodoList, 
   setSelectedClass, 
   newListElement, 
   removeListElement,
-  todoControls 
+  deleteFromList
 }
