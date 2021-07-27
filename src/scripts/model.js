@@ -42,6 +42,7 @@ function checkDuplicates(newList) {
   return false;
 }
 
+
 // Factory function to create todo items
 function createTodo(title, description, dueDate, priority, list, id=nanoid()) {
   return { title, description, dueDate, priority, list, id }
@@ -74,4 +75,16 @@ function getFromStorage() {
 }
 
 
-export { createTodo, addToStorage, getFromStorage, deleteFromList, pushToList, selectedList, changeList, addNewList, removeList, getSelectedList, getLists, checkDuplicates }
+export { 
+  createTodo, 
+  addToStorage, 
+  getFromStorage, 
+  deleteFromList, 
+  pushToList,
+  changeList, 
+  addNewList, 
+  removeList, 
+  getSelectedList, 
+  getLists, 
+  checkDuplicates,
+}
