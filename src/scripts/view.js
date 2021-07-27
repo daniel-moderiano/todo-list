@@ -20,6 +20,11 @@ function renderTodo(todo) {
   todoTitle.classList.add("todo__title");
   todoTitle.textContent = todo.title;
 
+  const todoDeleteBtn = document.createElement("button");
+  todoDeleteBtn.type = "button";
+  todoDeleteBtn.classList.add("todo__delete");
+  todoDeleteBtn.innerHTML = "&times;";
+
   const todoDescription = document.createElement("p");
   todoDescription.classList.add("todo__description");
   todoDescription.classList.add("truncate");
@@ -32,17 +37,20 @@ function renderTodo(todo) {
   todoDescription.addEventListener("click", () => {
     todoDescription.classList.toggle("truncate");
   });
-  
 
   const todoDate = document.createElement("p");
   // Adjust styling to preserve symmetrical look when no date is selected
   todoDate.classList.add("todo__date");
   if (todo.dueDate === "") {
-    todoDate.style.display = "none";
-    todoListItem.style.paddingBottom = "0.25rem";
+    todoDescription.style.paddingBottom = "0";
   } else {
     todoDate.textContent = `Due ${ dateFormatter(todo.dueDate)}`;
   }
+
+  if (todo.dueDate === "" && todo.description === "") {
+    todoTitle.style.paddingBottom = "0";
+  }
+
 
   const todoPriority = document.createElement("span");
   todoPriority.classList.add("todo__priority");
@@ -63,12 +71,7 @@ function renderTodo(todo) {
     refreshTodoList();
   });
 
-  const todoDeleteBtn = document.createElement("button");
-  todoDeleteBtn.type = "button";
-  todoDeleteBtn.classList.add("todo__delete");
-  todoDeleteBtn.innerHTML = "&times;";
-
-  // Add listenere here
+  // Add listeners here
   todoDeleteBtn.addEventListener("click", () => {
     deleteFromList(getSelectedList(), todo.id);
   });
