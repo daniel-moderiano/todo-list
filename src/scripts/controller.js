@@ -1,6 +1,5 @@
-import { todos, createTodo, addToStorage, getFromStorage, pushTodo, pushToList, lists, changeList, selectedList, addNewList, removeList, getSelectedList } from "./model";
-import { renderTodo, refreshTodoList, setSelectedClass, newListElement, removeListElement } from "./view";
-import { format } from 'date-fns';
+import { createTodo, addToStorage, pushToList, changeList, addNewList, getSelectedList, getLists, checkDuplicates } from "./model";
+import { refreshTodoList, setSelectedClass, newListElement } from "./view";
 
 // Take DOM element (form) inputs and extract data into new todo
 function getFormData() {
@@ -194,19 +193,9 @@ function clearListFormInput() {
   document.querySelector(".list-modal__btn").disabled = true;
 }
 
-// Checks for duplicate list names when inputting new list. Returns true for duplicate
-function checkDuplicates(newList) {
-  for (const list in lists) {
-    if (newList === list) {
-      return true;
-    }
-  }
-  return false;
-}
-
 function addListsToDropdown() {
   const dropdown = document.querySelector("#todo-form__list");
-  for (const list in lists) {
+  for (const list in getLists()) {
     const option = document.createElement("option");
     option.value = list;
     option.textContent = list;

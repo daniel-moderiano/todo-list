@@ -1,5 +1,5 @@
 import { addSingleListControl } from './controller';
-import { todos, getFromStorage, deleteFromList, addToStorage, selectedList, removeList, changeList, getSelectedList } from './model';
+import { getFromStorage, deleteFromList, addToStorage, removeList, changeList, getSelectedList } from './model';
 import { format } from 'date-fns';
 
 // Take todo object from master array and render to the DOM as todo list item

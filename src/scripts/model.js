@@ -1,5 +1,4 @@
 // Nanoid used to generate unique IDs for todos to enable different functions to recognise and modify them
-import { todoSubmit } from "./controller";
 import { nanoid } from 'nanoid';
 
 // Store all lists in a modifiable object for reference
@@ -8,6 +7,10 @@ let lists = {
 }
 
 let selectedList = "Inbox";
+
+function getLists() {
+  return lists;
+}
 
 function getSelectedList() {
   return selectedList;
@@ -28,6 +31,16 @@ function removeList(list) {
   delete lists[list];
 }
 
+// Checks for duplicate list names 
+function checkDuplicates(newList) {
+  for (const list in lists) {
+    if (newList === list) {
+      return true;
+    }
+  }
+  return false;
+}
+
 // Factory function to create todo items
 function createTodo(title, description, dueDate, priority, list, id=nanoid()) {
   return { title, description, dueDate, priority, list, id }
@@ -35,19 +48,12 @@ function createTodo(title, description, dueDate, priority, list, id=nanoid()) {
 
 // Create some dummy todos to help with rendering code
 let todo1 = createTodo("Laundry", "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea sint officiis quo incidunt repudiandae sed, accusamus veniam voluptatem consequuntur! Labore pariatur eaque voluptate deserunt ipsum corporis nemo distinctio numquam perspiciatis!", "2021-07-28", "low", "Inbox");
-let todo2 = createTodo("Shopping", "Need eggs and olive oil", "12-06-2021", "high", "inbox");
-let todo3 = createTodo("Call John", "Need to organise a catch up", "18-07-2021", "medium", "inbox");
-
 
 pushToList(todo1, "Inbox");
 
 // Function to push todo into a specified list
 function pushToList(todo, list) {
   lists[list].push(todo);
-}
-
-function pushTodo(todoToPush) {
-  todos.push(todoToPush);
 }
 
 // Function to remove todo object from array, searhcing via unique todo id
@@ -67,4 +73,4 @@ function getFromStorage() {
 }
 
 
-export { createTodo, addToStorage, getFromStorage, pushTodo, deleteFromList, lists, pushToList, selectedList, changeList, addNewList, removeList, getSelectedList }
+export { createTodo, addToStorage, getFromStorage, deleteFromList, pushToList, selectedList, changeList, addNewList, removeList, getSelectedList, getLists, checkDuplicates }

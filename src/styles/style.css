@@ -27,7 +27,7 @@ body {
   grid-area: main;
   display: flex;
   justify-content: center;
-  padding-top: 1.6rem;
+  padding-top: 2.5rem;
 }
 
 .todos {
