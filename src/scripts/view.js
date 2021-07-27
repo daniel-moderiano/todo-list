@@ -52,7 +52,6 @@ function renderTodo(todo) {
     todoTitle.style.paddingBottom = "0";
   }
 
-
   const todoPriority = document.createElement("span");
   todoPriority.classList.add("todo__priority");
   todoPriority.textContent = todo.priority;
@@ -69,18 +68,19 @@ function renderTodo(todo) {
   todoCheckbox.setAttribute("aria-label", "task complete");
 
   // Add listener here
-  todoCheckbox.addEventListener("change", () => {
-    deleteFromList(getSelectedList(), todo.id);
-  });
-  todoCheckbox.addEventListener("change", addToStorage);
-  todoCheckbox.addEventListener("change", () => {
-    refreshTodoList();
-  });
+  // todoCheckbox.addEventListener("change", () => {
+  //   deleteFromList(getSelectedList(), todo.id);
+  // });
+  // todoCheckbox.addEventListener("change", addToStorage);
+  // todoCheckbox.addEventListener("change", () => {
+  //   refreshTodoList();
+  // });
   
   // Append todo elements to container (and li)
   todoListItem.appendChild(todoContainer);
-  todoContainer.appendChild(todoCheckboxLabel);
+
   todoContainer.appendChild(todoCheckbox);
+  todoContainer.appendChild(todoCheckboxLabel);
   todoContainer.appendChild(todoTitle);
   todoContainer.appendChild(todoDescription);
   todoContainer.appendChild(todoDate);
