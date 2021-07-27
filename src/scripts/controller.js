@@ -171,12 +171,14 @@ function listModalBtnControls() {
     btnEnable(listInput, listBtn);
   })
   listBtn.addEventListener("click", () => {
-    if (checkDuplicates(getListInput()) === true) {
+    if (checkDuplicates(getListInput())) {
       alert("List already exists! Please enter a unique list name.");
     } else {
       addNewList(getListInput());
       addToStorage();
       newListElement(getListInput());
+      changeList(getListInput());
+      refreshTodoList();
       closeModal(document.querySelector(".list-modal"));
     }
   });
