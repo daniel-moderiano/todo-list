@@ -22,12 +22,16 @@ function renderTodo(todo) {
 
   const todoDescription = document.createElement("p");
   todoDescription.classList.add("todo__description");
+  todoDescription.classList.add("truncate");
   // Adjust styling to preserve symmetrical look when no description is selected
   if (todo.description === "") {
     todoDescription.style.display = "none";
   } else {
     todoDescription.textContent = todo.description;
   }
+  todoDescription.addEventListener("click", () => {
+    todoDescription.classList.toggle("truncate");
+  });
   
 
   const todoDate = document.createElement("p");
