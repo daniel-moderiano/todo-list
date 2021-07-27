@@ -8,8 +8,9 @@ let lists = {
 
 let selectedList = "Inbox";
 
+// Return a deep copy of the current lists object to avoid direct manipulation outside of the provided functions below
 function getLists() {
-  return lists;
+  return JSON.parse(JSON.stringify(lists));
 }
 
 function getSelectedList() {

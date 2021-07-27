@@ -1,6 +1,6 @@
 import { refreshTodoList } from "./scripts/view";
 import { addAllListControls, addModalControls, addSidebarControls, todoFormBtnContol, listModalBtnControls } from "./scripts/controller";
-import { addToStorage } from "./scripts/model";
+import { addToStorage, getLists } from "./scripts/model";
 
 // "main" style funciton to run appropriate functions on initial page load
 function main() {
@@ -14,6 +14,7 @@ function main() {
 }
 
 main();
+
 
 
 
