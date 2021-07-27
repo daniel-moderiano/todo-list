@@ -42,26 +42,25 @@ function checkDuplicates(newList) {
   return false;
 }
 
-
 // Factory function to create todo items
 function createTodo(title, description, dueDate, priority, list, id=nanoid()) {
   return { title, description, dueDate, priority, list, id }
 };
-
-// Create some dummy todos to help with rendering code
-let todo1 = createTodo("Laundry", "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea sint officiis quo incidunt repudiandae sed, accusamus veniam voluptatem consequuntur! Labore pariatur eaque voluptate deserunt ipsum corporis nemo distinctio numquam perspiciatis!", "2021-07-28", "low", "Inbox");
-
-pushToList(todo1, "Inbox");
 
 // Function to push todo into a specified list
 function pushToList(todo, list) {
   lists[list].push(todo);
 }
 
-// Function to remove todo object from array, searhcing via unique todo id
+// Function to remove todo object from array, searching via unique todo id
 function deleteFromList(list, id) {
   let index = lists[list].findIndex(todo => todo.id === id);
-  lists[list].splice(index, 1);
+  if (index === -1) {
+    console.log("ID not found");
+    return;
+  } else {
+    lists[list].splice(index, 1);
+  }
 }
 
 // Adds or updates list of todos to local storage
@@ -73,6 +72,11 @@ function addToStorage() {
 function getFromStorage() {
   return JSON.parse(localStorage.getItem("lists"));
 }
+
+// Create some dummy todos to help with rendering code
+let todo1 = createTodo("Laundry", "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea sint officiis quo incidunt repudiandae sed, accusamus veniam voluptatem consequuntur! Labore pariatur eaque voluptate deserunt ipsum corporis nemo distinctio numquam perspiciatis!", "2021-07-28", "low", "Inbox");
+
+pushToList(todo1, "Inbox");
 
 
 export { 

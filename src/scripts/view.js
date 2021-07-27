@@ -24,6 +24,7 @@ function renderTodo(todo) {
   todoDeleteBtn.type = "button";
   todoDeleteBtn.classList.add("todo__delete");
   todoDeleteBtn.innerHTML = "&times;";
+  todoDeleteBtn.dataset.id = todo.id;
 
   const todoDescription = document.createElement("p");
   todoDescription.classList.add("todo__description");
@@ -68,16 +69,9 @@ function renderTodo(todo) {
   todoCheckbox.type = "checkbox";
   todoCheckbox.name = "task-complete";
   todoCheckbox.classList.add("todo__checkbox");
-  todoCheckbox.setAttribute("aria-label", "task complete");
-
-  todoCheckbox.addEventListener("change", () => {
-    deleteFromList(getSelectedList(), todo.id);
-    addToStorage();
-    refreshTodoList();
-  });
-
-  
-
+  todoCheckbox.setAttribute("aria-label", "Mark task as completed");
+  todoCheckbox.dataset.id = todo.id;
+ 
   const todoCheckboxTick = svgTick();
   todoCheckboxTick.classList.add("tick");
 
@@ -206,6 +200,5 @@ export {
   setSelectedClass, 
   newListElement, 
   removeListElement,
-  deleteFromList,
   svgTick
 }
