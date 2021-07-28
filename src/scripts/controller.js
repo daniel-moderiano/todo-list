@@ -158,6 +158,15 @@ function listModalBtnControls() {
   });
 }
 
+// Fully prepare the add modal for editing purposes
+function convertAddModalForEdit(todo) {
+  document.querySelector("#todo-form__title").value = todo.title;
+  document.querySelector("#todo-form__description").value = todo.description;
+  document.querySelector("#todo-form__date").value = todo.dueDate;
+  document.querySelector("#todo-form__priority").value = todo.priority;
+  refreshListDropdown();
+}
+
 // Add event listener to parent list element (ul.todos__list) that captures event propgation from any child li elements
 function todoEventListeners() {
   document.querySelector(".todos__list").addEventListener("click", (e) => {
@@ -167,8 +176,9 @@ function todoEventListeners() {
       addToStorage();
       refreshTodoList();
     } else if (e.target.className === "todo__edit-icon") {
-      // open add modal to edit todo
-      console.log(findTodoByListAndId(getSelectedList(), e.target.dataset.id));
+      // Use the data-id to find the todo from memory, and open add modal in edit form
+      convertAddModalForEdit(findTodoByListAndId(getSelectedList(), e.target.dataset.id));
+      displayModal(document.querySelector(".add-modal"));
     }
   });
 }
@@ -196,19 +206,7 @@ function sidebarEventListeners() {
   });
 }
 
-// Add all functionality to the newTask btn
-function addEditBtnControls() {
-  const addModal = document.querySelector(".add-modal");
-  // const editBtn = document.querySelector(".todos__edit");
 
-  // editBtn.addEventListener("click", () => {
-  //   clearFormInputs();
-//      function to pre fill all of the inputs with the current todo data
-  //   refreshListDropdown();
-  //   displayModal(addModal);
-  //   document.querySelector("#todo-form__title").focus();
-  // });
-}
 
 
 export { 
