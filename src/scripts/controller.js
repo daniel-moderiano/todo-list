@@ -88,20 +88,15 @@ function addModalControls() {
     closeModal(addModal);
   });
   todoFormBtn.addEventListener("click", addToStorage);
-  todoFormBtn.addEventListener("click", () => {
-    refreshTodoList(currentList);
-  });
+  todoFormBtn.addEventListener("click", refreshTodoList);
 }
 
 // Add submission controls and input verification to the todoForm submit form
 function todoFormBtnContol(params) {
-  // Get form input
   const todoFormTitle = document.querySelector("#todo-form__title");
-
-  // Get form add task btn
   const todoFormBtn = document.querySelector(".todo-form__btn");
 
-  // Det default btn state to disabled
+  // Set default btn state to disabled
   todoFormBtn.disabled = true;
 
   // Listen for user typing or entering data into input
@@ -110,7 +105,7 @@ function todoFormBtnContol(params) {
   });
 }
 
-// Enable add btn only if user enters a title for the todo
+// Enable add btn only if user enters a valid title for the todo
 function btnEnable(input, btn) {
   if (input.value.trim() === "") {
     btn.disabled = true;
