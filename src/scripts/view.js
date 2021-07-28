@@ -146,16 +146,16 @@ function newListElement(list) {
   btn.dataset.name = list;
   li.dataset.name = list;
   name.dataset.name = list;
-  btn.addEventListener("click", (e) => {
-    removeListElement(e.target);
-    removeList(e.target.dataset.name);
-    addToStorage();
-    changeList("Inbox");
-    setSelectedClass(document.querySelector("#inbox"));
-    refreshTodoList();
-  });
+  // btn.addEventListener("click", (e) => {
+  //   removeListElement(e.target);
+  //   removeList(e.target.dataset.name);
+  //   addToStorage();
+  //   changeList("Inbox");
+  //   setSelectedClass(document.querySelector("#inbox"));
+  //   refreshTodoList();
+  // });
 
-  addSingleListControl(li);
+  // addSingleListControl(li);
   li.appendChild(icon);
   li.appendChild(name);
   li.appendChild(btn);

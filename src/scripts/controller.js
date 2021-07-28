@@ -1,5 +1,5 @@
-import { createTodo, addToStorage, pushToList, changeList, addNewList, getSelectedList, getLists, checkDuplicates, deleteFromList } from "./model";
-import { refreshTodoList, setSelectedClass, newListElement } from "./view";
+import { createTodo, addToStorage, pushToList, changeList, addNewList, getSelectedList, getLists, checkDuplicates, deleteFromList, removeList } from "./model";
+import { refreshTodoList, setSelectedClass, newListElement, removeListElement } from "./view";
 
 // Take DOM element (form) inputs and extract data into new todo
 function getFormData() {
@@ -120,23 +120,23 @@ function btnEnable(input, btn) {
   }
 }
 
-function addSingleListControl(list) {
-  list.addEventListener("click", (e) => {
-    if (e.target.nodeName != "BUTTON") {
-      changeList(list.dataset.name);
-      setSelectedClass(list);
-      refreshTodoList(getSelectedList());
-    }
-  });
-}
+// function addSingleListControl(list) {
+//   list.addEventListener("click", (e) => {
+//     if (e.target.nodeName != "BUTTON") {
+//       changeList(list.dataset.name);
+//       setSelectedClass(list);
+//       refreshTodoList();
+//     }
+//   });
+// }
 
-// Add event listeners for list names in sidebar
-function addAllListControls() {
-  let listNames = document.querySelectorAll(".list-name");
-  listNames.forEach(function(list) {
-    addSingleListControl(list);
-  });
-}
+// // Add event listeners for list names in sidebar
+// function addAllListControls() {
+//   let listNames = document.querySelectorAll(".list-name");
+//   listNames.forEach(function(list) {
+//     addSingleListControl(list);
+//   });
+// }
 
 // Add event listener to sidebar add list btn
 function addSidebarControls() {
@@ -173,6 +173,7 @@ function listModalBtnControls() {
       addToStorage();
       newListElement(getListInput());
       changeList(getListInput());
+      setSelectedClass(document.querySelector(`[data-name='${getSelectedList()}']`))
       refreshTodoList();
       closeModal(document.querySelector(".list-modal"));
     }
@@ -219,12 +220,36 @@ function todoControls() {
   });
 }
 
+// Add event listener to parent list element (ul.todos__list) that captures event propgation from any child li elements
+function sidebarControls() {
+  document.querySelector(".sidebar").addEventListener("click", (e) => {
+    // Individualise event response based on which target is clicked
+    if (e.target.classList.contains("list-btn")) {
+      removeListElement(e.target);
+      removeList(e.target.dataset.name);
+      addToStorage();
+      changeList("Inbox");
+      setSelectedClass(document.querySelector("#inbox"));
+      refreshTodoList();
+    } else if (e.target.classList.contains("list-item")) {
+      changeList(e.target.dataset.name);
+      setSelectedClass(e.target);
+      refreshTodoList();
+    } else if (e.target.parentNode.classList.contains("list-item")) {
+      changeList(e.target.parentNode.dataset.name);
+      setSelectedClass(e.target.parentNode);
+      refreshTodoList();
+    }
+  });
+}
+
 export { 
   addModalControls, 
   todoFormBtnContol, 
-  addAllListControls, 
+
   addSidebarControls, 
   listModalBtnControls, 
-  addSingleListControl,
-  todoControls 
+
+  todoControls,
+  sidebarControls 
 }
