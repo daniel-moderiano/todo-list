@@ -51,7 +51,7 @@ function btnEnable(input, btn) {
   }
 }
 
-// Clear all inputs in the add-modal form, and ensure the submit btn is reset to disabled mode
+// Clear all inputs in the add-modal form, and ensure the submit btn is reset to disabled mode. This has to be set dynamically on each modal display rathern than HTML coded as the HTML will be over-written when the modal is closed
 function clearFormInputs() {
   const todoFormBtn = document.querySelector(".todo-form__btn");
   document.querySelector("#todo-form__title").value = "";
@@ -72,10 +72,6 @@ function addNewTaskControls() {
     displayModal(addModal);
     document.querySelector("#todo-form__title").focus();
   });
-
-  // TODO: when new task is clicked, make the default list select option the current list
-  // Get current list to be refreshed on submit
-  const currentList = document.querySelector(".todos__current-list").textContent;
 }
 
 // Add controls to modal buttons, namely outside click, close, and 'submit' equivalent
@@ -111,6 +107,7 @@ function addModalControls() {
 function addSidebarControls() {
   let listModal = document.querySelector(".list-modal");
   
+  // Ensure the input is focused on open, and the submit btn is in disabled state to begin
   document.querySelector(".add-list").addEventListener("click", () => {
     clearListFormInput();
     displayModal(listModal);
@@ -122,19 +119,25 @@ function addSidebarControls() {
     closeModal(listModal);
   });
 
+  // Close modal on outside click
   window.addEventListener("click", (e) => {
     outsideClick(e, listModal);
   });
 }
 
+// Adds functionality to the 'submit' btn on the list modal
 function listModalBtnControls() {
+  const listModal = document.querySelector(".list-modal");
   const listBtn = document.querySelector(".list-modal__btn");
   const listInput = document.querySelector("#list-form__input");
-  listBtn.disabled = true;
+
+  // Listen for any typing or pasting into input field, and enable the submit btn only for non-whitespace input
   listInput.addEventListener("input", () => {
     btnEnable(listInput, listBtn);
   })
+
   listBtn.addEventListener("click", () => {
+    // If the user tries to submit two lists of the same name, this will alert them and prevent that action
     if (checkDuplicates(getListInput())) {
       alert("List already exists! Please enter a unique list name.");
     } else {
@@ -144,7 +147,7 @@ function listModalBtnControls() {
       changeList(getListInput());
       setSelectedClass(document.querySelector(`[data-name='${getSelectedList()}']`))
       refreshTodoList();
-      closeModal(document.querySelector(".list-modal"));
+      closeModal(listModal);
     }
   });
 }

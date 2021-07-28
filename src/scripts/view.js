@@ -217,7 +217,6 @@ function refreshListDropdown() {
   changeSelectedOption();
 }
 
-// TODO combine into a "refresh dropdown lists" function
 
 export { 
   refreshTodoList, 
