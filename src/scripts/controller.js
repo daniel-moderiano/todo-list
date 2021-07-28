@@ -19,6 +19,7 @@ function addNewTodo() {
   pushToList(newTodo, todoData.list);
 }
 
+// Send data to model to update an existing todo using form data from add modal in edit form
 function editExistingTodo() {
   let todoEditedData = getFormData();
   let editedTodo = createTodo(todoEditedData.title, todoEditedData.description, todoEditedData.dueDate, todoEditedData.priority);

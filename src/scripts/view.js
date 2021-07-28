@@ -137,9 +137,7 @@ function setSelectedClass(listItem) {
   let listNames = document.querySelectorAll(".list-name");
   listNames.forEach(function(list) {
     if (list.dataset.name === listItem.dataset.name) {
-      if (!list.classList.contains("list-name--selected")) {
-        list.classList.toggle("list-name--selected");
-      }
+      list.classList.add("list-name--selected");
     } else {
       list.classList.remove("list-name--selected");
     }
