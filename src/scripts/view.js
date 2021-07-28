@@ -15,6 +15,8 @@ function renderTodo(todo) {
   const todoCheckboxLabel = document.createElement("label");
   const todoCheckbox = document.createElement("input");
   const todoCheckboxTick = svgTick();
+  const todoEditBtn = document.createElement("button");
+  const todoEditIcon = document.createElement("span");
 
   todoListItem.classList.add("todo");
   todoListItem.dataset.id = todo.id;
@@ -51,12 +53,22 @@ function renderTodo(todo) {
    
   todoCheckboxTick.classList.add("tick");
 
+  todoEditBtn.className = "todo__edit";
+  todoEditBtn.type = "button";
+
+  todoEditIcon.classList.add("todo__edit-icon");
+  todoEditIcon.classList.add("material-icons");
+  todoEditIcon.textContent = "edit";
+
+
   // Adjust overall todo styling to preserve symmetrical look when no description is provided
   if (todo.description === "") {
     todoDescription.style.display = "none";
   } else {
     todoDescription.textContent = todo.description;
   }
+
+  // If user wishes to see full description text, they can click to expand to full text
   todoDescription.addEventListener("click", () => {
     todoDescription.classList.toggle("truncate");
   });
@@ -78,12 +90,15 @@ function renderTodo(todo) {
   checkboxContainer.appendChild(todoCheckboxLabel);
   checkboxContainer.appendChild(todoCheckboxTick);
   checkboxContainer.appendChild(todoCheckbox);
+  todoEditBtn.appendChild(todoEditIcon);
+  
   todoContainer.appendChild(checkboxContainer);
   todoContainer.appendChild(todoTitle);
   todoContainer.appendChild(todoDescription);
   todoContainer.appendChild(todoDate);
   todoContainer.appendChild(todoPriority);
   todoContainer.appendChild(todoDeleteBtn);
+  todoContainer.appendChild(todoEditBtn);
 
   // Insert newly rendered todo into the main todo list
   todosList.appendChild(todoListItem);

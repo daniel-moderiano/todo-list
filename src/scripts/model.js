@@ -73,6 +73,16 @@ function getFromStorage() {
   return JSON.parse(localStorage.getItem("lists"));
 }
 
+function findTodoByListAndId(list, id) {
+  let index = lists[list].findIndex(todo => todo.id === id);
+  if (index === -1) {
+    console.log("ID not found");
+    return;
+  } else {
+    return lists[list][index];
+  }
+}
+
 // Create some dummy todos to help with rendering code
 let todo1 = createTodo("Laundry", "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea sint officiis quo incidunt repudiandae sed, accusamus veniam voluptatem consequuntur! Labore pariatur eaque voluptate deserunt ipsum corporis nemo distinctio numquam perspiciatis!", "2021-07-28", "low");
 
@@ -91,4 +101,5 @@ export {
   getSelectedList, 
   getLists, 
   checkDuplicates,
+  findTodoByListAndId
 }

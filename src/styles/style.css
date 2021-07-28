@@ -154,7 +154,7 @@ body {
 .todo__delete {
   grid-column: 3;
   grid-row: 1 / span 3;
-  place-self: center;
+  /* place-self: center; */
   display: none;
   cursor: pointer;
 }
@@ -169,8 +169,14 @@ body {
   margin-right: 0.5rem;
   display: inline;
 }
-  
 
+.todo__edit {
+  grid-column: 3;
+  grid-row: 1 / span 3;
+  /* place-self: center; */
+  cursor: pointer;
+}
+  
 .todos__new {
   background-color: rgba(255, 255, 255, 0);
   color: #202020;
@@ -194,7 +200,6 @@ body {
   color: #0078D7;
 }
 
-
 /* ---HEADER--- */
 .header {
     grid-area: header;
@@ -211,7 +216,6 @@ body {
 }
 
 .header__title {
-  /* font-family: "Lexend"; */
   font-weight: bolder;
   color: white;
   font-size: 1.2rem;

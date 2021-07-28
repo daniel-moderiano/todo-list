@@ -1,4 +1,4 @@
-import { createTodo, addToStorage, pushToList, changeList, addNewList, getSelectedList, getLists, checkDuplicates, deleteFromList, removeList } from "./model";
+import { createTodo, addToStorage, pushToList, changeList, addNewList, getSelectedList, getLists, checkDuplicates, deleteFromList, removeList, findTodoByListAndId } from "./model";
 import { refreshTodoList, setSelectedClass, newListElement, refreshListDropdown } from "./view";
 
 // Extract the form data when the user clicks "add task" on the add task modal
@@ -166,6 +166,8 @@ function todoEventListeners() {
       deleteFromList(getSelectedList(), e.target.dataset.id);
       addToStorage();
       refreshTodoList();
+    } else {
+      // Open page to inspect todo
     }
   });
 }
@@ -191,6 +193,20 @@ function sidebarEventListeners() {
       refreshTodoList();
     }
   });
+}
+
+// Add all functionality to the newTask btn
+function addEditBtnControls() {
+  const addModal = document.querySelector(".add-modal");
+  // const editBtn = document.querySelector(".todos__edit");
+
+  // editBtn.addEventListener("click", () => {
+  //   clearFormInputs();
+//      function to pre fill all of the inputs with the current todo data
+  //   refreshListDropdown();
+  //   displayModal(addModal);
+  //   document.querySelector("#todo-form__title").focus();
+  // });
 }
 
 
