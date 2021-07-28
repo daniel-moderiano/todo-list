@@ -162,7 +162,7 @@ body {
 
 /* Negative margins prevent delete btn from epanding todo li when displayed */
 .todo:hover .todo__delete {
-  opacity: 0.4;
+  opacity: 0.3;
   font-size: 1.7rem;
   margin: -0.5rem 1rem -0.5rem 0;
   border: none;
@@ -175,7 +175,6 @@ body {
   grid-row: 1 / span 3;
   place-self: center start;
   cursor: pointer;
-  border: none;
   display: none;
 }
 
@@ -184,14 +183,17 @@ body {
 }
 
 .todo:hover .todo__edit {
-  opacity: 0.4;
+  opacity: 0.3;
   border: none;
   margin: -0.4rem 0.5rem -0.4rem 0;
   background-color: rgba(255, 255, 255, 0);
   margin-right: 1rem;
   display: inline;
-  /* margin: 0; */
   padding: 0;
+}
+
+.todo__edit:hover, .todo__delete:hover {
+  opacity: 1 !important;
 }
   
 .todos__new {

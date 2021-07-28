@@ -58,6 +58,7 @@ function renderTodo(todo) {
 
   todoEditIcon.classList.add("todo__edit-icon");
   todoEditIcon.src = "../src/icons/edit.svg";
+  todoEditIcon.dataset.id = todo.id;
 
 
   // Adjust overall todo styling to preserve symmetrical look when no description is provided

@@ -166,8 +166,9 @@ function todoEventListeners() {
       deleteFromList(getSelectedList(), e.target.dataset.id);
       addToStorage();
       refreshTodoList();
-    } else {
-      // Open page to inspect todo
+    } else if (e.target.className === "todo__edit-icon") {
+      // open add modal to edit todo
+      console.log(findTodoByListAndId(getSelectedList(), e.target.dataset.id));
     }
   });
 }
