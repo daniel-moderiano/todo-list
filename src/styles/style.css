@@ -44,9 +44,6 @@ body {
   color: #202020;
 }
 
-/* .todos__header {
-  padding-bottom: 1.2rem;
-} */
 
 /* ---TODOS--- */
 
@@ -222,25 +219,38 @@ body {
   
 .todos__new {
   background-color: rgba(255, 255, 255, 0);
-  color: #202020;
+  color: #808080;
   border: none;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: flex-start; */
   font-family: "Open Sans", Helvetica, sans-serif;
   font-size: 14.5px;
-  width: 6.25rem;
+  width: 6.5rem;
   height: 2.2rem;
   margin-top: 0.3rem;
+  padding: 0;
+  box-sizing: content-box;
 }
 
 .todos__new-icon {
   width: 14px;
+  height: 14px;
+  padding: 0.1rem;
+  margin: 0 0.5rem;
+  border: 2px solid #FFFFFF;
 }
 
 .todos__new:hover {
   cursor: pointer;
   color: #0078D7;
+  transition: color 0.2s;
+}
+
+.todos__new:hover .todos__new-icon {
+  border: 2px solid #0078D7;
+  transition: border 0.2s;
+  border-radius: 14px;
 }
 
 /* ---HEADER--- */
