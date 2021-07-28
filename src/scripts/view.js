@@ -1,36 +1,57 @@
-import { addSingleListControl, todoControls } from './controller';
-import { getFromStorage, deleteFromList, addToStorage, removeList, changeList, getSelectedList } from './model';
+import { getFromStorage, getSelectedList } from './model';
 import { format } from 'date-fns';
 
 // Take todo object from master array and render to the DOM as todo list item
 function renderTodo(todo) {
-  // Get todosList element
   const todosList = document.querySelector(".todos__list");
-
-  // Create list element and container for new todo
   const todoListItem = document.createElement("li");
+  const todoContainer = document.createElement("div");
+  const todoTitle = document.createElement("h5");
+  const todoDeleteBtn = document.createElement("button");
+  const todoDescription = document.createElement("p");
+  const todoDate = document.createElement("p");
+  const todoPriority = document.createElement("span");
+  const checkboxContainer = document.createElement("div");
+  const todoCheckboxLabel = document.createElement("label");
+  const todoCheckbox = document.createElement("input");
+  const todoCheckboxTick = svgTick();
+
   todoListItem.classList.add("todo");
   todoListItem.dataset.id = todo.id;
-
-  const todoContainer = document.createElement("div");
-  todoContainer.classList.add("todo__container");
   
-  // Create elements to render all properties of the todo object
-  const todoTitle = document.createElement("h5");
+  todoContainer.classList.add("todo__container");
+   
   todoTitle.classList.add("todo__title");
   todoTitle.textContent = todo.title;
-
-  const todoDeleteBtn = document.createElement("button");
+  
   todoDeleteBtn.type = "button";
   todoDeleteBtn.classList.add("todo__delete");
   todoDeleteBtn.innerHTML = "&times;";
   todoDeleteBtn.dataset.id = todo.id;
 
-  const todoDescription = document.createElement("p");
   todoDescription.classList.add("todo__description");
   todoDescription.classList.add("truncate");
   todoDescription.id = "todo__description";
-  // Adjust styling to preserve symmetrical look when no description is selected
+
+  todoDate.classList.add("todo__date");
+
+  todoPriority.classList.add("todo__priority");
+  todoPriority.textContent = todo.priority;
+
+  checkboxContainer.className = "checkbox-container";
+  
+  todoCheckboxLabel.setAttribute("for", "todo__checkbox");
+  todoCheckboxLabel.classList.add("todo__label");
+  
+  todoCheckbox.id = "todo__checkbox";
+  todoCheckbox.type = "checkbox";
+  todoCheckbox.classList.add("todo__checkbox");
+  todoCheckbox.setAttribute("aria-label", "Mark task as completed");
+  todoCheckbox.dataset.id = todo.id;
+   
+  todoCheckboxTick.classList.add("tick");
+
+  // Adjust overall todo styling to preserve symmetrical look when no description is provided
   if (todo.description === "") {
     todoDescription.style.display = "none";
   } else {
@@ -40,40 +61,17 @@ function renderTodo(todo) {
     todoDescription.classList.toggle("truncate");
   });
 
-  const todoDate = document.createElement("p");
-  // Adjust styling to preserve symmetrical look when no date is selected
-  todoDate.classList.add("todo__date");
+  // Adjust overall todo styling to preserve symmetrical look when no date is provided
   if (todo.dueDate === "") {
     todoDescription.style.paddingBottom = "0";
   } else {
     todoDate.textContent = `Due ${ dateFormatter(todo.dueDate)}`;
   }
 
+  // Adjust overall todo styling to preserve symmetrical look when no date or description are provided
   if (todo.dueDate === "" && todo.description === "") {
     todoTitle.style.paddingBottom = "0";
   }
-
-  const todoPriority = document.createElement("span");
-  todoPriority.classList.add("todo__priority");
-  todoPriority.textContent = todo.priority;
-
-  const checkboxContainer = document.createElement("div");
-  checkboxContainer.className = "checkbox-container";
-
-  const todoCheckboxLabel = document.createElement("label");
-  todoCheckboxLabel.setAttribute("for", "todo__checkbox");
-  todoCheckboxLabel.classList.add("todo__label");
-
-  const todoCheckbox = document.createElement("input");
-  todoCheckbox.id = "todo__checkbox";
-  todoCheckbox.type = "checkbox";
-  todoCheckbox.name = "task-complete";
-  todoCheckbox.classList.add("todo__checkbox");
-  todoCheckbox.setAttribute("aria-label", "Mark task as completed");
-  todoCheckbox.dataset.id = todo.id;
- 
-  const todoCheckboxTick = svgTick();
-  todoCheckboxTick.classList.add("tick");
 
   // Append todo elements to container (and li)
   todoListItem.appendChild(todoContainer);
@@ -91,6 +89,7 @@ function renderTodo(todo) {
   todosList.appendChild(todoListItem);
 }
 
+// Renders only a single list from storage (the currently selected) in the form of a list of todo items
 function renderList() {
   let lists = getFromStorage();
   lists[getSelectedList()].forEach(function(todo) {
@@ -106,8 +105,12 @@ function clearAllTodos() {
   }
 }
 
+// Update the currently viewed list title in main section
+function changeCurrentListTitle() {
+  document.querySelector(".todos__current-list").textContent = getSelectedList();
+}
+
 // Update the visible todo list by sequentially clearing and re-rendering all todos
-// Note: a more effective method would be to only modify individual todos being affected, however this adds complexity and should have little impact on a small-scale application
 function refreshTodoList() {
   clearAllTodos();
   changeCurrentListTitle();
@@ -137,25 +140,22 @@ function newListElement(list) {
 
   icon.src = "../src/icons/list.svg";
   icon.classList.add("icon");
-  li.classList.add("list-item")
+
+  li.classList.add("list-item");
+  li.dataset.name = list;
 
   name.textContent = list;
   name.classList.add("list-name");
+  name.dataset.name = list;
+
   btn.innerHTML = "&times;"
   btn.classList.add("list-btn")
   btn.dataset.name = list;
-  li.dataset.name = list;
-  name.dataset.name = list;
-
+  
   li.appendChild(icon);
   li.appendChild(name);
   li.appendChild(btn);
   document.querySelector(".added-lists__list").appendChild(li);
-}
-
-// Update the currently viewed list title in main section
-function changeCurrentListTitle() {
-  document.querySelector(".todos__current-list").textContent = getSelectedList();
 }
 
 // Take output from HTML date picker and format the following: 12/12/2000 => 12 Dec 2000
@@ -185,6 +185,5 @@ export {
   refreshTodoList, 
   setSelectedClass, 
   newListElement, 
-  removeListElement,
   svgTick
 }

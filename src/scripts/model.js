@@ -1,7 +1,7 @@
 // Nanoid used to generate unique IDs for todos to enable different functions to recognise and modify them
 import { nanoid } from 'nanoid';
 
-// Store all lists in a modifiable object for reference
+// Store all lists in a modifiable object that can be referenced to create UI
 let lists = {
   "Inbox": [],
 }
