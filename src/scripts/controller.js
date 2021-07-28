@@ -51,63 +51,54 @@ function btnEnable(input, btn) {
   }
 }
 
-function addNewTaskControls() {
-
-  const addModal = document.querySelector(".add-modal");
+// Clear all inputs in the add-modal form, and ensure the submit btn is reset to disabled mode
+function clearFormInputs() {
   const todoFormBtn = document.querySelector(".todo-form__btn");
-  const closeBtn = document.querySelector(".add-modal__close");
-  // Get "New Todo" btn
-  const newTodo = document.querySelector(".todos__new");
-  newTodo.addEventListener("click", clearFormInputs);
-  newTodo.addEventListener("click", () => {
+  document.querySelector("#todo-form__title").value = "";
+  document.querySelector("#todo-form__description").value = "";
+  document.querySelector("#todo-form__date").value = "";
+  document.querySelector("#todo-form__priority").value = "";
+  todoFormBtn.disabled = true;
+  todoFormBtn.classList.add("disabled");
+}
+
+function addNewTaskControls() {
+  const addModal = document.querySelector(".add-modal");
+  const newTaskBtn = document.querySelector(".todos__new");
+
+  newTaskBtn.addEventListener("click", () => {
+    clearFormInputs();
     deleteListsFromDropdown();
     addListsToDropdown();
-  })
-  newTodo.addEventListener("click", () => {
     displayModal(addModal);
-  });
-  newTodo.addEventListener("click", () => {
     document.querySelector("#todo-form__title").focus();
   });
 
-  // Clear all inputs in the modal form
-  function clearFormInputs() {
-    document.querySelector("#todo-form__title").value = "";
-    document.querySelector("#todo-form__description").value = "";
-    document.querySelector("#todo-form__date").value = "";
-    document.querySelector("#todo-form__priority").value = "";
-    todoFormBtn.disabled = true;
-    todoFormBtn.classList.add("disabled");
-  }
+  // TODO: when new task is clicked, make the default list select option the current list
+  // Get current list to be refreshed on submit
+  const currentList = document.querySelector(".todos__current-list").value
 }
 
-// Add controls to modal buttons (open/close, outside click, etc)
+// Add controls to modal buttons, namely outside click, close, and 'submit' equivalent
 function addModalControls() {
   const addModal = document.querySelector(".add-modal");
   const todoFormBtn = document.querySelector(".todo-form__btn");
   const closeBtn = document.querySelector(".add-modal__close");
 
-
   closeBtn.addEventListener("click", () => closeModal(addModal));
-
-
-
 
   // Listen for outside click
   window.addEventListener("click", (e) => {
     outsideClick(e, addModal);
   });
   
-  
-
-  // Get current list to be refreshed on submit
-  const currentList = document.querySelector("#todo-form__list").value
-
-  // Listen for form submit/"add todo" btn click
-  todoFormBtn.addEventListener("click", addNewTodo);
-  todoFormBtn.addEventListener("click", () => closeModal(addModal));
-  todoFormBtn.addEventListener("click", addToStorage);
-  todoFormBtn.addEventListener("click", refreshTodoList);
+  // Functions to run when the user "submits" the form (not a true submit to server however)
+  todoFormBtn.addEventListener("click", () => {
+    addNewTodo();
+    addToStorage();
+    closeModal(addModal);
+    refreshTodoList();
+  });
 }
 
 // Add submission controls and input verification to the todoForm submit form
@@ -231,7 +222,6 @@ function sidebarControls() {
   });
 }
 
-// TODO: when new task is clicked, make the default list select option the current list
 
 export { 
   addModalControls, 
