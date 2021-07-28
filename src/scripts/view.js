@@ -146,25 +146,11 @@ function newListElement(list) {
   btn.dataset.name = list;
   li.dataset.name = list;
   name.dataset.name = list;
-  // btn.addEventListener("click", (e) => {
-  //   removeListElement(e.target);
-  //   removeList(e.target.dataset.name);
-  //   addToStorage();
-  //   changeList("Inbox");
-  //   setSelectedClass(document.querySelector("#inbox"));
-  //   refreshTodoList();
-  // });
 
-  // addSingleListControl(li);
   li.appendChild(icon);
   li.appendChild(name);
   li.appendChild(btn);
   document.querySelector(".added-lists__list").appendChild(li);
-}
-
-// Remove a list element from the sidebar
-function removeListElement(btn) {
-  btn.parentNode.remove();
 }
 
 // Update the currently viewed list title in main section

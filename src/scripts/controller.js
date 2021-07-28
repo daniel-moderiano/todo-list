@@ -120,24 +120,6 @@ function btnEnable(input, btn) {
   }
 }
 
-// function addSingleListControl(list) {
-//   list.addEventListener("click", (e) => {
-//     if (e.target.nodeName != "BUTTON") {
-//       changeList(list.dataset.name);
-//       setSelectedClass(list);
-//       refreshTodoList();
-//     }
-//   });
-// }
-
-// // Add event listeners for list names in sidebar
-// function addAllListControls() {
-//   let listNames = document.querySelectorAll(".list-name");
-//   listNames.forEach(function(list) {
-//     addSingleListControl(list);
-//   });
-// }
-
 // Add event listener to sidebar add list btn
 function addSidebarControls() {
   let listModal = document.querySelector(".list-modal");
@@ -225,7 +207,7 @@ function sidebarControls() {
   document.querySelector(".sidebar").addEventListener("click", (e) => {
     // Individualise event response based on which target is clicked
     if (e.target.classList.contains("list-btn")) {
-      removeListElement(e.target);
+      e.target.parentNode.remove();
       removeList(e.target.dataset.name);
       addToStorage();
       changeList("Inbox");
@@ -246,10 +228,8 @@ function sidebarControls() {
 export { 
   addModalControls, 
   todoFormBtnContol, 
-
   addSidebarControls, 
   listModalBtnControls, 
-
   todoControls,
   sidebarControls 
 }
