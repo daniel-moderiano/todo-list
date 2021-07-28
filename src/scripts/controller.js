@@ -138,13 +138,13 @@ function listModalBtnControls() {
 
   listBtn.addEventListener("click", () => {
     // If the user tries to submit two lists of the same name, this will alert them and prevent that action
-    if (checkDuplicates(getListInput())) {
+    if (checkDuplicates(listInput.value)) {
       alert("List already exists! Please enter a unique list name.");
     } else {
-      addNewList(getListInput());
+      addNewList(listInput.value);
       addToStorage();
-      newListElement(getListInput());
-      changeList(getListInput());
+      newListElement(listInput.value);
+      changeList(listInput.value);
       setSelectedClass(document.querySelector(`[data-name='${getSelectedList()}']`))
       refreshTodoList();
       closeModal(listModal);
@@ -152,10 +152,6 @@ function listModalBtnControls() {
   });
 }
 
-// Get the user input from the list form 
-function getListInput() {
-  return document.querySelector("#list-form__input").value;
-}
 
 // Clears input on list modal form
 function clearListFormInput() {
