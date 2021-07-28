@@ -1,5 +1,5 @@
 import { createTodo, addToStorage, pushToList, changeList, addNewList, getSelectedList, getLists, checkDuplicates, deleteFromList, removeList } from "./model";
-import { refreshTodoList, setSelectedClass, newListElement, removeListElement } from "./view";
+import { refreshTodoList, setSelectedClass, newListElement, refreshListDropdown } from "./view";
 
 // Extract the form data when the user clicks "add task" on the add task modal
 function getFormData() {
@@ -68,15 +68,14 @@ function addNewTaskControls() {
 
   newTaskBtn.addEventListener("click", () => {
     clearFormInputs();
-    deleteListsFromDropdown();
-    addListsToDropdown();
+    refreshListDropdown();
     displayModal(addModal);
     document.querySelector("#todo-form__title").focus();
   });
 
   // TODO: when new task is clicked, make the default list select option the current list
   // Get current list to be refreshed on submit
-  const currentList = document.querySelector(".todos__current-list").value
+  const currentList = document.querySelector(".todos__current-list").textContent;
 }
 
 // Add controls to modal buttons, namely outside click, close, and 'submit' equivalent
@@ -161,22 +160,7 @@ function clearListFormInput() {
   document.querySelector(".list-modal__btn").disabled = true;
 }
 
-function addListsToDropdown() {
-  const dropdown = document.querySelector("#todo-form__list");
-  for (const list in getLists()) {
-    const option = document.createElement("option");
-    option.value = list;
-    option.textContent = list;
-    dropdown.appendChild(option);
-  }
-}
 
-function deleteListsFromDropdown() {
-  const dropdown = document.querySelector("#todo-form__list");
-  while (dropdown.lastElementChild) {
-    dropdown.removeChild(dropdown.lastElementChild);
-  }
-}
 
 // Add event listener to parent list element (ul.todos__list) that captures event propgation from any child li elements
 function todoControls() {

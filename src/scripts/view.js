@@ -1,4 +1,4 @@
-import { getFromStorage, getSelectedList } from './model';
+import { getFromStorage, getSelectedList, getLists } from './model';
 import { format } from 'date-fns';
 
 // Take todo object from master array and render to the DOM as todo list item
@@ -181,9 +181,48 @@ function svgTick() {
   return svg;
 }
 
+// Dynamically fill the add modal select element with options matching the currently available lists
+function addListsToDropdown() {
+  const dropdown = document.querySelector("#todo-form__list");
+  for (const list in getLists()) {
+    const option = document.createElement("option");
+    option.value = list;
+    option.textContent = list;
+    option.className = "list-option";
+    dropdown.appendChild(option);
+  }
+}
+
+// Dynamically remove all lists from the add modal select element
+function deleteListsFromDropdown() {
+  const dropdown = document.querySelector("#todo-form__list");
+  while (dropdown.lastElementChild) {
+    dropdown.removeChild(dropdown.lastElementChild);
+  }
+}
+
+// When the user is on a particular list view, it is easy to overlook the list dropdown menu and assume it is set to their current list. This function ensures that is the case. 
+function changeSelectedOption() {
+  const options = document.querySelectorAll(".list-option");
+  options.forEach(function(option) {
+    if (option.value === getSelectedList()) {
+      option.setAttribute("selected", "");
+    }
+  });
+}
+
+function refreshListDropdown() {
+  deleteListsFromDropdown();
+  addListsToDropdown();
+  changeSelectedOption();
+}
+
+// TODO combine into a "refresh dropdown lists" function
+
 export { 
   refreshTodoList, 
   setSelectedClass, 
   newListElement, 
-  svgTick
+  svgTick,
+  refreshListDropdown
 }
