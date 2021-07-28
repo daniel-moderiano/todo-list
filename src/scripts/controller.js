@@ -1,7 +1,7 @@
 import { createTodo, addToStorage, pushToList, changeList, addNewList, getSelectedList, getLists, checkDuplicates, deleteFromList, removeList } from "./model";
 import { refreshTodoList, setSelectedClass, newListElement, removeListElement } from "./view";
 
-// Take DOM element (form) inputs and extract data into an object for later use
+// Extract the form data when the user clicks "add task" on the add task modal
 function getFormData() {
   return {
     "title": document.querySelector("#todo-form__title").value,
@@ -36,17 +36,26 @@ function outsideClick(e, modal) {
   }
 }
 
-// Add controls to modal buttons (open/close, outside click, etc)
-function addModalControls() {
-  // Get modal
+// Make sure add/submit btn is disabled until the user enters a non-whitespace input into the title or specified input field
+function btnEnable(input, btn) {
+  if (input.value.trim() === "") {
+    btn.disabled = true;
+    if (!btn.classList.contains("disabled")) {
+      btn.classList.add("disabled");
+    }
+  } else {
+    btn.disabled = false;
+    if (btn.classList.contains("disabled")) {
+      btn.classList.remove("disabled");
+    }
+  }
+}
+
+function addNewTaskControls() {
+
   const addModal = document.querySelector(".add-modal");
-
-  // Get close btn
+  const todoFormBtn = document.querySelector(".todo-form__btn");
   const closeBtn = document.querySelector(".add-modal__close");
-  closeBtn.addEventListener("click", () => {
-    closeModal(addModal);
-  });
-
   // Get "New Todo" btn
   const newTodo = document.querySelector(".todos__new");
   newTodo.addEventListener("click", clearFormInputs);
@@ -61,14 +70,6 @@ function addModalControls() {
     document.querySelector("#todo-form__title").focus();
   });
 
-  // Get "add task" btn
-  const todoFormBtn = document.querySelector(".todo-form__btn");
-
-  // Listen for outside click
-  window.addEventListener("click", (e) => {
-    outsideClick(e, addModal);
-  });
-  
   // Clear all inputs in the modal form
   function clearFormInputs() {
     document.querySelector("#todo-form__title").value = "";
@@ -78,15 +79,33 @@ function addModalControls() {
     todoFormBtn.disabled = true;
     todoFormBtn.classList.add("disabled");
   }
+}
+
+// Add controls to modal buttons (open/close, outside click, etc)
+function addModalControls() {
+  const addModal = document.querySelector(".add-modal");
+  const todoFormBtn = document.querySelector(".todo-form__btn");
+  const closeBtn = document.querySelector(".add-modal__close");
+
+
+  closeBtn.addEventListener("click", () => closeModal(addModal));
+
+
+
+
+  // Listen for outside click
+  window.addEventListener("click", (e) => {
+    outsideClick(e, addModal);
+  });
+  
+  
 
   // Get current list to be refreshed on submit
   const currentList = document.querySelector("#todo-form__list").value
 
   // Listen for form submit/"add todo" btn click
   todoFormBtn.addEventListener("click", addNewTodo);
-  todoFormBtn.addEventListener("click", () => {
-    closeModal(addModal);
-  });
+  todoFormBtn.addEventListener("click", () => closeModal(addModal));
   todoFormBtn.addEventListener("click", addToStorage);
   todoFormBtn.addEventListener("click", refreshTodoList);
 }
@@ -105,20 +124,7 @@ function todoFormBtnContol(params) {
   });
 }
 
-// Enable add btn only if user enters a valid title for the todo
-function btnEnable(input, btn) {
-  if (input.value.trim() === "") {
-    btn.disabled = true;
-    if (!btn.classList.contains("disabled")) {
-      btn.classList.add("disabled");
-    }
-  } else {
-    btn.disabled = false;
-    if (btn.classList.contains("disabled")) {
-      btn.classList.remove("disabled");
-    }
-  }
-}
+
 
 // Add event listener to sidebar add list btn
 function addSidebarControls() {
@@ -225,11 +231,14 @@ function sidebarControls() {
   });
 }
 
+// TODO: when new task is clicked, make the default list select option the current list
+
 export { 
   addModalControls, 
   todoFormBtnContol, 
   addSidebarControls, 
   listModalBtnControls, 
   todoControls,
-  sidebarControls 
+  sidebarControls,
+  addNewTaskControls 
 }
