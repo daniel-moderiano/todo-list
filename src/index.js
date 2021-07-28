@@ -1,5 +1,5 @@
 import { refreshTodoList } from "./scripts/view";
-import { addModalControls, addSidebarControls, listModalBtnControls, todoControls, sidebarControls, addNewTaskControls } from "./scripts/controller";
+import { addModalControls, addSidebarControls, listModalBtnControls, addNewTaskControls, todoEventListeners, sidebarEventListeners } from "./scripts/controller";
 import { addToStorage } from "./scripts/model";
 
 // "main" style funciton to run appropriate functions on initial page load
@@ -9,9 +9,9 @@ function main() {
   addModalControls();
   addSidebarControls();
   addNewTaskControls();
-  sidebarControls();
   listModalBtnControls();
-  todoControls();
+  todoEventListeners();
+  sidebarEventListeners();
 }
 
 main();

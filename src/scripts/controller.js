@@ -62,6 +62,13 @@ function clearFormInputs() {
   todoFormBtn.classList.add("disabled");
 }
 
+// Clear inputs on list modal form, and ensure the submit btn is reset to disabled mode
+function clearListFormInput() {
+  document.querySelector("#list-form__input").value = "";
+  document.querySelector(".list-modal__btn").disabled = true;
+}
+
+// Add all functionality to the newTask btn
 function addNewTaskControls() {
   const addModal = document.querySelector(".add-modal");
   const newTaskBtn = document.querySelector(".todos__new");
@@ -101,7 +108,6 @@ function addModalControls() {
     refreshTodoList();
   });
 }
-
 
 // Add event listener to sidebar add list btn
 function addSidebarControls() {
@@ -152,17 +158,8 @@ function listModalBtnControls() {
   });
 }
 
-
-// Clears input on list modal form
-function clearListFormInput() {
-  document.querySelector("#list-form__input").value = "";
-  document.querySelector(".list-modal__btn").disabled = true;
-}
-
-
-
 // Add event listener to parent list element (ul.todos__list) that captures event propgation from any child li elements
-function todoControls() {
+function todoEventListeners() {
   document.querySelector(".todos__list").addEventListener("click", (e) => {
     // Individualise event response based on which target is clicked
     if (e.target.className === "todo__delete" || e.target.className === "todo__checkbox") {
@@ -174,7 +171,7 @@ function todoControls() {
 }
 
 // Add event listener to parent list element (ul.todos__list) that captures event propgation from any child li elements
-function sidebarControls() {
+function sidebarEventListeners() {
   document.querySelector(".sidebar").addEventListener("click", (e) => {
     // Individualise event response based on which target is clicked
     if (e.target.classList.contains("list-btn")) {
@@ -201,7 +198,7 @@ export {
   addModalControls,
   addSidebarControls, 
   listModalBtnControls, 
-  todoControls,
-  sidebarControls,
+  todoEventListeners,
+  sidebarEventListeners,
   addNewTaskControls 
 }
