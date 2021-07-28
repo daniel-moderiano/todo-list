@@ -99,17 +99,41 @@ body {
   border: 1px solid #808080;
   background-color: white;
   cursor: pointer;
-
 } 
+
+.todo__checkbox--low {
+  border: 2px solid #058527;
+}
+
+.todo__checkbox--medium {
+  border: 2px solid #f0b330;
+}
+
+.todo__checkbox--high {
+  border: 2px solid #df3d3d;
+}
 
 .todo__checkbox:checked {
   background-color: #f4f4f4;
 }
 
 .todo__checkbox:hover {
-  background-color: #0078D7;
-  border: none;
-  transition: border 0.3s;
+  background-color: #808080;
+  transition: background-color 0.3s;
+}
+
+.todo__checkbox--low:hover {
+  background-color: #058527;
+  transition: background-color 0.3s;
+}
+
+.todo__checkbox--medium:hover {
+  background-color: #f0b330;
+  transition: background-color 0.3s;
+}
+
+.todo__checkbox--high:hover {
+  background-color: #df3d3d;
   transition: background-color 0.3s;
 }
 

@@ -50,7 +50,25 @@ function renderTodo(todo) {
   todoCheckbox.classList.add("todo__checkbox");
   todoCheckbox.setAttribute("aria-label", "Mark task as completed");
   todoCheckbox.dataset.id = todo.id;
-   
+
+  // Change the appearance of the checkbox to represent priority
+  switch (todo.priority) {
+    case "low":
+      todoCheckbox.classList.add("todo__checkbox--low");
+      break;
+
+    case "medium":
+      todoCheckbox.classList.add("todo__checkbox--medium");
+      break;
+
+    case "high":
+      todoCheckbox.classList.add("todo__checkbox--high");
+      break;
+      
+    default:
+      break;
+  }
+  
   todoCheckboxTick.classList.add("tick");
 
   todoEditBtn.className = "todo__edit";

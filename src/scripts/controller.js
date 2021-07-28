@@ -182,6 +182,7 @@ function convertAddModalForEdit(todo) {
   document.querySelector("#todo-form__date").value = todo.dueDate;
   document.querySelector("#todo-form__priority").value = todo.priority;
   document.querySelector(".add-modal").classList.add("edit");
+  document.querySelector(".todo-form__btn").textContent = "Edit task";
   refreshListDropdown();
 }
 
@@ -189,7 +190,7 @@ function convertAddModalForEdit(todo) {
 function todoEventListeners() {
   document.querySelector(".todos__list").addEventListener("click", (e) => {
     // Individualise event response based on which target is clicked
-    if (e.target.className === "todo__delete" || e.target.className === "todo__checkbox") {
+    if (e.target.className === "todo__delete" || e.target.classList.contains("todo__checkbox")) {
       deleteFromList(getSelectedList(), e.target.dataset.id);
       addToStorage();
       refreshTodoList();

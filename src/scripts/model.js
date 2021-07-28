@@ -6,8 +6,10 @@ let lists = {
   "Inbox": [],
 }
 
+// Used for UI elements and directing todos to the appropriate lists (or any list manipulation in general)
 let selectedList = "Inbox";
 
+// Used for editing todos from the UI to avoid awkward tracking and passing of IDs through several functions
 let currentlyEditingId = "";
 
 // Return a deep copy of the current lists object to avoid direct manipulation outside of the provided functions below
@@ -73,6 +75,7 @@ function deleteFromList(list, id) {
   }
 }
 
+// Replace todo with updated version without deleting original entry (i.e. same ID is maintained)
 function updateTodo(list, id, todoUpdate) {
   let index = lists[list].findIndex(todo => todo.id === id);
   if (index === -1) {
@@ -93,6 +96,7 @@ function getFromStorage() {
   return JSON.parse(localStorage.getItem("lists"));
 }
 
+// Used to grab specific todo data from memory for editing purposes
 function findTodoByListAndId(list, id) {
   let index = lists[list].findIndex(todo => todo.id === id);
   if (index === -1) {
