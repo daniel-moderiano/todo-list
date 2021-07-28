@@ -84,12 +84,18 @@ function addModalControls() {
   const addModal = document.querySelector(".add-modal");
   const todoFormBtn = document.querySelector(".todo-form__btn");
   const closeBtn = document.querySelector(".add-modal__close");
+  const todoFormTitle = document.querySelector("#todo-form__title");
 
   closeBtn.addEventListener("click", () => closeModal(addModal));
 
   // Listen for outside click
   window.addEventListener("click", (e) => {
     outsideClick(e, addModal);
+  });
+
+  // Listen for user typing or entering data into input (e.g. pasting)
+  todoFormTitle.addEventListener("input", () => {
+    btnEnable(todoFormTitle, todoFormBtn);
   });
   
   // Functions to run when the user "submits" the form (not a true submit to server however)
@@ -100,21 +106,6 @@ function addModalControls() {
     refreshTodoList();
   });
 }
-
-// Add submission controls and input verification to the todoForm submit form
-function todoFormBtnContol(params) {
-  const todoFormTitle = document.querySelector("#todo-form__title");
-  const todoFormBtn = document.querySelector(".todo-form__btn");
-
-  // Set default btn state to disabled
-  todoFormBtn.disabled = true;
-
-  // Listen for user typing or entering data into input
-  todoFormTitle.addEventListener("input", () => {
-    btnEnable(todoFormTitle, todoFormBtn);
-  });
-}
-
 
 
 // Add event listener to sidebar add list btn
@@ -224,8 +215,7 @@ function sidebarControls() {
 
 
 export { 
-  addModalControls, 
-  todoFormBtnContol, 
+  addModalControls,
   addSidebarControls, 
   listModalBtnControls, 
   todoControls,
