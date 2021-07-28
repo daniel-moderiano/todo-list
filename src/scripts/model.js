@@ -8,6 +8,8 @@ let lists = {
 
 let selectedList = "Inbox";
 
+let currentlyEditingId = "";
+
 // Return a deep copy of the current lists object to avoid direct manipulation outside of the provided functions below
 function getLists() {
   return JSON.parse(JSON.stringify(lists));
@@ -20,6 +22,14 @@ function getSelectedList() {
 // Function to change selected list
 function changeList(list) {
   selectedList = list; 
+}
+
+function getCurrentlyEditingId() {
+  return currentlyEditingId;
+}
+
+function changeCurrentlyEditingId(id) {
+  currentlyEditingId = id;
 }
 
 // Add a new list to the lists object
@@ -63,6 +73,16 @@ function deleteFromList(list, id) {
   }
 }
 
+function updateTodo(list, id, todoUpdate) {
+  let index = lists[list].findIndex(todo => todo.id === id);
+  if (index === -1) {
+    console.log("ID not found");
+    return;
+  } else {
+    lists[list][index] = todoUpdate;
+  }
+}
+
 // Adds or updates list of todos to local storage
 function addToStorage() {
   localStorage.setItem("lists", JSON.stringify(lists));
@@ -101,5 +121,8 @@ export {
   getSelectedList, 
   getLists, 
   checkDuplicates,
-  findTodoByListAndId
+  findTodoByListAndId,
+  updateTodo,
+  getCurrentlyEditingId,
+  changeCurrentlyEditingId
 }

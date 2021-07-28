@@ -1,4 +1,4 @@
-import { createTodo, addToStorage, pushToList, changeList, addNewList, getSelectedList, getLists, checkDuplicates, deleteFromList, removeList, findTodoByListAndId } from "./model";
+import { createTodo, addToStorage, pushToList, changeList, addNewList, getSelectedList, getLists, checkDuplicates, deleteFromList, removeList, findTodoByListAndId, updateTodo, getCurrentlyEditingId, changeCurrentlyEditingId } from "./model";
 import { refreshTodoList, setSelectedClass, newListElement, refreshListDropdown } from "./view";
 
 // Extract the form data when the user clicks "add task" on the add task modal
@@ -17,6 +17,12 @@ function addNewTodo() {
   let todoData = getFormData();
   let newTodo = createTodo(todoData.title, todoData.description, todoData.dueDate, todoData.priority);
   pushToList(newTodo, todoData.list);
+}
+
+function editExistingTodo() {
+  let todoEditedData = getFormData();
+  let editedTodo = createTodo(todoEditedData.title, todoEditedData.description, todoEditedData.dueDate, todoEditedData.priority);
+  updateTodo(todoEditedData.list, getCurrentlyEditingId(), editedTodo);
 }
 
 // Display the modal 
@@ -51,8 +57,8 @@ function btnEnable(input, btn) {
   }
 }
 
-// Clear all inputs in the add-modal form, and ensure the submit btn is reset to disabled mode. This has to be set dynamically on each modal display rathern than HTML coded as the HTML will be over-written when the modal is closed
-function clearFormInputs() {
+// Clear all inputs in the add-modal form, and ensure the submit btn is reset to disabled mode. This has to be set dynamically on each modal display rathern than HTML coded as the HTML will be over-written when the modal is closed. Remove the edit class tag if present.
+function resetAddModal() {
   const todoFormBtn = document.querySelector(".todo-form__btn");
   document.querySelector("#todo-form__title").value = "";
   document.querySelector("#todo-form__description").value = "";
@@ -60,6 +66,7 @@ function clearFormInputs() {
   document.querySelector("#todo-form__priority").value = "";
   todoFormBtn.disabled = true;
   todoFormBtn.classList.add("disabled");
+  document.querySelector(".add-modal").classList.remove("edit");
 }
 
 // Clear inputs on list modal form, and ensure the submit btn is reset to disabled mode
@@ -74,7 +81,7 @@ function addNewTaskControls() {
   const newTaskBtn = document.querySelector(".todos__new");
 
   newTaskBtn.addEventListener("click", () => {
-    clearFormInputs();
+    resetAddModal();
     refreshListDropdown();
     displayModal(addModal);
     document.querySelector("#todo-form__title").focus();
@@ -102,10 +109,19 @@ function addModalControls() {
   
   // Functions to run when the user "submits" the form (not a true submit to server however)
   todoFormBtn.addEventListener("click", () => {
-    addNewTodo();
-    addToStorage();
-    closeModal(addModal);
-    refreshTodoList();
+    if (addModal.classList.contains("edit")) {
+      // edit current todo
+      editExistingTodo();
+      addToStorage();
+      closeModal(addModal);
+      refreshTodoList();
+    } else {
+      // Add as new todo
+      addNewTodo();
+      addToStorage();
+      closeModal(addModal);
+      refreshTodoList();
+    }
   });
 }
 
@@ -158,12 +174,13 @@ function listModalBtnControls() {
   });
 }
 
-// Fully prepare the add modal for editing purposes
+// Fully prepare the add modal for editing purposes (add class 'edit' to mark the modal as being in edit form)
 function convertAddModalForEdit(todo) {
   document.querySelector("#todo-form__title").value = todo.title;
   document.querySelector("#todo-form__description").value = todo.description;
   document.querySelector("#todo-form__date").value = todo.dueDate;
   document.querySelector("#todo-form__priority").value = todo.priority;
+  document.querySelector(".add-modal").classList.add("edit");
   refreshListDropdown();
 }
 
@@ -177,8 +194,9 @@ function todoEventListeners() {
       refreshTodoList();
     } else if (e.target.className === "todo__edit-icon") {
       // Use the data-id to find the todo from memory, and open add modal in edit form
+      changeCurrentlyEditingId(e.target.dataset.id);
       convertAddModalForEdit(findTodoByListAndId(getSelectedList(), e.target.dataset.id));
-      displayModal(document.querySelector(".add-modal"));
+      displayModal(document.querySelector(".add-modal"));     
     }
   });
 }
@@ -205,8 +223,6 @@ function sidebarEventListeners() {
     }
   });
 }
-
-
 
 
 export { 
