@@ -52,7 +52,7 @@ body {
 
 .todo__container {
   display: grid;
-  grid-template-columns: 2rem 1fr 3rem;
+  grid-template-columns: 2rem 1fr 4rem;
   grid-template-rows: repeat(3, auto);
 }
 
@@ -124,6 +124,7 @@ body {
   color: #808080;
   padding-bottom: 0.4rem;
   place-self: center start;
+  max-width: 95%;
 }
 
 /* Truncates text to a certain width of a container, and replaces overflow with ellipses */
@@ -154,27 +155,43 @@ body {
 .todo__delete {
   grid-column: 3;
   grid-row: 1 / span 3;
-  /* place-self: center; */
+  place-self: center end;
   display: none;
   cursor: pointer;
 }
 
 /* Negative margins prevent delete btn from epanding todo li when displayed */
 .todo:hover .todo__delete {
-  color: rgb(148, 148, 148);
-  font-size: 1.5rem;
-  margin: -0.4rem 0.5rem -0.4rem 0;
+  opacity: 0.4;
+  font-size: 1.7rem;
+  margin: -0.5rem 1rem -0.5rem 0;
   border: none;
   background-color: rgba(255, 255, 255, 0);
-  margin-right: 0.5rem;
   display: inline;
 }
 
 .todo__edit {
   grid-column: 3;
   grid-row: 1 / span 3;
-  /* place-self: center; */
+  place-self: center start;
   cursor: pointer;
+  border: none;
+  display: none;
+}
+
+.todo__edit-icon {
+  width: 18px;
+}
+
+.todo:hover .todo__edit {
+  opacity: 0.4;
+  border: none;
+  margin: -0.4rem 0.5rem -0.4rem 0;
+  background-color: rgba(255, 255, 255, 0);
+  margin-right: 1rem;
+  display: inline;
+  /* margin: 0; */
+  padding: 0;
 }
   
 .todos__new {

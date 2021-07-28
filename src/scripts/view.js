@@ -16,7 +16,7 @@ function renderTodo(todo) {
   const todoCheckbox = document.createElement("input");
   const todoCheckboxTick = svgTick();
   const todoEditBtn = document.createElement("button");
-  const todoEditIcon = document.createElement("span");
+  const todoEditIcon = document.createElement("img");
 
   todoListItem.classList.add("todo");
   todoListItem.dataset.id = todo.id;
@@ -57,8 +57,7 @@ function renderTodo(todo) {
   todoEditBtn.type = "button";
 
   todoEditIcon.classList.add("todo__edit-icon");
-  todoEditIcon.classList.add("material-icons");
-  todoEditIcon.textContent = "edit";
+  todoEditIcon.src = "../src/icons/edit.svg";
 
 
   // Adjust overall todo styling to preserve symmetrical look when no description is provided
