@@ -1,22 +1,22 @@
 import { createTodo, addToStorage, pushToList, changeList, addNewList, getSelectedList, getLists, checkDuplicates, deleteFromList, removeList } from "./model";
 import { refreshTodoList, setSelectedClass, newListElement, removeListElement } from "./view";
 
-// Take DOM element (form) inputs and extract data into new todo
+// Take DOM element (form) inputs and extract data into an object for later use
 function getFormData() {
-  let newTodo = createTodo(
-    document.querySelector("#todo-form__title").value,
-    document.querySelector("#todo-form__description").value,
-    document.querySelector("#todo-form__date").value,
-    document.querySelector("#todo-form__priority").value,
-    document.querySelector("#todo-form__list").value
-  );
-  return newTodo;
+  return {
+    "title": document.querySelector("#todo-form__title").value,
+    "description": document.querySelector("#todo-form__description").value,
+    "dueDate": document.querySelector("#todo-form__date").value,
+    "priority": document.querySelector("#todo-form__priority").value,
+    "list": document.querySelector("#todo-form__list").value
+  };
 }
 
-// Add new todo to specified list
+// Add a new todo to the specified list
 function addNewTodo() {
-  let todoToAdd = getFormData();
-  pushToList(todoToAdd, todoToAdd.list);
+  let todoData = getFormData();
+  let newTodo = createTodo(todoData.title, todoData.description, todoData.dueDate, todoData.priority);
+  pushToList(newTodo, todoData.list);
 }
 
 // Display the modal 

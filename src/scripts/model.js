@@ -43,8 +43,8 @@ function checkDuplicates(newList) {
 }
 
 // Factory function to create todo items
-function createTodo(title, description, dueDate, priority, list, id=nanoid()) {
-  return { title, description, dueDate, priority, list, id }
+function createTodo(title, description, dueDate, priority, id=nanoid()) {
+  return { title, description, dueDate, priority, id }
 };
 
 // Function to push todo into a specified list
@@ -74,7 +74,7 @@ function getFromStorage() {
 }
 
 // Create some dummy todos to help with rendering code
-let todo1 = createTodo("Laundry", "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea sint officiis quo incidunt repudiandae sed, accusamus veniam voluptatem consequuntur! Labore pariatur eaque voluptate deserunt ipsum corporis nemo distinctio numquam perspiciatis!", "2021-07-28", "low", "Inbox");
+let todo1 = createTodo("Laundry", "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea sint officiis quo incidunt repudiandae sed, accusamus veniam voluptatem consequuntur! Labore pariatur eaque voluptate deserunt ipsum corporis nemo distinctio numquam perspiciatis!", "2021-07-28", "low");
 
 pushToList(todo1, "Inbox");
 
