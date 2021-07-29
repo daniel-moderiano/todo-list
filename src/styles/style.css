@@ -279,6 +279,15 @@ body {
 
 
 /* ---SIDEBAR--- */
+.sidebar {
+  background-color: #f4f4f4;
+  transition: width 0.3s;
+  width: 18rem;
+  overflow-x: hidden;
+  flex-shrink: 0;
+  float: left;
+}
+
 .sidebar--small {
   background-color: #f4f4f4;
   overflow-x: hidden;
@@ -287,13 +296,13 @@ body {
   flex-shrink: 0;
 }
 
-.sidebar--large {
+/* .sidebar--large {
   background-color: #f4f4f4;
   transition: width 0.3s;
   width: 18rem;
   overflow-x: hidden;
   flex-shrink: 0;
-}
+} */
 
 .sidebar__collapse {
   background-color: rgb(255, 255, 255, 0);
@@ -502,7 +511,32 @@ body {
 }
 
 
-/* TODO: hide sidebar once screen width < 750px */
-@media (max-width: 750px) {
-  
+/* Tablets and phones, from 320px to 768px */
+@media (max-width: 768px) {
+  .sidebar--mobile {
+    background-color: #f4f4f4;
+    overflow-x: hidden;
+    width: 3rem;
+    transition: width 0.3s;
+    flex-shrink: 0;
+  }
+
+
+  /* A CSS 'check' to confirm media query is active within JS */
+  .sidebar {
+    float: none;
+  }
 }
+
+/* Landscape phones and down */
+/* @media (max-width: 480px) { ... } */
+
+/* Landscape phone to portrait tablet */
+/* @media (max-width: 768px) { ... } */
+
+/* Portrait tablet to landscape and desktop */
+/* @media (min-width: 768px) and (max-width: 980px) { ... } */
+
+/* Large desktop */
+/* @media (min-width: 1200px) { ... } */
+
