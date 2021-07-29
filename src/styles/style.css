@@ -12,13 +12,6 @@ body {
 
 /* ---MAIN--- */
 .full-container {
-  /* display: grid;
-  grid-template-areas: 
-      "header header header"
-      "sidebar main main"
-      "sidebar footer footer";
-  grid-template-columns: 18rem 1fr 1fr;
-  grid-template-rows: 3rem 1fr 2rem; */
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -29,27 +22,15 @@ body {
   display: flex;
   width: 100%;
   height: 100vh;
+  overflow-x: hidden;
 }
 
 .main {
   display: flex;
   justify-content: center;
   padding-top: 2.5rem;
-  /* flex-shrink: 0; */
-}
-
-.main--large {
-  /* margin-left: 18rem; */
-  display: flex;
-  justify-content: center;
-  padding-top: 2.5rem;
-  flex-shrink: 0;
-  width: auto;
-}
-
-.main--small {
   width: 100%;
-  flex-shrink: 0;
+  flex-shrink: 1;
 }
 
 .todos {
@@ -302,11 +283,13 @@ body {
   background-color: #f4f4f4;
   overflow-x: hidden;
   width: 3rem;
+  transition: width 0.3s;
   flex-shrink: 0;
 }
 
 .sidebar--large {
   background-color: #f4f4f4;
+  transition: width 0.3s;
   width: 18rem;
   overflow-x: hidden;
   flex-shrink: 0;
@@ -521,8 +504,5 @@ body {
 
 /* TODO: hide sidebar once screen width < 750px */
 @media (max-width: 750px) {
-  .container {
-    transition: 0.3s;
-    grid-template-columns: 0 1fr 1fr;
-  }
+  
 }
