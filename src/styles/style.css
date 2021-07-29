@@ -27,17 +27,29 @@ body {
 
 .content-container {
   display: flex;
-  
   width: 100%;
   height: 100vh;
 }
 
 .main {
+  display: flex;
+  justify-content: center;
+  padding-top: 2.5rem;
   /* flex-shrink: 0; */
+}
+
+.main--large {
   /* margin-left: 18rem; */
   display: flex;
   justify-content: center;
   padding-top: 2.5rem;
+  flex-shrink: 0;
+  width: auto;
+}
+
+.main--small {
+  width: 100%;
+  flex-shrink: 0;
 }
 
 .todos {
@@ -286,17 +298,18 @@ body {
 
 
 /* ---SIDEBAR--- */
-.sidebar {
-  grid-area: sidebar;
+.sidebar--small {
   background-color: #f4f4f4;
-  /* width: 18rem; */
   overflow-x: hidden;
-  width: 0;
+  width: 3rem;
   flex-shrink: 0;
-  /* transition: 0.5s;
-  position: fixed; */
-  /* z-index:1;
-  left:0; */
+}
+
+.sidebar--large {
+  background-color: #f4f4f4;
+  width: 18rem;
+  overflow-x: hidden;
+  flex-shrink: 0;
 }
 
 .sidebar__collapse {
