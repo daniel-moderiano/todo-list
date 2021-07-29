@@ -15,3 +15,5 @@ function main() {
 }
 
 main();
+
+document.querySelector(".sidebar__collapse");
