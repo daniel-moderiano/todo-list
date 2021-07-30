@@ -274,7 +274,7 @@ body {
   height: 3rem;
   display: flex;
   align-items: center;
-  padding-left: 1.35rem;
+  padding-left: 1.1rem;
 }
 
 .header__icon {
@@ -555,9 +555,6 @@ body {
   .sidebar__collapse--left {
     transform: rotate(90deg);
   }
-
-  
-
 }
 
 /* Landscape phones and down */

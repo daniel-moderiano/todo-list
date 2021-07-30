@@ -248,11 +248,36 @@ function refreshListDropdown() {
   changeSelectedOption();
 }
 
+// Control the sidebar collapsing when the user clicks the collapse btn (function varies depending on starting state - mobile vs desktop)
+function addSidebarCollapseControls() {
+  document.querySelector(".sidebar__collapse").addEventListener("click", function() {
+    const sidebar = document.querySelector(".sidebar");
+    const sidebarCollapse = document.querySelector(".sidebar__collapse");
+
+    // Float will only be set to none if the mobile media query is active
+    if (window.getComputedStyle(sidebar).float === "none") {
+
+      // Controls the sidebar size
+      document.querySelector(".sidebar").classList.toggle("sidebar--mobile");
+      document.querySelector(".sidebar").classList.remove("sidebar--small");
+
+      // Controls the sidebar button orientation
+      sidebarCollapse.classList.toggle("sidebar__collapse--left");
+      sidebarCollapse.classList.remove("sidebar__collapse--right");
+    } else {
+      sidebarCollapse.classList.toggle("sidebar__collapse--right");
+      sidebarCollapse.classList.remove("sidebar__collapse--left");
+      document.querySelector(".sidebar").classList.toggle("sidebar--small");
+    }
+  });
+}
+
 
 export { 
   refreshTodoList, 
   setSelectedClass, 
   newListElement, 
   svgTick,
-  refreshListDropdown
+  refreshListDropdown,
+  addSidebarCollapseControls
 }
