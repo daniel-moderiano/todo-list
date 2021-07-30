@@ -289,9 +289,9 @@ body {
 /* ---SIDEBAR--- */
 .sidebar {
   background-color: #f4f4f4;
-  transition: width 0.3s;
   width: 18rem;
   overflow-x: hidden;
+  transition: width 0.2s;
   flex-shrink: 0;
   float: left;
 }
@@ -299,18 +299,10 @@ body {
 .sidebar--small {
   background-color: #f4f4f4;
   overflow-x: hidden;
-  width: 3rem;
-  transition: width 0.3s;
+  width: 4.1rem;
   flex-shrink: 0;
+  transition: width 0.2s;
 }
-
-/* .sidebar--large {
-  background-color: #f4f4f4;
-  transition: width 0.3s;
-  width: 18rem;
-  overflow-x: hidden;
-  flex-shrink: 0;
-} */
 
 .sidebar__collapse {
   background-color: rgb(255, 255, 255, 0);
@@ -318,7 +310,7 @@ body {
   transform: rotate(90deg);
   display: flex;
   place-items: center;
-  margin-left: 0.2rem;
+  margin-left: 1rem;
   margin-top: 1.5rem;
   padding: 0.2rem;
 }
@@ -341,18 +333,14 @@ body {
   align-items: center;
   position: relative;
   height: 2.2rem;
-  padding: 0 0.3rem 0 0.7rem;
+  padding: 0 1rem 0 1.5rem;
   white-space: nowrap;
 }
 
 #inbox {
   margin: 1rem 0 1rem 0;
-  margin-right: 0;
 }
 
-#inbox img {
-  margin-right: 0.6rem;
-}
 
 .list-item:hover, .add-list:hover, .sidebar__collapse:hover {
   background-color: #fbfbfb;
@@ -387,8 +375,9 @@ body {
 .add-list {
   display: flex;
   align-items: center;
+  position: relative;
   height: 2.2rem;
-  padding: 0 0.2rem 0 0.7rem;
+  padding: 0 1rem 0 1.5rem;
   white-space: nowrap;
 }
 
@@ -400,6 +389,11 @@ body {
 
 .add-list__title {
   margin-left: 0.8rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 70%;
+  line-height: normal;
 }
 
 .list-name {
@@ -529,18 +523,39 @@ body {
 
 /* Tablets and phones, from 320px to 768px */
 @media (max-width: 768px) {
+
+  /* Float is a CSS 'check' to confirm media query is active within JS */
+  .sidebar {
+    width: 15rem;
+    float: none;
+  }
+
   .sidebar--mobile {
     background-color: #f4f4f4;
     overflow-x: hidden;
     width: 2.5rem;
-    transition: width 0.3s;
+    transition: width 0.2s;
     flex-shrink: 0;
   }
 
-  /* A CSS 'check' to confirm media query is active within JS */
-  .sidebar {
-    float: none;
+  
+
+  .list-item {
+    width: 1rem;
+    padding-left: 0.7rem;
   }
+
+  .add-list {
+    width: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    padding-left: 0.7rem;
+  }
+
+  .sidebar__collapse {
+    margin-left: 0.2rem;
+  }
+
 }
 
 /* Landscape phones and down */
