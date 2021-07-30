@@ -177,6 +177,9 @@ body {
   place-self: center start;
   color: #058527;
   line-height: normal;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 95%;
   /* padding-bottom: 0.3rem; */
 }
 
