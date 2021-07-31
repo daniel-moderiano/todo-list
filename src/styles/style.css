@@ -598,8 +598,25 @@ body {
 }
 
 .view-todo__priority {
+  font-size: 1.1rem;
   margin-right: 0.5rem;
+  font-weight: bold;
 }
+
+.view-todo__priority--low {
+  color: #058527;
+}
+
+.view-todo__priority--med {
+  color: #f0b330;
+  letter-spacing: 0.2rem;
+}
+
+.view-todo__priority--high {
+  color: #df3d3d;
+  letter-spacing: 0.2rem;
+}
+
 
 
 

@@ -329,15 +329,37 @@ function refreshSidebarLists() {
   renderSidebarLists();
 }
 
+// Fill the view modal with the selected todo data, representing priority using exclamation points of different colour
 function renderViewModal(list, todo) {
   let todoToView = findTodoByListAndId(list, todo);
-  
-  document.querySelector(".view-modal__title").textContent = list;
+  let viewPriority = document.querySelector(".view-todo__priority");
 
+  document.querySelector(".view-modal__title").textContent = list
   document.querySelector(".view-todo__title").textContent = todoToView.title;
-  document.querySelector(".view-todo__priority").textContent = todoToView.priority;
   document.querySelector(".view-todo__description").textContent = todoToView.description;
-  document.querySelector(".view-todo__date").textContent = todoToView.dueDate;
+  document.querySelector(".view-todo__date").textContent = `Due ${todoToView.dueDate}`;
+
+  viewPriority.className = "view-todo__priority";
+
+  switch (todoToView.priority) {
+    case "low":
+      viewPriority.textContent = "!";
+      viewPriority.classList.add("view-todo__priority--low");
+      break;
+
+    case "medium":
+      viewPriority.textContent = "!!";
+      viewPriority.classList.add("view-todo__priority--med");
+      break;
+
+    case "high":
+      viewPriority.textContent = "!!!";
+      viewPriority.classList.add("view-todo__priority--high");
+      break;
+  
+    default:
+      break;
+  }
 }
 
 
