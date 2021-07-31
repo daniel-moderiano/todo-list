@@ -179,9 +179,10 @@ function newListElement(list) {
   name.classList.add("list-name");
   name.dataset.name = list;
 
-  btn.innerHTML = "&times;"
+  // btn.innerHTML = "&times;"
   btn.classList.add("list-btn")
   btn.dataset.name = list;
+  btn.appendChild(svgClose());
   
   li.appendChild(icon);
   li.appendChild(name);
@@ -209,6 +210,26 @@ function svgTick() {
   path.setAttribute("d", "M11.23 13.7l-2.15-2a.55.55 0 0 0-.74-.01l.03-.03a.46.46 0 0 0 0 .68L11.24 15l5.4-5.01a.45.45 0 0 0 0-.68l.02.03a.55.55 0 0 0-.73 0l-4.7 4.35z");
 
   svg.appendChild(path);
+  return svg;
+}
+
+// Create a close ison SVG
+function svgClose() {
+  let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  let pathOne = document.createElementNS('http://www.w3.org/2000/svg', "path");
+  let pathTwo = document.createElementNS('http://www.w3.org/2000/svg', "path");
+
+  svg.setAttribute("width", "24px");
+  svg.setAttribute("height", "24px");
+  svg.setAttribute("viewBox", "0 0 24 24");
+
+  pathOne.setAttribute("d", "M0 0h24v24H0z");
+  pathOne.setAttribute("fill", "none");
+
+  pathTwo.setAttribute("d", "M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z");
+
+  svg.appendChild(pathOne);
+  svg.appendChild(pathTwo);
   return svg;
 }
 
@@ -304,5 +325,6 @@ export {
   svgTick,
   refreshListDropdown,
   addSidebarCollapseControls,
-  refreshSidebarLists
+  refreshSidebarLists,
+  svgClose
 }

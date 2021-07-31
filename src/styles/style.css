@@ -371,25 +371,27 @@ body {
 
 .list-btn {
   opacity: 0;
-  color: #202020;
-  font-size: 1.5rem;
-  font-weight: lighter;
-  border: none;
-  background-color: rgba(255, 255, 255, 0);
-  padding: 0.1rem;
-}
-
-/* This class can change the appearance of the button when you hover the list item (e.g. show the button) */
-.list-item:hover .list-btn {
-  opacity: 0.3;
+  display: flex;
   color: #202020;
   font-size: 1.5rem;
   font-weight: lighter;
   border: none;
   background-color: rgba(255, 255, 255, 0);
   position: absolute;
-  left: 16rem;
+  left: 15.5rem;
+}
 
+.list-btn > svg {
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  margin: 0;
+  pointer-events: none;
+}
+
+/* This class can change the appearance of the button when you hover the list item (e.g. show the button) */
+.list-item:hover .list-btn {
+  opacity: 0.3;
 }
 
 .list-btn:hover {
@@ -426,13 +428,6 @@ body {
 }
 
 
-
-/* ---FOOTER--- */
-.footer {
-  grid-area: footer;
-}
-
-
 /* ---MODALS--- */
 
 .add-modal, .list-modal {
@@ -466,6 +461,7 @@ body {
   border-bottom: 1px solid #cccbcb;
   font-weight: bold;
   font-size: 1.1rem;
+  padding-bottom: 0.2rem;
   width: 100%;
 }
 
@@ -478,6 +474,9 @@ body {
 
 .add-modal__close, .list-modal__close {
   color: #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 2rem;
   border: none;
   background-color: rgba(255, 255, 255, 0);
@@ -541,6 +540,17 @@ body {
   cursor: default;
 }
 
+.modal-icon {
+  opacity: 0.3;
+  width: 22px;
+  height: 22px;
+  padding: 0.2rem 0 0.2rem 0;
+}
+
+.modal-icon:hover {
+  opacity: 1;
+}
+
 .hidden {
   display: none !important;
 }
@@ -573,6 +583,12 @@ body {
   .todo__delete, .todo__edit {
     display: block;
   }
+
+  .list-btn {
+    opacity: 0.3;
+  }
+
+
 }
 
 /* Landscape phones and down */

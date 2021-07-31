@@ -1,4 +1,4 @@
-import { refreshTodoList, addSidebarCollapseControls, renderSidebarLists, refreshSidebarLists } from "./scripts/view";
+import { refreshTodoList, addSidebarCollapseControls, renderSidebarLists, refreshSidebarLists, svgClose } from "./scripts/view";
 import { addModalControls, addSidebarControls, listModalBtnControls, addNewTaskControls, todoEventListeners, sidebarEventListeners } from "./scripts/controller";
 import { addToStorage, checkStorage, getLists, getSelectedList } from "./scripts/model";
 
