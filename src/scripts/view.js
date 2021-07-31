@@ -275,9 +275,7 @@ function addSidebarCollapseControls() {
 // Delete sidebar list elements, and avoid removing inbox by targetting just the added lists
 function deleteSidebarLists() {
   let addedLists = document.querySelectorAll(".added-lists__list li");
-  console.log(addedLists);
   addedLists.forEach(function(addedList) {
-    console.log(addedList);
     addedList.remove();
   });
 }

@@ -53,7 +53,7 @@ body {
 
 .todo__container {
   display: grid;
-  grid-template-columns: 2rem 1fr 4rem;
+  grid-template-columns: 2rem 1fr 5rem;
   grid-template-rows: repeat(3, auto);
 }
 
@@ -191,17 +191,22 @@ body {
   grid-column: 3;
   grid-row: 1 / span 3;
   place-self: center end;
-  display: none;
-  cursor: pointer;
-}
-
-/* Negative margins prevent delete btn from epanding todo li when displayed */
-.todo:hover .todo__delete {
   opacity: 0.3;
   font-size: 1.7rem;
   margin: -0.5rem 1rem -0.5rem 0;
   border: none;
   background-color: rgba(255, 255, 255, 0);
+  cursor: pointer;
+  display: none;
+}
+
+/* Negative margins prevent delete btn from epanding todo li when displayed */
+.todo:hover .todo__delete {
+  /* opacity: 0.3;
+  font-size: 1.7rem;
+  margin: -0.5rem 1rem -0.5rem 0;
+  border: none;
+  background-color: rgba(255, 255, 255, 0); */
   display: inline;
 }
 
@@ -210,6 +215,10 @@ body {
   grid-row: 1 / span 3;
   place-self: center start;
   cursor: pointer;
+  opacity: 0.3;
+  border: none;
+  margin: -0.4rem 0rem -0.4rem 0.7rem;
+  background-color: rgba(255, 255, 255, 0);
   display: none;
 }
 
@@ -218,13 +227,13 @@ body {
 }
 
 .todo:hover .todo__edit {
-  opacity: 0.3;
+  /* opacity: 0.3;
   border: none;
   margin: -0.4rem 0.5rem -0.4rem 0;
   background-color: rgba(255, 255, 255, 0);
   margin-right: 1rem;
+  padding: 0; */
   display: inline;
-  padding: 0;
 }
 
 .todo__edit:hover, .todo__delete:hover {
@@ -554,6 +563,10 @@ body {
 
   .sidebar__collapse--left {
     transform: rotate(90deg);
+  }
+
+  .todo__delete, .todo__edit {
+    display: block;
   }
 }
 
