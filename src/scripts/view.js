@@ -272,6 +272,18 @@ function addSidebarCollapseControls() {
   });
 }
 
+// TODO: need to render all lists in the sidebar similar to refresh todos and options!
+
+function renderSidebarLists() {
+  // Delete sidebar lists
+  let sidebarLists = document.querySelectorAll(".list-item");
+  sidebarLists.forEach(function(sidebarList) {
+    sidebarList.remove();
+  });
+  // Render currently stored lists in sidebar
+  // Switch to selected list (inbox on load, added list on creation of said list)
+}
+
 
 export { 
   refreshTodoList, 
@@ -279,5 +291,6 @@ export {
   newListElement, 
   svgTick,
   refreshListDropdown,
-  addSidebarCollapseControls
+  addSidebarCollapseControls,
+  renderSidebarLists
 }
