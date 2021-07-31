@@ -236,6 +236,19 @@ function sidebarEventListeners() {
   });
 }
 
+// Adds close features to the view modal, since there is no data to 'submit'
+function viewModalBtnControls() {
+  const viewModal = document.querySelector(".view-modal");
+  const closeBtn = document.querySelector(".view-modal__close");
+
+  closeBtn.addEventListener("click", () => closeModal(viewModal));
+
+  // Listen for outside click
+  window.addEventListener("click", (e) => {
+    outsideClick(e, viewModal);
+  });
+}
+
 
 export { 
   addModalControls,
@@ -244,5 +257,6 @@ export {
   todoEventListeners,
   sidebarEventListeners,
   addNewTaskControls,
-  displayModal 
+  displayModal ,
+  viewModalBtnControls
 }
