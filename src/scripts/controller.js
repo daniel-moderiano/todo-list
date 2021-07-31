@@ -1,5 +1,5 @@
 import { createTodo, addToStorage, pushToList, changeList, addNewList, getSelectedList, getLists, checkDuplicates, deleteFromList, removeList, findTodoByListAndId, updateTodo, getCurrentlyEditingId, changeCurrentlyEditingId } from "./model";
-import { refreshTodoList, setSelectedClass, newListElement, refreshListDropdown, renderSidebarLists, refreshSidebarLists, setSelectedItemClass } from "./view";
+import { refreshTodoList, setSelectedClass, newListElement, refreshListDropdown, renderSidebarLists, refreshSidebarLists, setSelectedItemClass, renderViewModal } from "./view";
 
 // Extract the form data when the user clicks "add task" on the add task modal
 function getFormData() {
@@ -200,6 +200,10 @@ function todoEventListeners() {
       changeCurrentlyEditingId(e.target.dataset.id);
       convertAddModalForEdit(findTodoByListAndId(getSelectedList(), e.target.dataset.id));
       displayModal(document.querySelector(".add-modal"));     
+    } else if (e.target.classList.contains("todo")) {
+      console.log("todo clicked");
+      renderViewModal(getSelectedList(), e.target.dataset.id);
+      displayModal(document.querySelector(".view-modal"));
     }
   });
 }

@@ -1,4 +1,4 @@
-import { getFromStorage, getSelectedList, getLists } from './model';
+import { getFromStorage, getSelectedList, getLists, findTodoByListAndId } from './model';
 import { format } from 'date-fns';
 
 // Take todo object from master array and render to the DOM as todo list item
@@ -329,6 +329,17 @@ function refreshSidebarLists() {
   renderSidebarLists();
 }
 
+function renderViewModal(list, todo) {
+  let todoToView = findTodoByListAndId(list, todo);
+  
+  document.querySelector(".view-modal__title").textContent = list;
+
+  document.querySelector(".view-todo__title").textContent = todoToView.title;
+  document.querySelector(".view-todo__priority").textContent = todoToView.priority;
+  document.querySelector(".view-todo__description").textContent = todoToView.description;
+  document.querySelector(".view-todo__date").textContent = todoToView.dueDate;
+}
+
 
 export { 
   refreshTodoList, 
@@ -339,5 +350,6 @@ export {
   addSidebarCollapseControls,
   refreshSidebarLists,
   svgClose,
-  setSelectedItemClass
+  setSelectedItemClass,
+  renderViewModal
 }

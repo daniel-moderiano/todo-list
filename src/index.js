@@ -18,5 +18,3 @@ function main() {
 }
 
 main();
-
-document.querySelector("#view").addEventListener("click", () => {displayModal(document.querySelector(".view-modal"))});
