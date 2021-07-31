@@ -291,9 +291,8 @@ function renderSidebarLists() {
       newListElement(list);
     }
   }
-
-
   // Switch to selected list (inbox on load, added list on creation of said list)
+  
 }
 
 

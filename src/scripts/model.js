@@ -108,6 +108,7 @@ function findTodoByListAndId(list, id) {
   }
 }
 
+// Check for existing lists object in local storage, and retrieve it for use if present. Otherwise the lists variable will default to Inbox with no todos
 function checkStorage() {
   if (!localStorage.getItem("lists")) {
     // pass

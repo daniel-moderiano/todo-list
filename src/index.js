@@ -6,6 +6,7 @@ import { addToStorage, checkStorage, getLists, getSelectedList } from "./scripts
 function main() {
   checkStorage();
   addToStorage();
+  renderSidebarLists();
   refreshTodoList();
   addModalControls();
   addSidebarControls();
