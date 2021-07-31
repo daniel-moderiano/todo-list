@@ -32,7 +32,6 @@ function renderTodo(todo) {
   todoDeleteBtn.appendChild(svgClose());
 
   todoDescription.classList.add("todo__description");
-  todoDescription.classList.add("truncate");
   todoDescription.id = "todo__description";
 
   todoDate.classList.add("todo__date");
@@ -85,11 +84,6 @@ function renderTodo(todo) {
   } else {
     todoDescription.textContent = todo.description;
   }
-
-  // If user wishes to see full description text, they can click to expand to full text
-  todoDescription.addEventListener("click", () => {
-    todoDescription.classList.toggle("truncate");
-  });
 
   // Adjust overall todo styling to preserve symmetrical look when no date is provided
   if (todo.dueDate === "") {
@@ -333,11 +327,17 @@ function refreshSidebarLists() {
 function renderViewModal(list, todo) {
   let todoToView = findTodoByListAndId(list, todo);
   let viewPriority = document.querySelector(".view-todo__priority");
+  let viewDate = document.querySelector(".view-todo__date");
 
   document.querySelector(".view-modal__title").textContent = list
   document.querySelector(".view-todo__title").textContent = todoToView.title;
   document.querySelector(".view-todo__description").textContent = todoToView.description;
-  document.querySelector(".view-todo__date").textContent = `Due ${todoToView.dueDate}`;
+
+  if (todoToView.dueDate === "") {
+    viewDate.textContent = "";
+  } else {
+    viewDate.textContent = `Due ${todoToView.dueDate}`;
+  }
 
   viewPriority.className = "view-todo__priority";
 
@@ -358,6 +358,7 @@ function renderViewModal(list, todo) {
       break;
   
     default:
+      viewPriority.textContent = "";
       break;
   }
 }
