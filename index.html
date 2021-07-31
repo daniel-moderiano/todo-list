@@ -73,9 +73,9 @@
           </header>
           <form class="todo-form">
             <label for="todo-form__title">Title</label>
-            <input id="todo-form__title" type="text" class="todo-form__title">
+            <input maxlength="200" id="todo-form__title" type="text" class="todo-form__title">
             <label for="todo-form__description">Description</label>
-            <textarea name="description" class="todo-form__description" id="todo-form__description" cols="30" rows="10"></textarea>
+            <textarea maxlength="300" name="description" class="todo-form__description" id="todo-form__description" cols="30" rows="10"></textarea>
             <label for="todo-form__date">Due date</label>
             <input id="todo-form__date" type="date" class="todo-form__date">
             <label for="todo-form__priority">Priority</label>
@@ -121,11 +121,11 @@
           <div class="view-modal__todo">
             <!-- Display todo contents here -->
             <div class="view-todo__header">
-              <h4 class="view-todo__title">Test</h4>
-              <span class="view-todo__priority">Priority symbol</span>
+              <h4 class="view-todo__title"></h4>
+              <span class="view-todo__priority"></span>
             </div>
-            <p class="view-todo__description">Description</p>
-            <span class="view-todo__date">Due date</span>
+            <p class="view-todo__description"></p>
+            <span class="view-todo__date"></span>
           </div>
         </div>
       </div>
@@ -134,4 +134,3 @@
       <script src="main.js"></script>
   </body>
 </html>
-
