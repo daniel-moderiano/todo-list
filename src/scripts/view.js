@@ -275,12 +275,24 @@ function addSidebarCollapseControls() {
 // TODO: need to render all lists in the sidebar similar to refresh todos and options!
 
 function renderSidebarLists() {
-  // Delete sidebar lists
-  let sidebarLists = document.querySelectorAll(".list-item");
-  sidebarLists.forEach(function(sidebarList) {
-    sidebarList.remove();
+  // Delete sidebar lists - ONLY ADDED LISTS!
+  let addedLists = document.querySelectorAll(".added-lists__list li");
+  console.log(addedLists);
+  addedLists.forEach(function(addedList) {
+    console.log(addedList);
+    addedList.remove();
   });
+
   // Render currently stored lists in sidebar
+  // Check for list name Inbox and append to default lists, not added lists
+  let currentLists = getLists();
+  for (const list in currentLists) {
+    if (list != "Inbox") {
+      newListElement(list);
+    }
+  }
+
+
   // Switch to selected list (inbox on load, added list on creation of said list)
 }
 
