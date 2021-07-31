@@ -150,7 +150,7 @@ function refreshTodoList() {
   renderList();
 }
 
-// Set the --selected modifier class exclusively on the currently selected list element
+// Set the --selected modifier class exclusively on the currently selected list element (name)
 function setSelectedClass(listItem) {
   let listNames = document.querySelectorAll(".list-name");
   listNames.forEach(function(list) {
@@ -158,6 +158,18 @@ function setSelectedClass(listItem) {
       list.classList.add("list-name--selected");
     } else {
       list.classList.remove("list-name--selected");
+    }
+  });
+}
+
+// Set the --selected modifier class exclusively on the currently selected list element (background)
+function setSelectedItemClass(listItem) {
+  let listItems = document.querySelectorAll(".list-item");
+  listItems.forEach(function(list) {
+    if (list.dataset.name === listItem.dataset.name) {
+      list.classList.add("list-item--selected");
+    } else {
+      list.classList.remove("list-item--selected");
     }
   });
 }
@@ -326,5 +338,6 @@ export {
   refreshListDropdown,
   addSidebarCollapseControls,
   refreshSidebarLists,
-  svgClose
+  svgClose,
+  setSelectedItemClass
 }

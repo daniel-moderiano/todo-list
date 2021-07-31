@@ -371,6 +371,10 @@ body {
   cursor: pointer;
 }
 
+.list-item--selected {
+  background-color: #fbfbfb;
+}
+
 .list-btn {
   opacity: 0;
   display: flex;

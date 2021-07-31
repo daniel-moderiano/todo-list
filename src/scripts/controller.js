@@ -1,5 +1,5 @@
 import { createTodo, addToStorage, pushToList, changeList, addNewList, getSelectedList, getLists, checkDuplicates, deleteFromList, removeList, findTodoByListAndId, updateTodo, getCurrentlyEditingId, changeCurrentlyEditingId } from "./model";
-import { refreshTodoList, setSelectedClass, newListElement, refreshListDropdown, renderSidebarLists, refreshSidebarLists } from "./view";
+import { refreshTodoList, setSelectedClass, newListElement, refreshListDropdown, renderSidebarLists, refreshSidebarLists, setSelectedItemClass } from "./view";
 
 // Extract the form data when the user clicks "add task" on the add task modal
 function getFormData() {
@@ -168,7 +168,8 @@ function listModalBtnControls() {
       addToStorage();
       refreshSidebarLists();
       changeList(listInput.value);
-      setSelectedClass(document.querySelector(`[data-name='${getSelectedList()}']`))
+      setSelectedClass(document.querySelector(`[data-name='${getSelectedList()}']`));
+      setSelectedItemClass(document.querySelector(`[data-name='${getSelectedList()}']`));
       refreshTodoList();
       closeModal(listModal);
     }
@@ -213,14 +214,19 @@ function sidebarEventListeners() {
       addToStorage();
       changeList("Inbox");
       setSelectedClass(document.querySelector("#inbox"));
+      setSelectedItemClass(document.querySelector("#inbox"));
       refreshTodoList();
     } else if (e.target.classList.contains("list-item")) {
+      
       changeList(e.target.dataset.name);
       setSelectedClass(e.target);
+      setSelectedItemClass(e.target);
       refreshTodoList();
     } else if (e.target.parentNode.classList.contains("list-item")) {
+      
       changeList(e.target.parentNode.dataset.name);
       setSelectedClass(e.target.parentNode);
+      setSelectedItemClass(e.target.parentNode);
       refreshTodoList();
     }
   });
