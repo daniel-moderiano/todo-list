@@ -28,8 +28,8 @@ function renderTodo(todo) {
   
   todoDeleteBtn.type = "button";
   todoDeleteBtn.classList.add("todo__delete");
-  todoDeleteBtn.innerHTML = "&times;";
   todoDeleteBtn.dataset.id = todo.id;
+  todoDeleteBtn.appendChild(svgClose());
 
   todoDescription.classList.add("todo__description");
   todoDescription.classList.add("truncate");

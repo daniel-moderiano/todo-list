@@ -200,13 +200,14 @@ body {
   display: none;
 }
 
+.todo__delete > svg {
+  width: 18px;
+  height: 18px;
+  display: block; /* Displaying as block centers properly on all browsers */
+}
+
 /* Negative margins prevent delete btn from epanding todo li when displayed */
 .todo:hover .todo__delete {
-  /* opacity: 0.3;
-  font-size: 1.7rem;
-  margin: -0.5rem 1rem -0.5rem 0;
-  border: none;
-  background-color: rgba(255, 255, 255, 0); */
   display: inline;
 }
 
@@ -242,7 +243,8 @@ body {
   
 .todos__new {
   background-color: rgba(255, 255, 255, 0);
-  color: #808080;
+  /* color: #808080; */
+  color: #0078D7;
   border: none;
   display: flex;
   align-items: center;
