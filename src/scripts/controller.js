@@ -164,12 +164,16 @@ function listModalBtnControls() {
     if (checkDuplicates(listInput.value)) {
       alert("List already exists! Please enter a unique list name.");
     } else {
+      console.log(getLists());
       addNewList(listInput.value);
+      console.log(getLists());
       addToStorage();
       newListElement(listInput.value);
       changeList(listInput.value);
       setSelectedClass(document.querySelector(`[data-name='${getSelectedList()}']`))
+      console.log(getLists());
       refreshTodoList();
+      console.log(getLists());
       closeModal(listModal);
     }
   });

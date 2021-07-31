@@ -1,5 +1,6 @@
 // Nanoid used to generate unique IDs for todos to enable different functions to recognise and modify them
 import { nanoid } from 'nanoid';
+import { refreshTodoList } from './view';
 
 // Store all lists in a modifiable object that can be referenced to create UI
 let lists = {
@@ -107,10 +108,20 @@ function findTodoByListAndId(list, id) {
   }
 }
 
-// Create some dummy todos to help with rendering code
-let todo1 = createTodo("Laundry for white clothes and towels", "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea sint officiis quo incidunt repudiandae sed, accusamus veniam voluptatem consequuntur! Labore pariatur eaque voluptate deserunt ipsum corporis nemo distinctio numquam perspiciatis!", "2021-07-28", "low");
+function checkStorage() {
+  if (!localStorage.getItem("lists")) {
+    // pass
+  } else {
+    lists = getFromStorage();
+  }
+}
 
-pushToList(todo1, "Inbox");
+
+
+// Create some dummy todos to help with rendering code
+// let todo1 = createTodo("Laundry for white clothes and towels", "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea sint officiis quo incidunt repudiandae sed, accusamus veniam voluptatem consequuntur! Labore pariatur eaque voluptate deserunt ipsum corporis nemo distinctio numquam perspiciatis!", "2021-07-28", "low");
+
+// pushToList(todo1, "Inbox");
 
 
 export { 
@@ -128,5 +139,6 @@ export {
   findTodoByListAndId,
   updateTodo,
   getCurrentlyEditingId,
-  changeCurrentlyEditingId
+  changeCurrentlyEditingId,
+  checkStorage
 }
