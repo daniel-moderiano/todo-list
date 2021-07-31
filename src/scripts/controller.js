@@ -239,5 +239,6 @@ export {
   listModalBtnControls, 
   todoEventListeners,
   sidebarEventListeners,
-  addNewTaskControls 
+  addNewTaskControls,
+  displayModal 
 }
