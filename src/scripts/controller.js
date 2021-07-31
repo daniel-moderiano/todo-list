@@ -1,5 +1,5 @@
 import { createTodo, addToStorage, pushToList, changeList, addNewList, getSelectedList, getLists, checkDuplicates, deleteFromList, removeList, findTodoByListAndId, updateTodo, getCurrentlyEditingId, changeCurrentlyEditingId } from "./model";
-import { refreshTodoList, setSelectedClass, newListElement, refreshListDropdown, renderSidebarLists } from "./view";
+import { refreshTodoList, setSelectedClass, newListElement, refreshListDropdown, renderSidebarLists, refreshSidebarLists } from "./view";
 
 // Extract the form data when the user clicks "add task" on the add task modal
 function getFormData() {
@@ -166,8 +166,7 @@ function listModalBtnControls() {
     } else {
       addNewList(listInput.value);
       addToStorage();
-      // newListElement(listInput.value);
-      renderSidebarLists();
+      refreshSidebarLists();
       changeList(listInput.value);
       setSelectedClass(document.querySelector(`[data-name='${getSelectedList()}']`))
       refreshTodoList();
@@ -226,8 +225,6 @@ function sidebarEventListeners() {
     }
   });
 }
-
-
 
 
 export { 

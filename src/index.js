@@ -1,4 +1,4 @@
-import { refreshTodoList, addSidebarCollapseControls, renderSidebarLists } from "./scripts/view";
+import { refreshTodoList, addSidebarCollapseControls, renderSidebarLists, refreshSidebarLists } from "./scripts/view";
 import { addModalControls, addSidebarControls, listModalBtnControls, addNewTaskControls, todoEventListeners, sidebarEventListeners } from "./scripts/controller";
 import { addToStorage, checkStorage, getLists, getSelectedList } from "./scripts/model";
 
@@ -6,7 +6,7 @@ import { addToStorage, checkStorage, getLists, getSelectedList } from "./scripts
 function main() {
   checkStorage();
   addToStorage();
-  renderSidebarLists();
+  refreshSidebarLists();
   refreshTodoList();
   addModalControls();
   addSidebarControls();
@@ -18,9 +18,3 @@ function main() {
 }
 
 main();
-
-
-document.querySelector("#refresh").addEventListener("click", () => {
-  console.log(getLists(), getSelectedList());
-  renderSidebarLists();
-});

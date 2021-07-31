@@ -272,27 +272,30 @@ function addSidebarCollapseControls() {
   });
 }
 
-// TODO: need to render all lists in the sidebar similar to refresh todos and options!
-
-function renderSidebarLists() {
-  // Delete sidebar lists - ONLY ADDED LISTS!
+// Delete sidebar list elements, and avoid removing inbox by targetting just the added lists
+function deleteSidebarLists() {
   let addedLists = document.querySelectorAll(".added-lists__list li");
   console.log(addedLists);
   addedLists.forEach(function(addedList) {
     console.log(addedList);
     addedList.remove();
   });
+}
 
-  // Render currently stored lists in sidebar
-  // Check for list name Inbox and append to default lists, not added lists
+// Render the stored lists in the sidebar, avoiding the inbox which remains a 'set' element
+function renderSidebarLists() {
   let currentLists = getLists();
   for (const list in currentLists) {
     if (list != "Inbox") {
       newListElement(list);
     }
   }
-  // Switch to selected list (inbox on load, added list on creation of said list)
-  
+}
+
+// This function is used to ensure the sidebar is always dispalying the currently stored lists. Can be used with various buttons and actions
+function refreshSidebarLists() {
+  deleteSidebarLists();
+  renderSidebarLists();
 }
 
 
@@ -303,5 +306,5 @@ export {
   svgTick,
   refreshListDropdown,
   addSidebarCollapseControls,
-  renderSidebarLists
+  refreshSidebarLists
 }
