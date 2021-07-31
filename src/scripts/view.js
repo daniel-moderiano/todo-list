@@ -182,7 +182,7 @@ function newListElement(list) {
   const icon = document.createElement("img");
 
   icon.src = "../src/icons/list.svg";
-  icon.classList.add("icon");
+  icon.classList.add("list-icon");
 
   li.classList.add("list-item");
   li.dataset.name = list;
