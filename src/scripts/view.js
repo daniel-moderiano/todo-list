@@ -8,6 +8,7 @@ function renderTodo(todo) {
   const todoContainer = document.createElement("div");
   const todoTitle = document.createElement("h5");
   const todoDeleteBtn = document.createElement("button");
+  const deleteIcon = document.createElement("img");
   const todoDescription = document.createElement("p");
   const todoDate = document.createElement("p");
   const todoPriority = document.createElement("span");
@@ -29,7 +30,13 @@ function renderTodo(todo) {
   todoDeleteBtn.type = "button";
   todoDeleteBtn.classList.add("todo__delete");
   todoDeleteBtn.dataset.id = todo.id;
-  todoDeleteBtn.appendChild(svgClose());
+
+  deleteIcon.classList.add("todo__delete-icon");
+  deleteIcon.dataset.id = todo.id;
+  
+  deleteIcon.classList.add("todo__delete-icon");
+  deleteIcon.src = "../src/icons/close.svg";
+  deleteIcon.dataset.id = todo.id;
 
   todoDescription.classList.add("todo__description");
   todoDescription.id = "todo__description";
@@ -103,7 +110,7 @@ function renderTodo(todo) {
   checkboxContainer.appendChild(todoCheckboxTick);
   checkboxContainer.appendChild(todoCheckbox);
   todoEditBtn.appendChild(todoEditIcon);
-  
+  todoDeleteBtn.appendChild(deleteIcon);
   todoContainer.appendChild(checkboxContainer);
   todoContainer.appendChild(todoTitle);
   todoContainer.appendChild(todoDescription);

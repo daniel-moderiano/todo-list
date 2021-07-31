@@ -197,7 +197,7 @@ body {
   display: none;
 }
 
-.todo__delete > svg {
+.todo__delete-icon {
   width: 18px;
   height: 18px;
   display: block; /* Displaying as block centers properly on all browsers */

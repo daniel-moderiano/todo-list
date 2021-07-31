@@ -190,8 +190,9 @@ function convertAddModalForEdit(todo) {
 // Add event listener to parent list element (ul.todos__list) that captures event propgation from any child li elements
 function todoEventListeners() {
   document.querySelector(".todos__list").addEventListener("click", (e) => {
+    console.log(e.target);
     // Individualise event response based on which target is clicked
-    if (e.target.className === "todo__delete" || e.target.classList.contains("todo__checkbox")) {
+    if (e.target.className === "todo__delete-icon" || e.target.classList.contains("todo__checkbox")) {
       deleteFromList(getSelectedList(), e.target.dataset.id);
       addToStorage();
       refreshTodoList();
@@ -200,8 +201,7 @@ function todoEventListeners() {
       changeCurrentlyEditingId(e.target.dataset.id);
       convertAddModalForEdit(findTodoByListAndId(getSelectedList(), e.target.dataset.id));
       displayModal(document.querySelector(".add-modal"));     
-    } else if (e.target.classList.contains("todo")) {
-      console.log("todo clicked");
+    } else {
       renderViewModal(getSelectedList(), e.target.dataset.id);
       displayModal(document.querySelector(".view-modal"));
     }
@@ -243,7 +243,6 @@ function viewModalBtnControls() {
 
   closeBtn.addEventListener("click", () => closeModal(viewModal));
 
-  // Listen for outside click
   window.addEventListener("click", (e) => {
     outsideClick(e, viewModal);
   });
