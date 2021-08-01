@@ -567,6 +567,10 @@ body {
   width: 100%;
 }
 
+.view-modal__content {
+  padding-bottom: 1.3rem;
+}
+
 .view-todo__header {
   margin-top: 1rem;
   display: flex;
@@ -593,6 +597,7 @@ body {
 .view-todo__date {
   font-size: 0.9rem;
   color: #058527;
+  padding-bottom: 1rem;
 }
 
 .view-todo__priority {

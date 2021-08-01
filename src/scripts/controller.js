@@ -67,6 +67,7 @@ function resetAddModal() {
   document.querySelector("#todo-form__priority").value = "";
   todoFormBtn.disabled = true;
   todoFormBtn.classList.add("disabled");
+  todoFormBtn.textContent = "Add task";
   document.querySelector(".add-modal").classList.remove("edit");
 }
 
@@ -190,7 +191,6 @@ function convertAddModalForEdit(todo) {
 // Add event listener to parent list element (ul.todos__list) that captures event propgation from any child li elements
 function todoEventListeners() {
   document.querySelector(".todos__list").addEventListener("click", (e) => {
-    console.log(e.target);
     let targetClass = e.target.classList;
     // Individualise event response based on which target is clicked
     if (targetClass.contains("todo__delete-icon") || targetClass.contains("todo__checkbox")) {
@@ -206,7 +206,7 @@ function todoEventListeners() {
       displayModal(document.querySelector(".add-modal"));  
       return;   
     } 
-    if (targetClass.contains("todo__title") || targetClass.contains("todo__description") || targetClass.contains("todo__container") || targetClass.contains("todo")) {
+    if (targetClass.contains("todo__title") || targetClass.contains("todo__description") || targetClass.contains("todo__container") || targetClass.contains("todo__date") || targetClass.contains("todo")) {
       renderViewModal(getSelectedList(), e.target.dataset.id);
       displayModal(document.querySelector(".view-modal"));
       return;

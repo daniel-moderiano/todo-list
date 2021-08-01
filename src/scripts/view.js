@@ -45,6 +45,7 @@ function renderTodo(todo) {
   todoDescription.dataset.id = todo.id;
 
   todoDate.classList.add("todo__date");
+  todoDate.dataset.id = todo.id;
 
   todoPriority.classList.add("todo__priority");
   todoPriority.textContent = todo.priority;
