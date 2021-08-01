@@ -196,14 +196,19 @@ function todoEventListeners() {
       deleteFromList(getSelectedList(), e.target.dataset.id);
       addToStorage();
       refreshTodoList();
-    } else if (e.target.className === "todo__edit-icon") {
+      return;
+    }
+    if (e.target.className === "todo__edit-icon") {
       // Use the data-id to find the todo from memory, and open add modal in edit form
       changeCurrentlyEditingId(e.target.dataset.id);
       convertAddModalForEdit(findTodoByListAndId(getSelectedList(), e.target.dataset.id));
-      displayModal(document.querySelector(".add-modal"));     
-    } else {
+      displayModal(document.querySelector(".add-modal"));  
+      return;   
+    } 
+    if (e.target.classList.contains("todo__title") || e.target.classList.contains("todo__description") || e.target.classList.contains("todo__container") || e.target.classList.contains("todo")) {
       renderViewModal(getSelectedList(), e.target.dataset.id);
       displayModal(document.querySelector(".view-modal"));
+      return;
     }
   });
 }

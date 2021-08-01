@@ -23,9 +23,11 @@ function renderTodo(todo) {
   todoListItem.dataset.id = todo.id;
   
   todoContainer.classList.add("todo__container");
+  todoContainer.dataset.id = todo.id;
    
   todoTitle.classList.add("todo__title");
   todoTitle.textContent = todo.title;
+  todoTitle.dataset.id = todo.id;
   
   todoDeleteBtn.type = "button";
   todoDeleteBtn.classList.add("todo__delete");
@@ -40,6 +42,7 @@ function renderTodo(todo) {
 
   todoDescription.classList.add("todo__description");
   todoDescription.id = "todo__description";
+  todoDescription.dataset.id = todo.id;
 
   todoDate.classList.add("todo__date");
 
