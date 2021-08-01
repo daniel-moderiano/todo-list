@@ -1,5 +1,5 @@
-import { createTodo, addToStorage, pushToList, changeList, addNewList, getSelectedList, getLists, checkDuplicates, deleteFromList, removeList, findTodoByListAndId, updateTodo, getCurrentlyEditingId, changeCurrentlyEditingId } from "./model";
-import { refreshTodoList, setSelectedClass, newListElement, refreshListDropdown, renderSidebarLists, refreshSidebarLists, setSelectedItemClass, renderViewModal } from "./view";
+import { createTodo, addToStorage, pushToList, changeList, addNewList, getSelectedList, checkDuplicates, deleteFromList, removeList, findTodoByListAndId, updateTodo, getCurrentlyEditingId, changeCurrentlyEditingId } from "./model";
+import { refreshTodoList, setSelectedClass, refreshListDropdown, refreshSidebarLists, setSelectedItemClass, renderViewModal } from "./view";
 
 // Extract the form data when the user clicks "add task" on the add task modal
 function getFormData() {
