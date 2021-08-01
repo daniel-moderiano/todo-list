@@ -191,21 +191,22 @@ function convertAddModalForEdit(todo) {
 function todoEventListeners() {
   document.querySelector(".todos__list").addEventListener("click", (e) => {
     console.log(e.target);
+    let targetClass = e.target.classList;
     // Individualise event response based on which target is clicked
-    if (e.target.className === "todo__delete-icon" || e.target.classList.contains("todo__checkbox")) {
+    if (targetClass.contains("todo__delete-icon") || targetClass.contains("todo__checkbox")) {
       deleteFromList(getSelectedList(), e.target.dataset.id);
       addToStorage();
       refreshTodoList();
       return;
     }
-    if (e.target.className === "todo__edit-icon") {
+    if (targetClass.contains("todo__edit-icon")) {
       // Use the data-id to find the todo from memory, and open add modal in edit form
       changeCurrentlyEditingId(e.target.dataset.id);
       convertAddModalForEdit(findTodoByListAndId(getSelectedList(), e.target.dataset.id));
       displayModal(document.querySelector(".add-modal"));  
       return;   
     } 
-    if (e.target.classList.contains("todo__title") || e.target.classList.contains("todo__description") || e.target.classList.contains("todo__container") || e.target.classList.contains("todo")) {
+    if (targetClass.contains("todo__title") || targetClass.contains("todo__description") || targetClass.contains("todo__container") || targetClass.contains("todo")) {
       renderViewModal(getSelectedList(), e.target.dataset.id);
       displayModal(document.querySelector(".view-modal"));
       return;
