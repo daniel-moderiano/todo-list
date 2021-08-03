@@ -580,8 +580,7 @@ body {
 }
 
 
-
-/* Tablets and phones, from 320px to 768px */
+/* MEDIA QUERIES */
 @media (max-width: 768px) {
 
   /* Float is a CSS 'check' to confirm media query is active within JS */
