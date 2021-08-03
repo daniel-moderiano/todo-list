@@ -17,13 +17,13 @@
           </header>
       <div class="content-container">
         <aside class="sidebar sidebar--mobile">
-          <button type="button" class="sidebar__collapse">
+          <button type="button" class="sidebar__collapse" aria-label="Collapse and expand sidebar">
             <svg class="sidebar__collapse-icon" xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 0 24 24" width="28px" fill="#324BDF"><path d="M0 0h24v24H0z" fill="none"/><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></svg>
           </button>
           <div class="default-lists">
             <ul class="default-lists__list">
               <li data-name="Inbox" id="inbox" class="list-item">
-                <img class="inbox-icon" src="icons/inbox.svg">
+                <img class="inbox-icon" src="icons/inbox.svg" alt="inbox icon">
                 <h4 data-name="Inbox" class="list-name list-name--selected">Inbox</h4>
               </li>
             </ul>
@@ -36,7 +36,7 @@
           <div class="add-list">
             <span>
               
-              <img class="add-list-icon" src="icons/sidebar-plus.svg" alt="">
+              <img class="add-list-icon" src="icons/sidebar-plus.svg" alt="" aria-label="Add new list">
             </span>
             <h3 class="add-list__title">Add List</h3>
           </div>
@@ -66,7 +66,7 @@
         <div class="add-modal__content">
           <header class="add-modal__header">
             <h4 class="add-modal__title">New task</h4>
-            <button class="add-modal__close" aria-label="close">
+            <button class="add-modal__close" aria-label="close current window">
               <svg class="modal-icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
             </button>
           </header>
@@ -87,7 +87,7 @@
               <option value="low">Low</option>
             </select>
             <label for="todo-form__list">List</label>
-            <select class="todo-form__list" name="list" id="todo-form__list"></select>
+            <select class="todo-form__list" name="list" id="todo-form__list" aria-label="Select list to add task to"></select>
             <button class="todo-form__btn" type="button">Add task</button>
           </form>
         </div>
@@ -97,12 +97,12 @@
         <div class="list-modal__content">
           <header class="list-modal__header">
             <h4 class="list-modal__title">Add List</h4>
-            <button class="list-modal__close" aria-label="close">
+            <button class="list-modal__close" aria-label="close current window">
               <svg class="modal-icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
             </button>
           </header>
           <form class="list-form">
-            <label class="list-form__label" for="list-form__input">Name</label>
+            <label class="list-form__label" for="list-form__input">New list name</label>
             <input class="list-form__input" id="list-form__input" type="text">
             <!-- Hidden input to avoid bug that submits on enter key with only one input in a form -->
             <input class="hidden" type="text">
@@ -115,7 +115,7 @@
         <div class="view-modal__content">
           <header class="view-modal__header">
             <h6 class="view-modal__title"></h4>
-            <button class="view-modal__close" aria-label="close">
+            <button class="view-modal__close" aria-label="close current window">
               <svg class="modal-icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
             </button>
           </header>

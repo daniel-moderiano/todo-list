@@ -32,6 +32,7 @@ function renderTodo(todo) {
   todoDeleteBtn.type = "button";
   todoDeleteBtn.classList.add("todo__delete");
   todoDeleteBtn.dataset.id = todo.id;
+  todoDeleteBtn.setAttribute("aria-label", "Delete task");
 
   deleteIcon.classList.add("todo__delete-icon");
   deleteIcon.dataset.id = todo.id;
@@ -80,6 +81,7 @@ function renderTodo(todo) {
 
   todoEditBtn.className = "todo__edit";
   todoEditBtn.type = "button";
+  todoEditBtn.setAttribute("aria-label", "Edit task");
 
   todoEditIcon.classList.add("todo__edit-icon");
   todoEditIcon.src = "icons/edit.svg";
@@ -197,6 +199,7 @@ function newListElement(list) {
   btn.classList.add("list-btn")
   btn.dataset.name = list;
   btn.appendChild(svgClose());
+  btn.setAttribute("aria-label", "Delete this list");
   
   li.appendChild(icon);
   li.appendChild(name);
