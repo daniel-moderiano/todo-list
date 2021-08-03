@@ -37,7 +37,7 @@ function renderTodo(todo) {
   deleteIcon.dataset.id = todo.id;
   
   deleteIcon.classList.add("todo__delete-icon");
-  deleteIcon.src = "../src/icons/close.svg";
+  deleteIcon.src = "icons/delete.svg";
   deleteIcon.dataset.id = todo.id;
 
   todoDescription.classList.add("todo__description");
@@ -85,7 +85,7 @@ function renderTodo(todo) {
   todoEditBtn.type = "button";
 
   todoEditIcon.classList.add("todo__edit-icon");
-  todoEditIcon.src = "../src/icons/edit.svg";
+  todoEditIcon.src = "icons/edit.svg";
   todoEditIcon.dataset.id = todo.id;
 
 
@@ -186,7 +186,7 @@ function newListElement(list) {
   const btn = document.createElement("button");
   const icon = document.createElement("img");
 
-  icon.src = "../src/icons/list.svg";
+  icon.src = "icons/list.svg";
   icon.classList.add("list-icon");
 
   li.classList.add("list-item");
