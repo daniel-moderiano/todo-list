@@ -73,6 +73,8 @@
           <form class="todo-form">
             <label for="todo-form__title">Title</label>
             <input maxlength="200" id="todo-form__title" type="text" class="todo-form__title">
+            <!-- Hidden input to avoid bug that submits on enter key with only one input in a form -->
+            <input class="hidden" type="text">
             <label for="todo-form__description">Description</label>
             <textarea maxlength="300" name="description" class="todo-form__description" id="todo-form__description" cols="30" rows="10"></textarea>
             <label for="todo-form__date">Due date</label>
