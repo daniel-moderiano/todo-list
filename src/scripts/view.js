@@ -35,10 +35,7 @@ function renderTodo(todo) {
 
   deleteIcon.classList.add("todo__delete-icon");
   deleteIcon.dataset.id = todo.id;
-  
-  deleteIcon.classList.add("todo__delete-icon");
   deleteIcon.src = "icons/close.svg";
-  deleteIcon.dataset.id = todo.id;
 
   todoDescription.classList.add("todo__description");
   todoDescription.id = "todo__description";
@@ -230,7 +227,7 @@ function svgTick() {
   return svg;
 }
 
-// Create a close ison SVG
+// Create a close icon SVG
 function svgClose() {
   let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
   let pathOne = document.createElementNS('http://www.w3.org/2000/svg', "path");
