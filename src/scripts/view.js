@@ -37,7 +37,7 @@ function renderTodo(todo) {
   deleteIcon.dataset.id = todo.id;
   
   deleteIcon.classList.add("todo__delete-icon");
-  deleteIcon.src = "icons/delete.svg";
+  deleteIcon.src = "icons/close.svg";
   deleteIcon.dataset.id = todo.id;
 
   todoDescription.classList.add("todo__description");
