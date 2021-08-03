@@ -170,17 +170,19 @@ body {
   display: none;
 }
 
-.todo__delete {
+.todo__delete, .todo__edit {
   grid-column: 3;
   grid-row: 1 / span 3;
-  place-self: center end;
   opacity: 0.3;
-  font-size: 1.7rem;
-  margin: -0.5rem 1rem -0.5rem 0;
   border: none;
   background-color: rgba(255, 255, 255, 0);
   cursor: pointer;
   display: none;
+}
+
+.todo__delete {
+  place-self: center end;
+  margin: -0.5rem 1rem -0.5rem 0;
 }
 
 .todo__delete-icon {
@@ -190,28 +192,17 @@ body {
 }
 
 /* Negative margins prevent delete btn from epanding todo li when displayed */
-.todo:hover .todo__delete {
+.todo:hover .todo__delete, .todo:hover .todo__edit {
   display: inline;
 }
 
 .todo__edit {
-  grid-column: 3;
-  grid-row: 1 / span 3;
   place-self: center start;
-  cursor: pointer;
-  opacity: 0.3;
-  border: none;
   margin: -0.4rem 0rem -0.4rem 0.7rem;
-  background-color: rgba(255, 255, 255, 0);
-  display: none;
 }
 
 .todo__edit-icon {
   width: 18px;
-}
-
-.todo:hover .todo__edit {
-  display: inline;
 }
 
 .todo__edit:hover, .todo__delete:hover {
@@ -554,29 +545,24 @@ body {
   font-size: 0.9rem;
 }
 
-.view-todo__title {
+.view-todo__title, .view-todo__priority {
   font-size: 1.1rem;
   font-weight: bold;
   padding-bottom: 1rem;
   width: 80%;
 }
 
-.view-todo__description {
+.view-todo__description, .view-todo__date {
   font-size: 0.9rem;
   padding-bottom: 1rem;
-  /* width: 90%; */
 }
 
 .view-todo__date {
-  font-size: 0.9rem;
   color: #058527;
-  padding-bottom: 1rem;
 }
 
 .view-todo__priority {
-  font-size: 1.1rem;
   margin-right: 0.6rem;
-  font-weight: bold;
 }
 
 .view-todo__priority--low {
