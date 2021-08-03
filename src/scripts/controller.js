@@ -69,6 +69,7 @@ function resetAddModal() {
   todoFormBtn.classList.add("disabled");
   todoFormBtn.textContent = "Add task";
   document.querySelector(".add-modal").classList.remove("edit");
+  document.querySelector(".add-modal__title").textContent = "New task";
 }
 
 // Clear inputs on list modal form, and ensure the submit btn is reset to disabled mode
@@ -184,7 +185,9 @@ function convertAddModalForEdit(todo) {
   document.querySelector("#todo-form__date").value = todo.dueDate;
   document.querySelector("#todo-form__priority").value = todo.priority;
   document.querySelector(".add-modal").classList.add("edit");
+  document.querySelector(".add-modal__title").textContent = "Edit task";
   document.querySelector(".todo-form__btn").textContent = "Edit task";
+  
   refreshListDropdown();
 }
 
