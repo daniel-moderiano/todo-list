@@ -1,0 +1,625 @@
+/* ---GLOBAL/BODY--- */
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+body {
+  font-family: "Open Sans", Helvetica, sans-serif;
+  font-size: 14.5px;
+  color: #202020;
+}
+
+
+/* ---MAIN--- */
+
+.full-container {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+}
+
+.content-container, .main, .todos {
+  width: 100%;
+}
+
+.content-container {
+  display: flex;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  padding-top: 2.5rem;
+  flex-shrink: 1;
+}
+
+.todos {
+  margin: 0 2rem;
+  max-width: 800px;
+}
+
+.todos__current-list {
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding-bottom: 0.75rem;
+  border-bottom: #f4f4f4 1px solid;
+}
+
+
+/* ---TODOS--- */
+
+.todo__container {
+  display: grid;
+  grid-template-columns: 2rem 1fr 5rem;
+}
+
+.todo {
+  padding: 0.5rem 0;
+  border-bottom: #f4f4f4 1px solid;
+  cursor: pointer;
+}
+
+.checkbox-container {
+  grid-column: 1;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  padding-right: 0.4rem;
+}
+
+.tick {
+  position: absolute;
+  color: white;
+  pointer-events: none;
+}
+
+/* Hiding class, making content visible only to screen readers but not visually */
+.todo__label:not(focus):not(active) {
+  clip: rect(0 0 0 0); 
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap; 
+  width: 1px;
+}
+
+.todo__checkbox {
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+  border-radius: 16px;
+  height: 18px;
+  width: 18px;
+  border: 2px solid #808080;
+  background-color: white;
+  cursor: pointer;
+} 
+
+.todo__checkbox--low {
+  border: 2px solid #058527;
+}
+
+.todo__checkbox--medium {
+  border: 2px solid #f0b330;
+}
+
+.todo__checkbox--high {
+  border: 2px solid #df3d3d;
+}
+
+.todo__checkbox:checked {
+  background-color: #f4f4f4;
+}
+
+.todo__checkbox:hover {
+  background-color: #808080;
+  transition: background-color 0.3s;
+}
+
+.todo__checkbox--low:hover {
+  background-color: #058527;
+  transition: background-color 0.3s;
+}
+
+.todo__checkbox--medium:hover {
+  background-color: #f0b330;
+  transition: background-color 0.3s;
+}
+
+.todo__checkbox--high:hover {
+  background-color: #df3d3d;
+  transition: background-color 0.3s;
+}
+
+.todo__title, .todo__description, .todo__date {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 95%;
+  line-height: normal;
+}
+
+.todo__title {
+  padding-bottom: 0.15rem;
+}
+
+.todo__description {
+  grid-column: 2;
+  font-size: 0.75rem;
+  color: #808080;
+  padding-bottom: 0.2rem;
+}
+
+.todo__description:hover {
+  cursor: pointer;
+}
+
+.todo__date {
+  grid-column: 2;
+  font-size: 0.75rem;
+  color: #058527;
+}
+
+.todo__priority {
+  display: none;
+}
+
+.todo__delete, .todo__edit {
+  grid-column: 3;
+  grid-row: 1 / span 3;
+  opacity: 0.3;
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+  cursor: pointer;
+  display: none;
+}
+
+.todo__delete {
+  place-self: center end;
+  margin: -0.5rem 1rem -0.5rem 0;
+}
+
+.todo__delete-icon {
+  width: 18px;
+  height: 18px;
+  display: block; /* Displaying as block centers properly on all browsers */
+}
+
+/* Negative margins prevent delete btn from epanding todo li when displayed */
+.todo:hover .todo__delete, .todo:hover .todo__edit {
+  display: inline;
+}
+
+.todo__edit {
+  place-self: center start;
+  margin: -0.4rem 0rem -0.4rem 0.7rem;
+}
+
+.todo__edit-icon {
+  width: 18px;
+}
+
+.todo__edit:hover, .todo__delete:hover {
+  opacity: 1 !important;
+}
+  
+.todos__new {
+  background-color: rgba(255, 255, 255, 0);
+  color: #808080;
+  border: none;
+  display: flex;
+  align-items: center;
+  font-family: "Open Sans", Helvetica, sans-serif;
+  font-size: 14.5px;
+  width: 6.5rem;
+  height: 2.2rem;
+  margin-top: 0.3rem;
+  padding: 0;
+}
+
+.todos__new-icon {
+  width: 14px;
+  height: 14px;
+  padding: 0.1rem;
+  margin: 0 0.5rem 0 0.25rem;
+  border: 1px solid #FFFFFF;
+}
+
+.todos__new:hover {
+  cursor: pointer;
+  color: #324BDF;
+  transition: color 0.1s;
+}
+
+.todos__new:hover .todos__new-icon {
+  border: 1px solid #324BDF;
+  transition: border 0.1s;
+  border-radius: 14px;
+}
+
+
+/* ---HEADER--- */
+
+.header {
+  grid-area: header;
+  background-color: #0078D7;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  padding-left: 1.1rem;
+}
+
+.header__icon {
+  width: 22px;
+  margin-right: 0.5rem;
+}
+
+.header__title {
+  font-weight: bolder;
+  color: white;
+  font-size: 1.2rem;
+}
+
+
+/* ---SIDEBAR--- */
+
+.sidebar {
+  background-color: #f4f4f4;
+  width: 18rem;
+  overflow-x: hidden;
+  transition: width 0.2s;
+  flex-shrink: 0;
+  float: left;
+}
+
+.sidebar--small {
+  width: 3rem;
+  transition: width 0.2s;
+}
+
+.sidebar__collapse {
+  background-color: rgb(255, 255, 255, 0);
+  border: none;
+  transform: rotate(90deg);
+  display: flex;
+  place-items: center;
+  margin: 1.1rem 0 0.5rem 0.4rem;
+  padding: 0.2rem;
+}
+
+.sidebar__collapse--right {
+  transform: rotate(270deg);
+}
+
+.sidebar__collapse--left {
+  transform: rotate(90deg);
+}
+
+.list-name {
+  padding-bottom: 0.1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 70%;
+  line-height: normal;
+}
+
+.list-name--selected {
+  font-weight: bold;
+}
+
+.list-item {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 2.3rem;
+  padding: 0 1rem 0 0.9rem;
+  white-space: nowrap;
+}
+
+#inbox {
+  margin: 1rem 0;
+}
+
+.list-item:hover, .add-list:hover, .sidebar__collapse:hover {
+  background-color: #fbfbfb;
+  transition: background-color 0.1s;
+  cursor: pointer;
+}
+
+.list-item--selected {
+  background-color: #EDEDED;
+}
+
+.list-btn {
+  opacity: 0;
+  display: flex;
+  color: #202020;
+  font-size: 1.5rem;
+  font-weight: lighter;
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+  position: absolute;
+  left: 15.5rem;
+}
+
+.list-btn > svg {
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+}
+
+/* This class can change the appearance of the button when you hover the list item (e.g. show the button) */
+.list-item:hover .list-btn {
+  opacity: 0.3;
+}
+
+.list-btn:hover {
+  cursor: pointer;
+  opacity: 1 !important;
+}
+
+.add-list {
+  display: flex;
+  align-items: center;
+  height: 2.3rem;
+  padding: 0 1rem 0 1.05rem;
+  white-space: nowrap;
+}
+
+.list-icon, .inbox-icon {
+  width: 19px;
+}
+
+.add-list-icon {
+  width: 16px;
+}
+
+
+.add-list__title {
+  color: #324BDF;
+  margin-left: 0.8rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 70%;
+  line-height: normal;
+}
+
+.list-name {
+  margin-left: 0.8rem;
+}
+
+
+/* ---MODALS--- */
+
+.add-modal, .list-modal, .view-modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.list-modal__content, .add-modal__content, .view-modal__content {
+  background-color: #fff;
+  width: 20rem;
+  padding: 0.5rem 1.5rem 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-radius: 3px;
+}
+
+.add-modal__header, .list-modal__header, .view-modal__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #cccbcb;
+  font-weight: bold;
+  font-size: 1.1rem;
+  padding-bottom: 0.2rem;
+  width: 100%;
+}
+
+.todo-form, .list-form {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.add-modal__close, .list-modal__close, .view-modal__close {
+  color: #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+}
+
+.add-modal__close:hover, .list-modal__close:hover, .view-modal__close:hover {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.list-form__input, .todo-form > input, select, textarea {
+  font-family: "Open Sans";
+  border: 1px solid #cccbcb;
+  border-radius: 3px;
+  margin: 0.5rem 0 1rem 0;
+  height: 1.4rem;
+}
+
+.todo-form__priority, .todo-form__list, #todo-form__date {
+  height: 1.7rem;
+}
+
+.todo-form__description {
+  height: 4rem;
+}
+
+.list-form__input:focus, .todo-form > input:focus, select:focus, textarea:focus {
+  border: 1px solid #808080;
+  border-radius: 3px;
+  outline: none;
+  font-size: 14px;
+  font-family: "Open Sans";
+}
+
+.list-modal__btn, .todo-form__btn {
+  place-self: center;
+  font-family: "Open Sans";
+  font-size: 14.5px;
+  border: none;
+  background-color: #0078D7;
+  color: #f4f4f4;
+  padding: 0.3rem 0.5rem;
+  border: 2px solid #fff;
+  border-radius: 3px;
+}
+
+.list-modal__btn:hover, .list-modal__btn:focus, .todo-form__btn:hover, .todo-form__btn:focus {
+  border: 2px solid #9ad2ff;
+  border-radius: 3px;
+  transition: border 0.2s;
+  cursor: pointer;
+}
+
+.disabled {
+  background-color: #a4d6ff;
+}
+
+.disabled:hover, .disabled:focus {
+  border: 2px solid #fff;
+  cursor: default;
+}
+
+.modal-icon {
+  opacity: 0.3;
+  width: 22px;
+  height: 22px;
+  padding: 0.2rem 0 0.2rem 0;
+}
+
+.modal-icon:hover {
+  opacity: 1;
+}
+
+.hidden {
+  display: none !important;
+}
+
+
+/* ---VIEW MODAL--- */
+
+.view-modal__todo {
+  width: 100%;
+}
+
+.view-modal__content {
+  padding-bottom: 1.3rem;
+}
+
+.view-todo__header {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.view-modal__title {
+  font-size: 0.9rem;
+}
+
+.view-todo__title, .view-todo__priority {
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding-bottom: 1rem;
+  width: 80%;
+}
+
+.view-todo__description, .view-todo__date {
+  font-size: 0.9rem;
+  padding-bottom: 1rem;
+}
+
+.view-todo__date {
+  color: #058527;
+}
+
+.view-todo__priority {
+  margin-right: 0.6rem;
+}
+
+.view-todo__priority--low {
+  color: #058527;
+}
+
+.view-todo__priority--med {
+  color: #f0b330;
+  letter-spacing: 0.2rem;
+}
+
+.view-todo__priority--high {
+  color: #df3d3d;
+  letter-spacing: 0.2rem;
+}
+
+
+/* MEDIA QUERIES */
+@media (max-width: 768px) {
+
+  /* Float is a CSS 'check' to confirm media query is active within JS */
+  .sidebar {
+    float: none;
+  }
+
+  .sidebar--mobile {
+    width: 3rem;
+    transition: width 0.2s;
+  }
+
+  .sidebar__collapse {
+    transform: rotate(270deg);
+  }
+
+  .sidebar__collapse--left {
+    transform: rotate(90deg);
+  }
+
+  .todo__delete, .todo__edit {
+    display: block;
+  }
+
+  .list-btn {
+    opacity: 0.3;
+  }
+}
+
+
+/* Landscape phones and down */
+/* @media (max-width: 480px) { ... } */
+
+/* Landscape phone to portrait tablet */
+/* @media (max-width: 768px) { ... } */
+
+/* Portrait tablet to landscape and desktop */
+/* @media (min-width: 768px) and (max-width: 980px) { ... } */
+
+/* Large desktop */
+/* @media (min-width: 1200px) { ... } */
+
