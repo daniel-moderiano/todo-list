@@ -35,24 +35,24 @@ function getFormData() {
 
 // Add a new todo to the specified list
 function addNewTodo() {
-  let todoData = getFormData();
-  let newTodo = createTodo(
+  const todoData = getFormData();
+  const newTodo = createTodo(
     todoData.title,
     todoData.description,
     todoData.dueDate,
-    todoData.priority
+    todoData.priority,
   );
   pushToList(newTodo, todoData.list);
 }
 
 // Send data to model to update an existing todo using form data from add modal in edit form
 function editExistingTodo() {
-  let todoEditedData = getFormData();
-  let editedTodo = createTodo(
+  const todoEditedData = getFormData();
+  const editedTodo = createTodo(
     todoEditedData.title,
     todoEditedData.description,
     todoEditedData.dueDate,
-    todoEditedData.priority
+    todoEditedData.priority,
   );
   updateTodo(todoEditedData.list, getCurrentlyEditingId(), editedTodo);
 }
@@ -161,7 +161,7 @@ function addModalControls() {
 
 // Add event listener to sidebar add list btn
 function addSidebarControls() {
-  let listModal = document.querySelector('.list-modal');
+  const listModal = document.querySelector('.list-modal');
 
   // Ensure the input is focused on open, and the submit btn is in disabled state to begin
   document.querySelector('.add-list').addEventListener('click', () => {
@@ -194,7 +194,6 @@ function listModalBtnControls() {
 
   listBtn.addEventListener('click', () => {
     // If the user tries to submit two lists of the same name, this will alert them and prevent that action
-    console.log(checkDuplicates(listInput.value));
     if (checkDuplicates(listInput.value)) {
       alert('List already exists! Please enter a unique list name.');
     } else {
@@ -203,10 +202,10 @@ function listModalBtnControls() {
       refreshSidebarLists();
       changeList(listInput.value);
       setSelectedClass(
-        document.querySelector(`[data-name='${getSelectedList()}']`)
+        document.querySelector(`[data-name='${getSelectedList()}']`),
       );
       setSelectedItemClass(
-        document.querySelector(`[data-name='${getSelectedList()}']`)
+        document.querySelector(`[data-name='${getSelectedList()}']`),
       );
       refreshTodoList();
       closeModal(listModal);
@@ -230,7 +229,7 @@ function convertAddModalForEdit(todo) {
 // Add event listener to parent list element (ul.todos__list) that captures event propgation from any child li elements
 function todoEventListeners() {
   document.querySelector('.todos__list').addEventListener('click', (e) => {
-    let targetClass = e.target.classList;
+    const targetClass = e.target.classList;
     // Individualise event response based on which target is clicked
     if (
       targetClass.contains('todo__delete-icon') ||
@@ -245,7 +244,7 @@ function todoEventListeners() {
       // Use the data-id to find the todo from memory, and open add modal in edit form
       changeCurrentlyEditingId(e.target.dataset.id);
       convertAddModalForEdit(
-        findTodoByListAndId(getSelectedList(), e.target.dataset.id)
+        findTodoByListAndId(getSelectedList(), e.target.dataset.id),
       );
       displayModal(document.querySelector('.add-modal'));
       return;
@@ -259,7 +258,6 @@ function todoEventListeners() {
     ) {
       renderViewModal(getSelectedList(), e.target.dataset.id);
       displayModal(document.querySelector('.view-modal'));
-      return;
     }
   });
 }

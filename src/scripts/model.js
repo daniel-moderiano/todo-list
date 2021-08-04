@@ -52,7 +52,13 @@ function checkDuplicates(newList) {
 
 // Factory function to create todo items
 function createTodo(title, description, dueDate, priority, id = nanoid()) {
-  return { title, description, dueDate, priority, id };
+  return {
+    title,
+    description,
+    dueDate,
+    priority,
+    id,
+  };
 }
 
 // Function to push todo into a specified list
@@ -63,21 +69,13 @@ function pushToList(todo, list) {
 // Function to remove todo object from array, searching via unique todo id
 function deleteFromList(list, id) {
   const index = lists[list].findIndex((todo) => todo.id === id);
-  if (index === -1) {
-    console.log('ID not found');
-  } else {
-    lists[list].splice(index, 1);
-  }
+  lists[list].splice(index, 1);
 }
 
 // Replace todo with updated version without deleting original entry (i.e. same ID is maintained)
 function updateTodo(list, id, todoUpdate) {
   const index = lists[list].findIndex((todo) => todo.id === id);
-  if (index === -1) {
-    console.log('ID not found');
-  } else {
-    lists[list][index] = todoUpdate;
-  }
+  lists[list][index] = todoUpdate;
 }
 
 // Adds or updates list of todos to local storage
@@ -93,11 +91,10 @@ function getFromStorage() {
 // Used to grab specific todo data from memory for editing purposes
 function findTodoByListAndId(list, id) {
   const index = lists[list].findIndex((todo) => todo.id === id);
-  if (index === -1) {
-    console.log('ID not found');
-  } else {
+  if (index !== -1) {
     return lists[list][index];
   }
+  return 'ID not found';
 }
 
 // Check for existing lists object in local storage, and retrieve it for use if present.
