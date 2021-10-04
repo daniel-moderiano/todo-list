@@ -127,6 +127,17 @@ function checkStorage() {
   }
 }
 
+// Check if the specificed document exists at docRef, and if so, set the lists variable to the data. If no data exists, e.g. for a new user, then there is no need to update variables as we are working from a blank state
+async function checkFirestore() {
+  const docRef = doc(database, 'storage', 'data');
+  const docSnapshot = await getDoc(docRef);
+
+  // Calling .exists() on the document snapshot will return false if there is no document at the specified docRef
+  if (docSnapshot.exists()) {
+    lists = JSON.parse(docSnapshot.data().lists);
+  }
+}
+
 export {
   createTodo,
   addToStorage,
@@ -146,4 +157,5 @@ export {
   checkStorage,
   addToFirestore,
   getFromFirestore,
+  checkFirestore,
 };
