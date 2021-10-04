@@ -12,6 +12,7 @@ import {
   updateTodo,
   getCurrentlyEditingId,
   changeCurrentlyEditingId,
+  addToFirestore,
 } from './model';
 import {
   refreshTodoList,
@@ -147,12 +148,14 @@ function addModalControls() {
       // edit current todo
       editExistingTodo();
       addToStorage();
+      addToFirestore();
       closeModal(addModal);
       refreshTodoList();
     } else {
       // Add as new todo
       addNewTodo();
       addToStorage();
+      addToFirestore();
       closeModal(addModal);
       refreshTodoList();
     }
@@ -199,6 +202,7 @@ function listModalBtnControls() {
     } else {
       addNewList(listInput.value);
       addToStorage();
+      addToFirestore();
       refreshSidebarLists();
       changeList(listInput.value);
       setSelectedClass(
@@ -237,6 +241,7 @@ function todoEventListeners() {
     ) {
       deleteFromList(getSelectedList(), e.target.dataset.id);
       addToStorage();
+      addToFirestore();
       refreshTodoList();
       return;
     }
@@ -270,6 +275,7 @@ function sidebarEventListeners() {
       e.target.parentNode.remove();
       removeList(e.target.dataset.name);
       addToStorage();
+      addToFirestore();
       changeList('Inbox');
       setSelectedClass(document.querySelector('#inbox'));
       setSelectedItemClass(document.querySelector('#inbox'));
