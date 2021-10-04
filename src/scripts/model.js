@@ -1,6 +1,6 @@
 // Nanoid used to generate unique IDs for todos to enable different functions to recognise and modify them
 import { nanoid } from 'nanoid';
-import { setDoc, doc } from '@firebase/firestore';
+import { setDoc, doc, getDoc } from '@firebase/firestore';
 import database from './firebase';
 
 // Store all lists in a modifiable object that can be referenced to create UI
@@ -100,6 +100,14 @@ function getFromStorage() {
   return JSON.parse(localStorage.getItem('lists'));
 }
 
+// Retrieves list of todos from firestore
+async function getFromFirestore() {
+  const docRef = doc(database, 'storage', 'data');
+  const docSnapshot = await getDoc(docRef);
+  // Returns a promise that resolves to the lists object. NOTE: any function requiring the data returned here must be asyncronous! Or using promises/.then()
+  return JSON.parse(docSnapshot.data().lists);
+}
+
 // Used to grab specific todo data from memory for editing purposes
 function findTodoByListAndId(list, id) {
   const index = lists[list].findIndex((todo) => todo.id === id);
@@ -137,4 +145,5 @@ export {
   changeCurrentlyEditingId,
   checkStorage,
   addToFirestore,
+  getFromFirestore,
 };

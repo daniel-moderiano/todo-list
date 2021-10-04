@@ -1,5 +1,5 @@
 import 'regenerator-runtime/runtime';
-import { addToFirestore, addToStorage, checkStorage } from './scripts/model';
+import { addToFirestore, addToStorage, checkStorage, getFromFirestore } from './scripts/model';
 import { refreshTodoList, addSidebarCollapseControls, refreshSidebarLists } from './scripts/view';
 import {
   addModalControls,
@@ -12,10 +12,12 @@ import {
 } from './scripts/controller';
 
 // "main" style funciton to run appropriate functions on initial page load
-function main() {
+async function main() {
   checkStorage();
   addToStorage();
   addToFirestore();
+  const data = await getFromFirestore();
+  console.log(data);
   refreshSidebarLists();
   refreshTodoList();
   addModalControls();
