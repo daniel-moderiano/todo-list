@@ -3,7 +3,6 @@
 /* eslint-disable radix */
 import { format } from 'date-fns';
 import {
-  getFromStorage,
   getSelectedList,
   getLists,
   findTodoByListAndId,
