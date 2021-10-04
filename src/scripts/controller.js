@@ -89,7 +89,7 @@ function btnEnable(input, btn) {
   }
 }
 
-// Clear all inputs in the add-modal form, and ensure the submit btn is reset to disabled mode. This has to be set dynamically on each modal display rathern than HTML coded as the HTML will be over-written when the modal is closed. Remove the edit class tag if present.
+// Clear all inputs in the add-modal form, and ensure the submit btn is reset to disabled mode. This has to be set dynamically on each modal display rather than HTML coded as the HTML will be over-written when the modal is closed. Remove the edit class tag if present.
 function resetAddModal() {
   const todoFormBtn = document.querySelector('.todo-form__btn');
   document.querySelector('#todo-form__title').value = '';
@@ -101,6 +101,9 @@ function resetAddModal() {
   todoFormBtn.textContent = 'Add task';
   document.querySelector('.add-modal').classList.remove('edit');
   document.querySelector('.add-modal__title').textContent = 'New task';
+
+  // Enable the list selector
+  document.querySelector('.todo-form__list').disabled = false;
 }
 
 // Clear inputs on list modal form, and ensure the submit btn is reset to disabled mode
@@ -224,6 +227,7 @@ function convertAddModalForEdit(todo) {
   document.querySelector('.todo-form__btn').textContent = 'Edit task';
 
   refreshListDropdown();
+  document.querySelector('.todo-form__list').setAttribute('disabled', true);
 }
 
 // Add event listener to parent list element (ul.todos__list) that captures event propgation from any child li elements
