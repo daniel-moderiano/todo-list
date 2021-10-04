@@ -1,6 +1,5 @@
 import {
   createTodo,
-  addToStorage,
   pushToList,
   changeList,
   addNewList,
@@ -143,19 +142,17 @@ function addModalControls() {
   });
 
   // Functions to run when the user "submits" the form (not a true submit to server however)
-  todoFormBtn.addEventListener('click', () => {
+  todoFormBtn.addEventListener('click', async () => {
     if (addModal.classList.contains('edit')) {
       // edit current todo
       editExistingTodo();
-      addToStorage();
-      addToFirestore();
+      await addToFirestore();
       closeModal(addModal);
       refreshTodoList();
     } else {
       // Add as new todo
       addNewTodo();
-      addToStorage();
-      addToFirestore();
+      await addToFirestore();
       closeModal(addModal);
       refreshTodoList();
     }
@@ -195,14 +192,13 @@ function listModalBtnControls() {
     btnEnable(listInput, listBtn);
   });
 
-  listBtn.addEventListener('click', () => {
+  listBtn.addEventListener('click', async () => {
     // If the user tries to submit two lists of the same name, this will alert them and prevent that action
     if (checkDuplicates(listInput.value)) {
       alert('List already exists! Please enter a unique list name.');
     } else {
       addNewList(listInput.value);
-      addToStorage();
-      addToFirestore();
+      await addToFirestore();
       refreshSidebarLists();
       changeList(listInput.value);
       setSelectedClass(
@@ -232,7 +228,7 @@ function convertAddModalForEdit(todo) {
 
 // Add event listener to parent list element (ul.todos__list) that captures event propgation from any child li elements
 function todoEventListeners() {
-  document.querySelector('.todos__list').addEventListener('click', (e) => {
+  document.querySelector('.todos__list').addEventListener('click', async (e) => {
     const targetClass = e.target.classList;
     // Individualise event response based on which target is clicked
     if (
@@ -240,8 +236,7 @@ function todoEventListeners() {
       targetClass.contains('todo__checkbox')
     ) {
       deleteFromList(getSelectedList(), e.target.dataset.id);
-      addToStorage();
-      addToFirestore();
+      await addToFirestore();
       refreshTodoList();
       return;
     }
@@ -269,13 +264,12 @@ function todoEventListeners() {
 
 // Add event listener to parent list element (ul.todos__list) that captures event propgation from any child li elements
 function sidebarEventListeners() {
-  document.querySelector('.sidebar').addEventListener('click', (e) => {
+  document.querySelector('.sidebar').addEventListener('click', async (e) => {
     // Individualise event response based on which target is clicked
     if (e.target.classList.contains('list-btn')) {
       e.target.parentNode.remove();
       removeList(e.target.dataset.name);
-      addToStorage();
-      addToFirestore();
+      await addToFirestore();
       changeList('Inbox');
       setSelectedClass(document.querySelector('#inbox'));
       setSelectedItemClass(document.querySelector('#inbox'));

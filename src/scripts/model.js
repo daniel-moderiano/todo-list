@@ -140,8 +140,6 @@ async function checkFirestore() {
 
 export {
   createTodo,
-  addToStorage,
-  getFromStorage,
   deleteFromList,
   pushToList,
   changeList,
@@ -154,7 +152,6 @@ export {
   updateTodo,
   getCurrentlyEditingId,
   changeCurrentlyEditingId,
-  checkStorage,
   addToFirestore,
   getFromFirestore,
   checkFirestore,
