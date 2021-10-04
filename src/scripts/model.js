@@ -1,5 +1,7 @@
 // Nanoid used to generate unique IDs for todos to enable different functions to recognise and modify them
 import { nanoid } from 'nanoid';
+import { setDoc, doc } from '@firebase/firestore';
+import database from './firebase';
 
 // Store all lists in a modifiable object that can be referenced to create UI
 let lists = {
@@ -83,6 +85,16 @@ function addToStorage() {
   localStorage.setItem('lists', JSON.stringify(lists));
 }
 
+// Adds and/or updates the backend storage of lists and todos
+async function addToFirestore() {
+  const stringifiedTodos = JSON.stringify(lists);
+  const docRef = doc(database, 'storage', 'data');
+
+  await setDoc(docRef, {
+    lists: stringifiedTodos,
+  });
+}
+
 // Retrieves list of todos from local storage
 function getFromStorage() {
   return JSON.parse(localStorage.getItem('lists'));
@@ -124,4 +136,5 @@ export {
   getCurrentlyEditingId,
   changeCurrentlyEditingId,
   checkStorage,
+  addToFirestore,
 };
