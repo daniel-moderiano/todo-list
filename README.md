@@ -14,6 +14,7 @@ This is a vanilla JS project, and a purely frontend application. Part of the cha
 * HTML
 * CSS
 * JavaScript
+* Webpack
 
 ## Future directions
 
