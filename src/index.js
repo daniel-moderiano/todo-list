@@ -1,20 +1,11 @@
-import 'regenerator-runtime/runtime';
-import { checkFirestore } from './scripts/model';
-import { refreshTodoList, addSidebarCollapseControls, refreshSidebarLists } from './scripts/view';
-import {
-  addModalControls,
-  addSidebarControls,
-  listModalBtnControls,
-  addNewTaskControls,
-  todoEventListeners,
-  sidebarEventListeners,
-  viewModalBtnControls,
-} from './scripts/controller';
+import { refreshTodoList, addSidebarCollapseControls, refreshSidebarLists } from "./scripts/view";
+import { addModalControls, addSidebarControls, listModalBtnControls, addNewTaskControls, todoEventListeners, sidebarEventListeners, viewModalBtnControls } from "./scripts/controller";
+import { addToStorage, checkStorage } from "./scripts/model";
 
 // "main" style funciton to run appropriate functions on initial page load
-async function main() {
-  // Ensure the lists variable withing model is up-to-date with firestore backend before proceeding
-  await checkFirestore();
+function main() {
+  checkStorage();
+  addToStorage();
   refreshSidebarLists();
   refreshTodoList();
   addModalControls();

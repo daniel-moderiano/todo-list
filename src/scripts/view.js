@@ -3,10 +3,10 @@
 /* eslint-disable radix */
 import { format } from 'date-fns';
 import {
+  getFromStorage,
   getSelectedList,
   getLists,
   findTodoByListAndId,
-  getFromFirestore,
 } from './model';
 
 // Take output from HTML date picker and format the following: 12/12/2000 => 12 Dec 2000
@@ -189,8 +189,8 @@ function renderTodo(todo) {
 }
 
 // Renders only a single list from storage (the currently selected) in the form of a list of todo items
-async function renderList() {
-  const lists = await getFromFirestore();
+function renderList() {
+  const lists = getFromStorage();
   lists[getSelectedList()].forEach((todo) => {
     renderTodo(todo);
   });

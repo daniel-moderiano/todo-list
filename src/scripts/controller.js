@@ -1,5 +1,6 @@
 import {
   createTodo,
+  addToStorage,
   pushToList,
   changeList,
   addNewList,
@@ -11,7 +12,6 @@ import {
   updateTodo,
   getCurrentlyEditingId,
   changeCurrentlyEditingId,
-  addToFirestore,
 } from './model';
 import {
   refreshTodoList,
@@ -89,7 +89,7 @@ function btnEnable(input, btn) {
   }
 }
 
-// Clear all inputs in the add-modal form, and ensure the submit btn is reset to disabled mode. This has to be set dynamically on each modal display rather than HTML coded as the HTML will be over-written when the modal is closed. Remove the edit class tag if present.
+// Clear all inputs in the add-modal form, and ensure the submit btn is reset to disabled mode. This has to be set dynamically on each modal display rathern than HTML coded as the HTML will be over-written when the modal is closed. Remove the edit class tag if present.
 function resetAddModal() {
   const todoFormBtn = document.querySelector('.todo-form__btn');
   document.querySelector('#todo-form__title').value = '';
@@ -101,8 +101,6 @@ function resetAddModal() {
   todoFormBtn.textContent = 'Add task';
   document.querySelector('.add-modal').classList.remove('edit');
   document.querySelector('.add-modal__title').textContent = 'New task';
-
-  // Enable the list selector
   document.querySelector('.todo-form__list').disabled = false;
 }
 
@@ -145,17 +143,17 @@ function addModalControls() {
   });
 
   // Functions to run when the user "submits" the form (not a true submit to server however)
-  todoFormBtn.addEventListener('click', async () => {
+  todoFormBtn.addEventListener('click', () => {
     if (addModal.classList.contains('edit')) {
       // edit current todo
       editExistingTodo();
-      await addToFirestore();
+      addToStorage();
       closeModal(addModal);
       refreshTodoList();
     } else {
       // Add as new todo
       addNewTodo();
-      await addToFirestore();
+      addToStorage();
       closeModal(addModal);
       refreshTodoList();
     }
@@ -195,13 +193,13 @@ function listModalBtnControls() {
     btnEnable(listInput, listBtn);
   });
 
-  listBtn.addEventListener('click', async () => {
+  listBtn.addEventListener('click', () => {
     // If the user tries to submit two lists of the same name, this will alert them and prevent that action
     if (checkDuplicates(listInput.value)) {
       alert('List already exists! Please enter a unique list name.');
     } else {
       addNewList(listInput.value);
-      await addToFirestore();
+      addToStorage();
       refreshSidebarLists();
       changeList(listInput.value);
       setSelectedClass(
@@ -232,7 +230,7 @@ function convertAddModalForEdit(todo) {
 
 // Add event listener to parent list element (ul.todos__list) that captures event propgation from any child li elements
 function todoEventListeners() {
-  document.querySelector('.todos__list').addEventListener('click', async (e) => {
+  document.querySelector('.todos__list').addEventListener('click', (e) => {
     const targetClass = e.target.classList;
     // Individualise event response based on which target is clicked
     if (
@@ -240,7 +238,7 @@ function todoEventListeners() {
       targetClass.contains('todo__checkbox')
     ) {
       deleteFromList(getSelectedList(), e.target.dataset.id);
-      await addToFirestore();
+      addToStorage();
       refreshTodoList();
       return;
     }
@@ -268,12 +266,12 @@ function todoEventListeners() {
 
 // Add event listener to parent list element (ul.todos__list) that captures event propgation from any child li elements
 function sidebarEventListeners() {
-  document.querySelector('.sidebar').addEventListener('click', async (e) => {
+  document.querySelector('.sidebar').addEventListener('click', (e) => {
     // Individualise event response based on which target is clicked
     if (e.target.classList.contains('list-btn')) {
       e.target.parentNode.remove();
       removeList(e.target.dataset.name);
-      await addToFirestore();
+      addToStorage();
       changeList('Inbox');
       setSelectedClass(document.querySelector('#inbox'));
       setSelectedItemClass(document.querySelector('#inbox'));

@@ -1,7 +1,5 @@
 // Nanoid used to generate unique IDs for todos to enable different functions to recognise and modify them
 import { nanoid } from 'nanoid';
-import { setDoc, doc, getDoc } from '@firebase/firestore';
-import database from './firebase';
 
 // Store all lists in a modifiable object that can be referenced to create UI
 let lists = {
@@ -80,22 +78,14 @@ function updateTodo(list, id, todoUpdate) {
   lists[list][index] = todoUpdate;
 }
 
-// Adds and/or updates the backend storage of lists and todos
-async function addToFirestore() {
-  const stringifiedTodos = JSON.stringify(lists);
-  const docRef = doc(database, 'storage', 'data');
-
-  await setDoc(docRef, {
-    lists: stringifiedTodos,
-  });
+// Adds or updates list of todos to local storage
+function addToStorage() {
+  localStorage.setItem('lists', JSON.stringify(lists));
 }
 
-// Retrieves list of todos from firestore
-async function getFromFirestore() {
-  const docRef = doc(database, 'storage', 'data');
-  const docSnapshot = await getDoc(docRef);
-  // Returns a promise that resolves to the lists object. NOTE: any function requiring the data returned here must be asyncronous! Or using promises/.then()
-  return JSON.parse(docSnapshot.data().lists);
+// Retrieves list of todos from local storage
+function getFromStorage() {
+  return JSON.parse(localStorage.getItem('lists'));
 }
 
 // Used to grab specific todo data from memory for editing purposes
@@ -107,19 +97,20 @@ function findTodoByListAndId(list, id) {
   return 'ID not found';
 }
 
-// Check if the specificed document exists at docRef, and if so, set the lists variable to the data. If no data exists, e.g. for a new user, then there is no need to update variables as we are working from a blank state
-async function checkFirestore() {
-  const docRef = doc(database, 'storage', 'data');
-  const docSnapshot = await getDoc(docRef);
-
-  // Calling .exists() on the document snapshot will return false if there is no document at the specified docRef
-  if (docSnapshot.exists()) {
-    lists = JSON.parse(docSnapshot.data().lists);
+// Check for existing lists object in local storage, and retrieve it for use if present.
+// Otherwise the lists variable will default to Inbox with no todos
+function checkStorage() {
+  if (!localStorage.getItem('lists')) {
+    // pass
+  } else {
+    lists = getFromStorage();
   }
 }
 
 export {
   createTodo,
+  addToStorage,
+  getFromStorage,
   deleteFromList,
   pushToList,
   changeList,
@@ -132,7 +123,5 @@ export {
   updateTodo,
   getCurrentlyEditingId,
   changeCurrentlyEditingId,
-  addToFirestore,
-  getFromFirestore,
-  checkFirestore,
+  checkStorage,
 };
