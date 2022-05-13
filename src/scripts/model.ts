@@ -1,8 +1,21 @@
 // Nanoid used to generate unique IDs for todos to enable different functions to recognise and modify them
 import { nanoid } from 'nanoid';
 
+// Define Todo interface here (a common param for several functions)
+interface Todo {
+  title: string;
+  description: string;
+  dueDate: string;
+  priority: string;
+  id: string;
+}
+
+interface Lists {
+  [key: string]: Todo[];
+}
+
 // Store all lists in a modifiable object that can be referenced to create UI
-let lists = {
+let lists: Lists = {
   Inbox: [],
 };
 
@@ -22,7 +35,7 @@ function getSelectedList() {
 }
 
 // Function to change selected list
-function changeList(list) {
+function changeList(list: string) {
   selectedList = list;
 }
 
@@ -30,28 +43,34 @@ function getCurrentlyEditingId() {
   return currentlyEditingId;
 }
 
-function changeCurrentlyEditingId(id) {
+function changeCurrentlyEditingId(id: string) {
   currentlyEditingId = id;
 }
 
 // Add a new list to the lists object
-function addNewList(list) {
+function addNewList(list: string): void {
   lists[list] = [];
 }
 
 // Permanently remove a list from the lists object
-function removeList(list) {
+function removeList(list: string): void {
   delete lists[list];
 }
 
 // Checks for duplicate list names
-function checkDuplicates(newList) {
+function checkDuplicates(newList: string): boolean {
   const currentLists = Object.keys(lists);
   return currentLists.some((list) => list === newList);
 }
 
 // Factory function to create todo items
-function createTodo(title, description, dueDate, priority, id = nanoid()) {
+function createTodo(
+  title: string,
+  description: string,
+  dueDate: string,
+  priority: string,
+  id: string = nanoid(),
+): Todo {
   return {
     title,
     description,
@@ -62,35 +81,42 @@ function createTodo(title, description, dueDate, priority, id = nanoid()) {
 }
 
 // Function to push todo into a specified list
-function pushToList(todo, list) {
+function pushToList(todo: Todo, list: string): void {
   lists[list].push(todo);
 }
 
 // Function to remove todo object from array, searching via unique todo id
-function deleteFromList(list, id) {
-  const index = lists[list].findIndex((todo) => todo.id === id);
+function deleteFromList(list: string, id: string): void {
+  const index = lists[list].findIndex((todo: Todo) => todo.id === id);
   lists[list].splice(index, 1);
 }
 
 // Replace todo with updated version without deleting original entry (i.e. same ID is maintained)
-function updateTodo(list, id, todoUpdate) {
-  const index = lists[list].findIndex((todo) => todo.id === id);
+function updateTodo(list: string, id: string, todoUpdate: Todo): void {
+  const index = lists[list].findIndex((todo: Todo) => todo.id === id);
   lists[list][index] = todoUpdate;
 }
 
 // Adds or updates list of todos to local storage
-function addToStorage() {
+function addToStorage(): void {
   localStorage.setItem('lists', JSON.stringify(lists));
 }
 
 // Retrieves list of todos from local storage
 function getFromStorage() {
-  return JSON.parse(localStorage.getItem('lists'));
+  const storage = localStorage.getItem('lists');
+
+  // Can't feed null to JSON.parse, hence this check here
+  if (storage) {
+    return JSON.parse(storage);
+  } else {
+    return null;
+  }
 }
 
 // Used to grab specific todo data from memory for editing purposes
-function findTodoByListAndId(list, id) {
-  const index = lists[list].findIndex((todo) => todo.id === id);
+function findTodoByListAndId(list: string, id: string) {
+  const index = lists[list].findIndex((todo: Todo) => todo.id === id);
   if (index !== -1) {
     return lists[list][index];
   }
@@ -99,8 +125,8 @@ function findTodoByListAndId(list, id) {
 
 // Check for existing lists object in local storage, and retrieve it for use if present.
 // Otherwise the lists variable will default to Inbox with no todos
-function checkStorage() {
-  if (!localStorage.getItem('lists')) {
+function checkStorage(): void {
+  if (getFromStorage()) {
     // pass
   } else {
     lists = getFromStorage();

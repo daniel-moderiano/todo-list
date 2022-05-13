@@ -10,7 +10,7 @@ import {
 } from './model';
 
 // Take output from HTML date picker and format the following: 12/12/2000 => 12 Dec 2000
-function dateFormatter(dateStr) {
+function dateFormatter(dateStr: string) {
   const year = parseInt(dateStr.slice(0, 4));
   const month = parseInt(dateStr.slice(5, 7)) - 1;
   const day = parseInt(dateStr.slice(8, 10));
