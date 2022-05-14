@@ -1,137 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="styles/reset.css">
-    <link rel="stylesheet" type="text/css" href="styles/style.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <title>Todo List</title>
+  <meta charset="UTF-8">
+  <meta content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="styles/reset.css">
+  <link rel="stylesheet" type="text/css" href="styles/style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <title>Todo List</title>
 </head>
-  <body>
-      <div class="full-container">
-          <header class="header">
-            <img class="header__icon" src="icons/checkbox-white.svg" alt="">
-            <h1 class="header__title">To Do</h1>
-          </header>
-      <div class="content-container">
-        <aside class="sidebar sidebar--mobile">
-          <button type="button" class="sidebar__collapse" aria-label="Collapse and expand sidebar">
-            <svg class="sidebar__collapse-icon" xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 0 24 24" width="28px" fill="#324BDF"><path d="M0 0h24v24H0z" fill="none"/><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></svg>
-          </button>
-          <div class="default-lists">
-            <ul class="default-lists__list">
-              <li data-name="Inbox" id="inbox" class="list-item">
-                <img class="inbox-icon" src="icons/inbox.svg" alt="inbox icon">
-                <h4 data-name="Inbox" class="list-name list-name--selected">Inbox</h4>
-              </li>
-            </ul>
-          </div>
-          <div class="added-lists">
-            <ul class="added-lists__list">
-              <!-- New added lists here -->
-            </ul>
-          </div>
-          <div class="add-list">
-            <span>
-              
-              <img class="add-list-icon" src="icons/sidebar-plus.svg" alt="" aria-label="Add new list">
-            </span>
-            <h3 class="add-list__title">Add List</h3>
-          </div>
+
+<body>
+  <div class="full-container">
+    <header class="header">
+      <img class="header__icon" src="icons/checkbox-white.svg" alt="">
+      <h1 class="header__title">To Do</h1>
+    </header>
+    <div class="content-container">
+      <aside class="sidebar sidebar--mobile">
+        <button type="button" class="sidebar__collapse" aria-label="Collapse and expand sidebar">
+          <svg class="sidebar__collapse-icon" xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 0 24 24"
+            width="28px" fill="#324BDF">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
+          </svg>
+        </button>
+        <div class="default-lists">
+          <ul class="default-lists__list">
+            <li data-name="Inbox" id="inbox" class="list-item">
+              <img class="inbox-icon" src="icons/inbox.svg" alt="inbox icon">
+              <h4 data-name="Inbox" class="list-name list-name--selected">Inbox</h4>
+            </li>
+          </ul>
+        </div>
+        <div class="added-lists">
+          <ul class="added-lists__list">
+            <!-- New added lists here -->
+          </ul>
+        </div>
+        <div class="add-list">
+          <span>
+
+            <img class="add-list-icon" src="icons/sidebar-plus.svg" alt="" aria-label="Add new list">
+          </span>
+          <h3 class="add-list__title">Add List</h3>
+        </div>
       </aside>
-      
-          <main class="main">
-              <div class="todos">
-                  <header class="todos__header">
-                      <h2 class="todos__current-list">List</h2>
-                  </header>
-                  <ul class="todos__list">
-                    <!-- Todo items here -->
-                  </ul>
-                  <button type="button" class="todos__new">
-                    <svg class="todos__new-icon" height="32px" id="Layer_1" version="1.1" viewBox="0 0 32 32" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path fill="#324BDF" d="M28,14H18V4c0-1.104-0.896-2-2-2s-2,0.896-2,2v10H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h10v10c0,1.104,0.896,2,2,2  s2-0.896,2-2V18h10c1.104,0,2-0.896,2-2S29.104,14,28,14z"/></svg>
-                    <span class="todos__new-text">New task</span>
-                  </button>
-              </div>
-          </main>
-               
-          
-        </div>
-      </div>
 
-      <!-- Modal for adding new todos -->
-      <div class="add-modal">
-        <div class="add-modal__content">
-          <header class="add-modal__header">
-            <h4 class="add-modal__title">New task</h4>
-            <button class="add-modal__close" aria-label="close current window">
-              <svg class="modal-icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-            </button>
+      <main class="main">
+        <div class="todos">
+          <header class="todos__header">
+            <h2 class="todos__current-list">List</h2>
           </header>
-          <form class="todo-form">
-            <label for="todo-form__title">Title</label>
-            <input maxlength="200" id="todo-form__title" type="text" class="todo-form__title">
-            <!-- Hidden input to avoid bug that submits on enter key with only one input in a form -->
-            <input class="hidden" type="text">
-            <label for="todo-form__description">Description</label>
-            <textarea maxlength="300" name="description" class="todo-form__description" id="todo-form__description" cols="30" rows="10"></textarea>
-            <label for="todo-form__date">Due date</label>
-            <input id="todo-form__date" type="date" class="todo-form__date">
-            <label for="todo-form__priority">Priority</label>
-            <select class="todo-form__priority" name="priority" id="todo-form__priority">
-              <option disabled selected value> -- Select -- </option>
-              <option value="high">High</option>
-              <option value="medium">Medium</option>
-              <option value="low">Low</option>
-            </select>
-            <label for="todo-form__list">List</label>
-            <select class="todo-form__list" name="list" id="todo-form__list" aria-label="Select list to add task to"></select>
-            <button class="todo-form__btn" type="button">Add task</button>
-          </form>
+          <ul class="todos__list">
+            <!-- Todo items here -->
+          </ul>
+          <button type="button" class="todos__new">
+            <svg class="todos__new-icon" height="32px" id="Layer_1" version="1.1" viewBox="0 0 32 32" width="32px"
+              xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <path fill="#324BDF"
+                d="M28,14H18V4c0-1.104-0.896-2-2-2s-2,0.896-2,2v10H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h10v10c0,1.104,0.896,2,2,2  s2-0.896,2-2V18h10c1.104,0,2-0.896,2-2S29.104,14,28,14z" />
+            </svg>
+            <span class="todos__new-text">New task</span>
+          </button>
         </div>
-      </div>
+      </main>
 
-      <div class="list-modal">
-        <div class="list-modal__content">
-          <header class="list-modal__header">
-            <h4 class="list-modal__title">Add List</h4>
-            <button class="list-modal__close" aria-label="close current window">
-              <svg class="modal-icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-            </button>
-          </header>
-          <form class="list-form">
-            <label class="list-form__label" for="list-form__input">New list name</label>
-            <input class="list-form__input" id="list-form__input" type="text">
-            <!-- Hidden input to avoid bug that submits on enter key with only one input in a form -->
-            <input class="hidden" type="text">
-          </form>
-          <button class="list-modal__btn" type="button">Add list</button>
+
+    </div>
+  </div>
+
+  <!-- Modal for adding new todos -->
+  <div class="add-modal">
+    <div class="add-modal__content">
+      <header class="add-modal__header">
+        <h4 class="add-modal__title">New task</h4>
+        <button class="add-modal__close" aria-label="close current window">
+          <svg class="modal-icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"
+            fill="#000000">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path
+              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+          </svg>
+        </button>
+      </header>
+      <form class="todo-form">
+        <label for="todo-form__title">Title</label>
+        <input maxlength="200" id="todo-form__title" type="text" class="todo-form__title">
+        <!-- Hidden input to avoid bug that submits on enter key with only one input in a form -->
+        <input class="hidden" type="text">
+        <label for="todo-form__description">Description</label>
+        <textarea maxlength="300" name="description" class="todo-form__description" id="todo-form__description"
+          cols="30" rows="10"></textarea>
+        <label for="todo-form__date">Due date</label>
+        <input id="todo-form__date" type="date" class="todo-form__date">
+        <label for="todo-form__priority">Priority</label>
+        <select class="todo-form__priority" name="priority" id="todo-form__priority">
+          <option disabled selected value> -- Select -- </option>
+          <option value="high">High</option>
+          <option value="medium">Medium</option>
+          <option value="low">Low</option>
+        </select>
+        <label for="todo-form__list">List</label>
+        <select class="todo-form__list" name="list" id="todo-form__list"
+          aria-label="Select list to add task to"></select>
+        <button class="todo-form__btn" type="button">Add task</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="list-modal">
+    <div class="list-modal__content">
+      <header class="list-modal__header">
+        <h4 class="list-modal__title">Add List</h4>
+        <button class="list-modal__close" aria-label="close current window">
+          <svg class="modal-icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"
+            fill="#000000">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path
+              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+          </svg>
+        </button>
+      </header>
+      <form class="list-form">
+        <label class="list-form__label" for="list-form__input">New list name</label>
+        <input class="list-form__input" id="list-form__input" type="text">
+        <!-- Hidden input to avoid bug that submits on enter key with only one input in a form -->
+        <input class="hidden" type="text">
+      </form>
+      <button class="list-modal__btn" type="button">Add list</button>
+    </div>
+  </div>
+
+  <div class="view-modal">
+    <div class="view-modal__content">
+      <header class="view-modal__header">
+        <h4 class="view-modal__title"></h4>
+        <button class="view-modal__close" aria-label="close current window">
+          <svg class="modal-icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"
+            fill="#000000">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path
+              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+          </svg>
+        </button>
+      </header>
+      <div class="view-modal__todo">
+        <!-- Display todo contents here -->
+        <div class="view-todo__header">
+          <h4 class="view-todo__title"></h4>
+          <span class="view-todo__priority"></span>
         </div>
+        <p class="view-todo__description"></p>
+        <span class="view-todo__date"></span>
       </div>
+    </div>
+  </div>
 
-      <div class="view-modal">
-        <div class="view-modal__content">
-          <header class="view-modal__header">
-            <h4 class="view-modal__title"></h4>
-            <button class="view-modal__close" aria-label="close current window">
-              <svg class="modal-icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-            </button>
-          </header>
-          <div class="view-modal__todo">
-            <!-- Display todo contents here -->
-            <div class="view-todo__header">
-              <h4 class="view-todo__title"></h4>
-              <span class="view-todo__priority"></span>
-            </div>
-            <p class="view-todo__description"></p>
-            <span class="view-todo__date"></span>
-          </div>
-        </div>
-      </div>
+  <!-- Script runs from the webpack bundled main.js -->
+  <script src="main.js"></script>
+</body>
 
-      <!-- Script runs from the webpack bundled main.js -->
-      <script src="main.js"></script>
-  </body>
 </html>

@@ -10,6 +10,7 @@ interface Todo {
   id: string;
 }
 
+// Allow custom keys, but they must be arrays of Todo objects
 interface Lists {
   [key: string]: Todo[];
 }
@@ -134,6 +135,7 @@ function checkStorage(): void {
 }
 
 export {
+  Todo,
   createTodo,
   addToStorage,
   getFromStorage,

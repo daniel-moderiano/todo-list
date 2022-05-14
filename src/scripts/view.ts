@@ -2,15 +2,10 @@
 /* eslint-disable indent */
 /* eslint-disable radix */
 import { format } from 'date-fns';
-import {
-  getFromStorage,
-  getSelectedList,
-  getLists,
-  findTodoByListAndId,
-} from './model';
+import { getFromStorage, getSelectedList, getLists, findTodoByListAndId, Todo } from './model';
 
 // Take output from HTML date picker and format the following: 12/12/2000 => 12 Dec 2000
-function dateFormatter(dateStr: string) {
+function dateFormatter(dateStr: string): string {
   const year = parseInt(dateStr.slice(0, 4));
   const month = parseInt(dateStr.slice(5, 7)) - 1;
   const day = parseInt(dateStr.slice(8, 10));
@@ -18,7 +13,7 @@ function dateFormatter(dateStr: string) {
 }
 
 // Create a tick-shaped SVG element (note, must use createElementNS as path and SVG are XML, not HTML formats)
-function svgTick() {
+function svgTick(): SVGSVGElement {
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
 
@@ -36,16 +31,10 @@ function svgTick() {
 }
 
 // Create a close icon SVG
-function svgClose() {
+function svgClose(): SVGSVGElement {
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-  const pathOne = document.createElementNS(
-    'http://www.w3.org/2000/svg',
-    'path',
-  );
-  const pathTwo = document.createElementNS(
-    'http://www.w3.org/2000/svg',
-    'path',
-  );
+  const pathOne = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  const pathTwo = document.createElementNS('http://www.w3.org/2000/svg', 'path');
 
   svg.setAttribute('width', '24px');
   svg.setAttribute('height', '24px');
@@ -65,8 +54,8 @@ function svgClose() {
 }
 
 // Take todo object from master array and render to the DOM as todo list item
-function renderTodo(todo) {
-  const todosList = document.querySelector('.todos__list');
+function renderTodo(todo: Todo): void {
+  const todosList = document.querySelector('.todos__list') as HTMLUListElement | null;
   const todoListItem = document.createElement('li');
   const todoContainer = document.createElement('div');
   const todoTitle = document.createElement('h5');
@@ -185,41 +174,50 @@ function renderTodo(todo) {
   todoContainer.appendChild(todoEditBtn);
 
   // Insert newly rendered todo into the main todo list
-  todosList.appendChild(todoListItem);
+  if (todosList) {
+    todosList.appendChild(todoListItem);
+  }
 }
 
 // Renders only a single list from storage (the currently selected) in the form of a list of todo items
-function renderList() {
+function renderList(): void {
   const lists = getFromStorage();
-  lists[getSelectedList()].forEach((todo) => {
+  lists[getSelectedList()].forEach((todo: Todo) => {
     renderTodo(todo);
   });
 }
 
 // Visibly remove all current todos li items from the DOM
-function clearAllTodos() {
-  const todosList = document.querySelector('.todos__list');
-  while (todosList.lastElementChild) {
-    todosList.removeChild(todosList.lastElementChild);
+function clearAllTodos(): void {
+  const todosList = document.querySelector('.todos__list') as HTMLUListElement | null;
+  if (todosList) {
+    while (todosList.lastElementChild) {
+      todosList.removeChild(todosList.lastElementChild);
+    }
   }
 }
 
 // Update the currently viewed list title in main section
-function changeCurrentListTitle() {
-  document.querySelector('.todos__current-list').textContent =
-    getSelectedList();
+function changeCurrentListTitle(): void {
+  const currentList = document.querySelector('.todos__current-list') as HTMLHeadingElement | null;
+
+  if (currentList) {
+    currentList.textContent = getSelectedList();
+  }
 }
 
 // Update the visible todo list by sequentially clearing and re-rendering all todos
-function refreshTodoList() {
+function refreshTodoList(): void {
   clearAllTodos();
   changeCurrentListTitle();
   renderList();
 }
 
 // Set the --selected modifier class exclusively on the currently selected list element (name)
-function setSelectedClass(listItem) {
-  const listNames = document.querySelectorAll('.list-name');
+function setSelectedClass(listItem: HTMLHeadingElement) {
+  // Null is not provided as a type here, because even with no available list-name elements, an empty node list will be returned
+  const listNames = document.querySelectorAll('.list-name') as NodeListOf<HTMLHeadingElement>;
+
   listNames.forEach((list) => {
     if (list.dataset.name === listItem.dataset.name) {
       list.classList.add('list-name--selected');
@@ -230,8 +228,9 @@ function setSelectedClass(listItem) {
 }
 
 // Set the --selected modifier class exclusively on the currently selected list element (background)
-function setSelectedItemClass(listItem) {
-  const listItems = document.querySelectorAll('.list-item');
+function setSelectedItemClass(listItem: HTMLHeadElement) {
+  const listItems = document.querySelectorAll('.list-item') as NodeListOf<HTMLLIElement>;
+
   listItems.forEach((list) => {
     if (list.dataset.name === listItem.dataset.name) {
       list.classList.add('list-item--selected');
@@ -242,7 +241,8 @@ function setSelectedItemClass(listItem) {
 }
 
 // Add a new list element in the sidebar
-function newListElement(list) {
+function newListElement(list: string): void {
+  const addedLists = document.querySelector('.added-lists__list') as HTMLUListElement | null;
   const li = document.createElement('li');
   const name = document.createElement('h4');
   const btn = document.createElement('button');
@@ -267,33 +267,42 @@ function newListElement(list) {
   li.appendChild(icon);
   li.appendChild(name);
   li.appendChild(btn);
-  document.querySelector('.added-lists__list').appendChild(li);
+
+  if (addedLists) {
+    addedLists.appendChild(li);
+  }
 }
 
 // Dynamically fill the add modal select element with options matching the currently available lists
-function addListsToDropdown() {
-  const dropdown = document.querySelector('#todo-form__list');
+function addListsToDropdown(): void {
+  const dropdown = document.querySelector('#todo-form__list') as HTMLSelectElement | null;
   const lists = Object.keys(getLists());
+
   lists.forEach((list) => {
     const option = document.createElement('option');
     option.value = list;
     option.textContent = list;
     option.className = 'list-option';
-    dropdown.appendChild(option);
+    if (dropdown) {
+      dropdown.appendChild(option);
+    }
   });
 }
 
 // Dynamically remove all lists from the add modal select element
-function deleteListsFromDropdown() {
-  const dropdown = document.querySelector('#todo-form__list');
-  while (dropdown.lastElementChild) {
-    dropdown.removeChild(dropdown.lastElementChild);
+function deleteListsFromDropdown(): void {
+  const dropdown = document.querySelector('#todo-form__list') as HTMLSelectElement | null;
+  if (dropdown) {
+    while (dropdown.lastElementChild) {
+      dropdown.removeChild(dropdown.lastElementChild);
+    }
   }
 }
 
 // When the user is on a particular list view, it is easy to overlook the list dropdown menu and assume it is set to their current list. This function ensures that is the case.
-function changeSelectedOption() {
-  const options = document.querySelectorAll('.list-option');
+function changeSelectedOption(): void {
+  const options = document.querySelectorAll('.list-option') as NodeListOf<HTMLOptionElement>;
+
   options.forEach((option) => {
     if (option.value === getSelectedList()) {
       option.setAttribute('selected', '');
@@ -301,33 +310,35 @@ function changeSelectedOption() {
   });
 }
 
-function refreshListDropdown() {
+function refreshListDropdown(): void {
   deleteListsFromDropdown();
   addListsToDropdown();
   changeSelectedOption();
 }
 
 // Control the sidebar collapsing when the user clicks the collapse btn (function varies depending on starting state - mobile vs desktop)
-function addSidebarCollapseControls() {
-  document.querySelector('.sidebar__collapse').addEventListener('click', () => {
-    const sidebar = document.querySelector('.sidebar');
-    const sidebarCollapse = document.querySelector('.sidebar__collapse');
+function addSidebarCollapseControls(): void {
+  const sidebarCollapse = document.querySelector('.sidebar__collapse') as HTMLButtonElement | null;
+  const sidebar = document.querySelector('.sidebar') as HTMLElement | null;
 
-    // Float will only be set to none if the mobile media query is active
-    if (window.getComputedStyle(sidebar).float === 'none') {
-      // Controls the sidebar size
-      document.querySelector('.sidebar').classList.toggle('sidebar--mobile');
-      document.querySelector('.sidebar').classList.remove('sidebar--small');
+  if (sidebarCollapse && sidebar) {
+    sidebarCollapse.addEventListener('click', () => {
+      // Float will only be set to none if the mobile media query is active
+      if (window.getComputedStyle(sidebar).float === 'none') {
+        // Controls the sidebar size
+        sidebar.classList.toggle('sidebar--mobile');
+        sidebar.classList.remove('sidebar--small');
 
-      // Controls the sidebar button orientation
-      sidebarCollapse.classList.toggle('sidebar__collapse--left');
-      sidebarCollapse.classList.remove('sidebar__collapse--right');
-    } else {
-      sidebarCollapse.classList.toggle('sidebar__collapse--right');
-      sidebarCollapse.classList.remove('sidebar__collapse--left');
-      document.querySelector('.sidebar').classList.toggle('sidebar--small');
-    }
-  });
+        // Controls the sidebar button orientation
+        sidebarCollapse.classList.toggle('sidebar__collapse--left');
+        sidebarCollapse.classList.remove('sidebar__collapse--right');
+      } else {
+        sidebarCollapse.classList.toggle('sidebar__collapse--right');
+        sidebarCollapse.classList.remove('sidebar__collapse--left');
+        sidebar.classList.toggle('sidebar--small');
+      }
+    });
+  }
 }
 
 // Delete sidebar list elements, and avoid removing inbox by targetting just the added lists
@@ -355,43 +366,64 @@ function refreshSidebarLists() {
 }
 
 // Fill the view modal with the selected todo data, representing priority using exclamation points of different colour
-function renderViewModal(list, todo) {
-  const todoToView = findTodoByListAndId(list, todo);
-  const viewPriority = document.querySelector('.view-todo__priority');
-  const viewDate = document.querySelector('.view-todo__date');
+function renderViewModal(list: string, todo: Todo) {
+  const todoToView = findTodoByListAndId(list, todo.id);
+  const viewPriority = document.querySelector('.view-todo__priority') as HTMLSpanElement | null;
+  const viewDate = document.querySelector('.view-todo__date') as HTMLSpanElement | null;
+  const viewModalTitle = document.querySelector('.view-modal__title') as HTMLHeadingElement | null;
+  const viewTodoTitle = document.querySelector('.view-todo__title') as HTMLHeadingElement | null;
+  const viewTodoDescription = document.querySelector(
+    '.view-todo__description',
+  ) as HTMLParagraphElement | null;
 
-  document.querySelector('.view-modal__title').textContent = list;
-  document.querySelector('.view-todo__title').textContent = todoToView.title;
-  document.querySelector('.view-todo__description').textContent =
-    todoToView.description;
-
-  if (todoToView.dueDate === '') {
-    viewDate.textContent = '';
-  } else {
-    viewDate.textContent = `Due ${todoToView.dueDate}`;
+  // If todo is not found, a string error is returned from above findTodoByListAndId
+  if (typeof todoToView === 'string') {
+    throw new Error('Todo not found');
   }
 
-  viewPriority.className = 'view-todo__priority';
+  if (viewModalTitle) {
+    viewModalTitle.textContent = list;
+  }
 
-  switch (todoToView.priority) {
-    case 'low':
-      viewPriority.textContent = '!';
-      viewPriority.classList.add('view-todo__priority--low');
-      break;
+  if (viewTodoTitle) {
+    viewTodoTitle.textContent = todoToView.title;
+  }
 
-    case 'medium':
-      viewPriority.textContent = '!!';
-      viewPriority.classList.add('view-todo__priority--med');
-      break;
+  if (viewTodoDescription) {
+    viewTodoDescription.textContent = todoToView.description;
+  }
 
-    case 'high':
-      viewPriority.textContent = '!!!';
-      viewPriority.classList.add('view-todo__priority--high');
-      break;
+  if (viewDate) {
+    if (todoToView.dueDate === '') {
+      viewDate.textContent = '';
+    } else {
+      viewDate.textContent = `Due ${todoToView.dueDate}`;
+    }
+  }
 
-    default:
-      viewPriority.textContent = '';
-      break;
+  if (viewPriority) {
+    viewPriority.className = 'view-todo__priority';
+
+    switch (todoToView.priority) {
+      case 'low':
+        viewPriority.textContent = '!';
+        viewPriority.classList.add('view-todo__priority--low');
+        break;
+
+      case 'medium':
+        viewPriority.textContent = '!!';
+        viewPriority.classList.add('view-todo__priority--med');
+        break;
+
+      case 'high':
+        viewPriority.textContent = '!!!';
+        viewPriority.classList.add('view-todo__priority--high');
+        break;
+
+      default:
+        viewPriority.textContent = '';
+        break;
+    }
   }
 }
 
