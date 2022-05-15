@@ -214,9 +214,9 @@ function refreshTodoList(): void {
 }
 
 // Set the --selected modifier class exclusively on the currently selected list element (name)
-function setSelectedClass(listItem: HTMLHeadingElement) {
+function setSelectedClass(listItem: HTMLElement) {
   // Null is not provided as a type here, because even with no available list-name elements, an empty node list will be returned
-  const listNames = document.querySelectorAll('.list-name') as NodeListOf<HTMLHeadingElement>;
+  const listNames = document.querySelectorAll('.list-name') as NodeListOf<HTMLLIElement>;
 
   listNames.forEach((list) => {
     if (list.dataset.name === listItem.dataset.name) {
@@ -228,7 +228,7 @@ function setSelectedClass(listItem: HTMLHeadingElement) {
 }
 
 // Set the --selected modifier class exclusively on the currently selected list element (background)
-function setSelectedItemClass(listItem: HTMLHeadElement) {
+function setSelectedItemClass(listItem: HTMLElement) {
   const listItems = document.querySelectorAll('.list-item') as NodeListOf<HTMLLIElement>;
 
   listItems.forEach((list) => {
@@ -366,8 +366,8 @@ function refreshSidebarLists() {
 }
 
 // Fill the view modal with the selected todo data, representing priority using exclamation points of different colour
-function renderViewModal(list: string, todo: Todo) {
-  const todoToView = findTodoByListAndId(list, todo.id);
+function renderViewModal(list: string, todoId: string) {
+  const todoToView = findTodoByListAndId(list, todoId);
   const viewPriority = document.querySelector('.view-todo__priority') as HTMLSpanElement | null;
   const viewDate = document.querySelector('.view-todo__date') as HTMLSpanElement | null;
   const viewModalTitle = document.querySelector('.view-modal__title') as HTMLHeadingElement | null;
