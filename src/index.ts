@@ -1,9 +1,17 @@
-import { refreshTodoList, addSidebarCollapseControls, refreshSidebarLists } from "./scripts/view";
-import { addModalControls, addSidebarControls, listModalBtnControls, addNewTaskControls, todoEventListeners, sidebarEventListeners, viewModalBtnControls } from "./scripts/controller";
-import { addToStorage, checkStorage } from "./scripts/model";
+import { refreshTodoList, addSidebarCollapseControls, refreshSidebarLists } from './scripts/view';
+import {
+  addModalControls,
+  addSidebarControls,
+  listModalBtnControls,
+  addNewTaskControls,
+  todoEventListeners,
+  sidebarEventListeners,
+  viewModalBtnControls,
+} from './scripts/controller';
+import { addToStorage, checkStorage } from './scripts/model';
 
 // "main" style funciton to run appropriate functions on initial page load
-function main() {
+function main(): void {
   checkStorage();
   addToStorage();
   refreshSidebarLists();
